@@ -28,16 +28,16 @@ public class Sequence implements Serializable {
   private int processingTime;
   private int requestPerSecond;
 
-  @OneToMany(targetEntity=Consumer.class, mappedBy="sequences")
+  @ManyToOne
   private Consumer consumer;
 
-  @OneToMany(targetEntity=Provider.class, mappedBy="sequences")
+  @ManyToOne
   private Provider provider;
 
   @ManyToMany
   private Collection<Scenario> scenarios;
 
-  @ManyToOne
+  @OneToMany
   private Collection<Result> results;
 
   private static final long serialVersionUID = 1L;

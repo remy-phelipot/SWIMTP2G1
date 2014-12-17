@@ -3,11 +3,6 @@
   <persistence-unit name="persistanceunit" transaction-type="RESOURCE_LOCAL">
    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
-    <class>database.Consumer</class>
-    <class>database.Provider</class>
-    <class>database.Result</class>
-    <class>database.Scenario</class>
-    <class>database.Sequence</class>
     <properties>
       <property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC" />
       <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:test.db" />

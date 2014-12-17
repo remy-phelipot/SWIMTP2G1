@@ -24,25 +24,29 @@ import javax.persistence.Query;
  * @author martin
  */
 public class Database {
+    private static final String persistenceUnitName = "persistanceunit";
 
     private EntityManagerFactory emf = null;
     private EntityManager em = null;
 
-    public Database() {
+    public Database() throws RuntimeException {
+        String driver = "org.sqlite.JDBC";
         try {
-            Class.forName("org.postgresql.Driver"); /* SQLITE DRIVER TO PUT */
-
+            Class.forName(driver);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException("Driver "+driver+" not found. ("+ex.getMessage()+")");
         }
     }
 
-    private void open() {
-        this.emf = Persistence.createEntityManagerFactory("persistanceunit");
+    public void open() {
+        this.emf = Persistence.createEntityManagerFactory(persistenceUnitName);
         this.em = emf.createEntityManager();
     }
 
-    private void close() {
+    public void close() {
+        em.close();
+        emf.close();
         this.emf = null;
         this.em = null;
     }
@@ -53,11 +57,9 @@ public class Database {
         scenario.setName(scenarioBean.getName());
 
         System.out.println("Creating scenario " + scenario.getName());
-        this.open();
         em.getTransaction().begin();
         em.persist(scenario);
         em.getTransaction().commit();
-        this.close();
     }
 
     public void createSequence(SequenceBean sequenceBean) {
@@ -72,16 +74,12 @@ public class Database {
         sequence.setProvider(sequenceBean.getProvider());
 
         System.out.println("Creating sequence " + sequence.getDataSize());
-        this.open();
         em.getTransaction().begin();
         em.persist(sequence);
         em.getTransaction().commit();
-        this.close();
     }
 
     public void updateScenario(String name, ArrayList<Sequence> seqs) {
-
-        this.open();
         em.getTransaction().begin();
 
         Query query = em.createNamedQuery("Scenario.findByName");
@@ -91,8 +89,5 @@ public class Database {
         sce.setSequences(seqs);
 
         em.getTransaction().commit();
-
-        this.close();
-
     }
 }

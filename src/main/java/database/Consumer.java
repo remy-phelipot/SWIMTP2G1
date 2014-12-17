@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  * JPA Entity related to the element Consumer
@@ -23,7 +24,7 @@ public class Consumer implements Serializable {
 
   private String name;
 
-  @ManyToOne
+  @OneToMany
   private Collection<Sequence> sequences;
 
   private static final long serialVersionUID = 1L;

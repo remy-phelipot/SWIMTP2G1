@@ -12,6 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 /**
  * JPA Entity related to the element Scenario
@@ -34,7 +35,7 @@ public class Scenario implements Serializable {
   @ManyToMany
   private Collection<Sequence> sequences;
 
-  @ManyToOne
+  @OneToMany
   private Collection<Result> results;
 
   private static final long serialVersionUID = 1L;

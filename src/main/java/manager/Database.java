@@ -38,7 +38,7 @@ public class Database {
     }
 
     private void open() {
-        this.emf = Persistence.createEntityManagerFactory("swimtp2g1");
+        this.emf = Persistence.createEntityManagerFactory("persistanceunit");
         this.em = emf.createEntityManager();
     }
 

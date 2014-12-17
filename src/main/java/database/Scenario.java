@@ -2,6 +2,7 @@ package database;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,10 +32,10 @@ public class Scenario implements Serializable {
   private String description;
 
   @ManyToMany
-  private ArrayList<Sequence> sequences;
+  private Collection<Sequence> sequences;
 
   @ManyToOne
-  private ArrayList<Result> results;
+  private Collection<Result> results;
 
   private static final long serialVersionUID = 1L;
 
@@ -73,11 +74,11 @@ public class Scenario implements Serializable {
         this.results = results;
     }
 
-    public ArrayList<Sequence> getSequences() {
+    public Collection<Sequence> getSequences() {
         return sequences;
     }
 
-    public ArrayList<Result> getResults() {
+    public Collection<Result> getResults() {
         return results;
     }
 

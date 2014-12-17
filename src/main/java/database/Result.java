@@ -24,10 +24,10 @@ public class Result implements Serializable {
   private int msgCount;
   private int msgLost;
 
-  @OneToMany
+  @OneToMany(targetEntity=Sequence.class, mappedBy="result")
   private Sequence sequence;
  
-  @OneToMany
+  @OneToMany(targetEntity=Scenario.class, mappedBy="result")
   private Scenario scenario;
 
   private static final long serialVersionUID = 1L;

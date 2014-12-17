@@ -2,6 +2,7 @@ package database;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +24,7 @@ public class Provider implements Serializable {
   private String name;
 
   @ManyToOne
-  private ArrayList<Sequence> sequences;
+  private Collection<Sequence> sequences;
 
   private static final long serialVersionUID = 1L;
 
@@ -46,7 +47,7 @@ public class Provider implements Serializable {
     this.name = name;
   }
 
-    public ArrayList<Sequence> getSequences() {
+    public Collection<Sequence> getSequences() {
         return sequences;
     }
 

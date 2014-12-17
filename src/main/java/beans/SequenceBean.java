@@ -5,62 +5,67 @@
  */
 package beans;
 
+import database.Consumer;
+import database.Provider;
+import database.Scenario;
 import java.util.ArrayList;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
 /**
- * Bean establishing the link between the View and the data to store sequences objects
- * 
+ * Bean establishing the link between the View and the data to store sequences
+ * objects
+ *
  * @author martin
  */
 @ManagedBean
 @ApplicationScoped
 public class SequenceBean {
+
     /**
      * Field describing the date of beginning
      */
     private int begin;
-    
+
     /**
      * Field describing the total amount of the data
      */
     private int dataSize;
-    
+
     /**
      * Field describing the date of ending
      */
     private int end;
-    
+
     /**
      * Field describing the processing time
      */
     private int processingTime;
-    
+
     /**
      * Field describing the number of request sent by second
      */
     private int requestPerSecond;
-    
+
     /**
      * Field describing the list of scenarios related to the sequence
      */
-   // private ArrayList<Scenario> scenarios;
-    
+    private ArrayList<Scenario> scenarios;
+
     /**
      * Field describing the consumer related to the sequence
      */
-   // private Consumer consumer;
-    
+    private Consumer consumer;
+
     /**
      * Field describing the provider related to the sequence
      */
-   // private Provider provider;
+    private Provider provider;
 
     /**
      * Getter on field begin
-     * 
-     * @return 
+     *
+     * @return
      */
     public int getBegin() {
         return begin;
@@ -68,17 +73,17 @@ public class SequenceBean {
 
     /**
      * Getter on field dataSize
-     * 
-     * @return 
+     *
+     * @return
      */
     public int getDataSize() {
         return dataSize;
     }
 
     /**
-     * Getter on field end 
-     * 
-     * @return 
+     * Getter on field end
+     *
+     * @return
      */
     public int getEnd() {
         return end;
@@ -86,8 +91,8 @@ public class SequenceBean {
 
     /**
      * Getter on field processingTime
-     * 
-     * @return 
+     *
+     * @return
      */
     public int getProcessingTime() {
         return processingTime;
@@ -95,8 +100,8 @@ public class SequenceBean {
 
     /**
      * Getter on field requestperSecond
-     * 
-     * @return 
+     *
+     * @return
      */
     public int getRequestPerSecond() {
         return requestPerSecond;
@@ -104,35 +109,35 @@ public class SequenceBean {
 
     /**
      * Getter on field scenarios
-     * 
-     * @return 
+     *
+     * @return
      */
-  //  public ArrayList<Scenario> getScenarios() {
-  //      return null;//scenarios;
- //   }
+    public ArrayList<Scenario> getScenarios() {
+        return null;//scenarios;
+    }
 
     /**
      * Getter on field consumer
-     * 
-     * @return 
+     *
+     * @return
      */
-   // public Consumer getConsumer() {
-      //  return consumer;
-   // }
+    public Consumer getConsumer() {
+        return consumer;
+    }
 
     /**
      * Getter on field provider
-     * 
-     * @return 
+     *
+     * @return
      */
-    //public Provider getProvider() {
-    //    return provider;
-   // }
+    public Provider getProvider() {
+        return provider;
+    }
 
     /**
-     * Setter on field  begin
-     * 
-     * @param begin 
+     * Setter on field begin
+     *
+     * @param begin
      */
     public void setBegin(int begin) {
         this.begin = begin;
@@ -140,17 +145,17 @@ public class SequenceBean {
 
     /**
      * Setter on field dataSize
-     * 
-     * @param dataSize 
+     *
+     * @param dataSize
      */
     public void setDataSize(int dataSize) {
         this.dataSize = dataSize;
     }
 
     /**
-     * Setter on field end 
-     * 
-     * @param end 
+     * Setter on field end
+     *
+     * @param end
      */
     public void setEnd(int end) {
         this.end = end;
@@ -158,8 +163,8 @@ public class SequenceBean {
 
     /**
      * Setter on field processing time
-     * 
-     * @param processingTime 
+     *
+     * @param processingTime
      */
     public void setProcessingTime(int processingTime) {
         this.processingTime = processingTime;
@@ -167,8 +172,8 @@ public class SequenceBean {
 
     /**
      * Setter on field requestPerSecond
-     * 
-     * @param requestPerSecond 
+     *
+     * @param requestPerSecond
      */
     public void setRequestPerSecond(int requestPerSecond) {
         this.requestPerSecond = requestPerSecond;
@@ -176,30 +181,29 @@ public class SequenceBean {
 
     /**
      * Setter on field scenarios
-     * 
-     * @param scenarios 
+     *
+     * @param scenarios
      */
-//    public void setScenarios(ArrayList<Scenario> scenarios) {
-    //    this.scenarios = scenarios;
-   // }
+    public void setScenarios(ArrayList<Scenario> scenarios) {
+        this.scenarios = scenarios;
+    }
 
     /**
      * Setter on field consumer
-     * 
-     * @param consumer 
+     *
+     * @param consumer
      */
-//    public void setConsumer(Consumer consumer) {
-   //     this.consumer = consumer;
-   // }
+    public void setConsumer(Consumer consumer) {
+        this.consumer = consumer;
+    }
 
     /**
      * Setter on field provider
-     * 
-     * @param provider 
+     *
+     * @param provider
      */
-   // public void setProvider(Provider provider) {
-  //      this.provider = provider;
-  //  }
-    
-    
+    public void setProvider(Provider provider) {
+        this.provider = provider;
+    }
+
 }

@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="style.css" />
+    </h:head>
+    <h:body>
+        <h2>Upload a file</h2>
+   
+        <h:form id="inputForm" enctype="multipart/form-data">
+            <h:outputLabel for="name" value="Enter a name for this scenario "/>
+            <h:inputText id="name" value="#{scenarioBean.name}" required="true" />
+            <br />
+            <h:outputLabel for="description" value="Enter a description for this scenario " />
+            <h:inputText id="description" value="#{scenarioBean.description}" />
+            <br />
+            <h:inputFile id="file" value="#{scenarioBean.part}"
+                         validator="#{scenarioBean.validateFile}"
+                         required="true"
+                         requiredMessage="You didn't select any file!"
+                         >
+            </h:inputFile>
+            <br />
+            <br />
+            <h:commandButton id="submit"
+                             action="#{scenarioBean.uploadFile}"
+                             value="Upload file"/>
+            <br />
+            <h:outputText id="fileMessage" value="#{scenarioBean.statusMessage}"
+                          rendered="#{not empty scenarioBean.statusMessage}"/>
+        </h:form>
+    </h:body>
+</html>
+

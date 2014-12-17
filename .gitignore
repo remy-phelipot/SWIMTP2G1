@@ -1,3 +1,4 @@
 nb-configuration.xml
 target
 /test/nbproject/private/
+/WebJpa/nbproject/private/

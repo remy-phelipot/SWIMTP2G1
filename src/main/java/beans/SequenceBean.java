@@ -5,9 +5,6 @@
  */
 package beans;
 
-import database.Consumer;
-import database.Provider;
-import database.Scenario;
 import java.util.ArrayList;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -48,17 +45,17 @@ public class SequenceBean {
     /**
      * Field describing the list of scenarios related to the sequence
      */
-    private ArrayList<Scenario> scenarios;
+   // private ArrayList<Scenario> scenarios;
     
     /**
      * Field describing the consumer related to the sequence
      */
-    private Consumer consumer;
+   // private Consumer consumer;
     
     /**
      * Field describing the provider related to the sequence
      */
-    private Provider provider;
+   // private Provider provider;
 
     /**
      * Getter on field begin
@@ -110,27 +107,27 @@ public class SequenceBean {
      * 
      * @return 
      */
-    public ArrayList<Scenario> getScenarios() {
-        return scenarios;
-    }
+  //  public ArrayList<Scenario> getScenarios() {
+  //      return null;//scenarios;
+ //   }
 
     /**
      * Getter on field consumer
      * 
      * @return 
      */
-    public Consumer getConsumer() {
-        return consumer;
-    }
+   // public Consumer getConsumer() {
+      //  return consumer;
+   // }
 
     /**
      * Getter on field provider
      * 
      * @return 
      */
-    public Provider getProvider() {
-        return provider;
-    }
+    //public Provider getProvider() {
+    //    return provider;
+   // }
 
     /**
      * Setter on field  begin
@@ -182,27 +179,27 @@ public class SequenceBean {
      * 
      * @param scenarios 
      */
-    public void setScenarios(ArrayList<Scenario> scenarios) {
-        this.scenarios = scenarios;
-    }
+//    public void setScenarios(ArrayList<Scenario> scenarios) {
+    //    this.scenarios = scenarios;
+   // }
 
     /**
      * Setter on field consumer
      * 
      * @param consumer 
      */
-    public void setConsumer(Consumer consumer) {
-        this.consumer = consumer;
-    }
+//    public void setConsumer(Consumer consumer) {
+   //     this.consumer = consumer;
+   // }
 
     /**
      * Setter on field provider
      * 
      * @param provider 
      */
-    public void setProvider(Provider provider) {
-        this.provider = provider;
-    }
+   // public void setProvider(Provider provider) {
+  //      this.provider = provider;
+  //  }
     
     
 }

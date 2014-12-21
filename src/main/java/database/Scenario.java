@@ -67,11 +67,11 @@ public class Scenario implements Serializable {
     this.description = description;
   }
 
-    public void setSequences(ArrayList<Sequence> sequences) {
+    public void setSequences(Collection<Sequence> sequences) {
         this.sequences = sequences;
     }
 
-    public void setResults(ArrayList<Result> results) {
+    public void setResults(Collection<Result> results) {
         this.results = results;
     }
 

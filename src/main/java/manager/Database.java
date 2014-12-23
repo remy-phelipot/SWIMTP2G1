@@ -14,10 +14,12 @@ import database.Scenario;
 import database.Sequence;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NamedQuery;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
@@ -136,4 +138,15 @@ public class Database {
         em.getTransaction().commit();
     }
    
+    public List<Provider> getProviders(){
+        Query q = em.createNamedQuery("Provider.selectAll");
+        List<Provider> providers = q.getResultList();
+        return providers;
+    }
+    
+    public List<Consumer> getConsumers(){
+        Query q = em.createNamedQuery("Consumer.selectAll");
+        List<Consumer> consumers = q.getResultList();
+        return consumers;
+    }
 }

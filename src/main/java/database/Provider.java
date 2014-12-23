@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 
@@ -17,6 +19,10 @@ import javax.persistence.OneToMany;
  * @author martin
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name="Provider.selectAll",
+                query="SELECT p FROM Provider p")
+})
 public class Provider implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)

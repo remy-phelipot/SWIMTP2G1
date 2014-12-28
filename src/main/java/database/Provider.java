@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 
@@ -17,6 +19,17 @@ import javax.persistence.OneToMany;
  * @author martin
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name="Provider.findById",
+                query="SELECT p FROM Provider p WHERE p.id = :id"),
+
+    @NamedQuery(name="Provider.findByName",
+                query="SELECT p FROM Provider p WHERE p.name = :name"),
+    @NamedQuery(name="Provider.getAll",
+                query="SELECT p FROM Provider p"),
+    @NamedQuery(name="Provider.deleteByName",
+                query="DELETE FROM Provider p WHERE p.name = :name")
+})
 public class Provider implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,7 +38,7 @@ public class Provider implements Serializable {
   private String name;
 
   @OneToMany
-  private Collection<Sequence> sequences;
+  private Collection<MySequence> sequences;
 
   private static final long serialVersionUID = 1L;
 
@@ -48,12 +61,26 @@ public class Provider implements Serializable {
     this.name = name;
   }
 
-    public Collection<Sequence> getSequences() {
+    public Collection<MySequence> getSequences() {
         return sequences;
     }
 
-    public void setSequences(ArrayList<Sequence> sequences) {
+    public void setSequences(ArrayList<MySequence> sequences) {
         this.sequences = sequences;
     }
-
+    @Override
+    public boolean equals(Object other){
+        if(other.getClass() != this.getClass()){
+            return false;
+        }else if(other == null){
+            return false;
+        }else{
+            Provider otherP = (Provider)other;
+            if(otherP.getName().equalsIgnoreCase(this.getName())){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
 }

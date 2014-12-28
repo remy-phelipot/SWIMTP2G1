@@ -3,6 +3,7 @@ package database;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +23,11 @@ import javax.persistence.OneToMany;
 @Entity
 @NamedQueries({
     @NamedQuery(name="Scenario.findByName",
-                query="SELECT s FROM Scenario s WHERE s.name = :name")
+                query="SELECT s FROM Scenario s WHERE s.name = :name"),
+    @NamedQuery(name="Scenario.getAll",
+                query="SELECT s FROM Scenario s"),
+    @NamedQuery(name="Scenario.del",
+            query="DELETE FROM Scenario s WHERE NOT(s.id =0)")
 })
 public class Scenario implements Serializable {
   @Id
@@ -33,10 +38,10 @@ public class Scenario implements Serializable {
   private String description;
 
   @ManyToMany
-  private Collection<Sequence> sequences;
+  private List<MySequence> sequences;
 
   @OneToMany
-  private Collection<Result> results;
+  private List<Result> results;
 
   private static final long serialVersionUID = 1L;
 
@@ -67,7 +72,7 @@ public class Scenario implements Serializable {
     this.description = description;
   }
 
-    public void setSequences(ArrayList<Sequence> sequences) {
+    public void setSequences(ArrayList<MySequence> sequences) {
         this.sequences = sequences;
     }
 
@@ -75,12 +80,26 @@ public class Scenario implements Serializable {
         this.results = results;
     }
 
-    public Collection<Sequence> getSequences() {
+    public List<MySequence> getSequences() {
         return sequences;
     }
 
-    public Collection<Result> getResults() {
+    public List<Result> getResults() {
         return results;
     }
-
+   @Override
+    public boolean equals(Object other){
+        if(other.getClass() != this.getClass()){
+            return false;
+        }else if(other == null){
+            return false;
+        }else{
+            Scenario otherC = (Scenario)other;
+            if(otherC.getName().equalsIgnoreCase(this.getName()) && otherC.getDescription().equalsIgnoreCase(this.getDescription())){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
 }

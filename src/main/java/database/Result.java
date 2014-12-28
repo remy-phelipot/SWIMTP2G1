@@ -25,7 +25,7 @@ public class Result implements Serializable {
   private int msgLost;
 
   @ManyToOne
-  private Sequence sequence;
+  private MySequence sequence;
  
   @ManyToOne
   private Scenario scenario;
@@ -67,7 +67,7 @@ public class Result implements Serializable {
     this.msgLost = msgLost;
   }
 
-    public Sequence getSequence() {
+    public MySequence getSequence() {
         return sequence;
     }
 
@@ -75,7 +75,7 @@ public class Result implements Serializable {
         return scenario;
     }
 
-    public void setSequence(Sequence sequence) {
+    public void setSequence(MySequence sequence) {
         this.sequence = sequence;
     }
 

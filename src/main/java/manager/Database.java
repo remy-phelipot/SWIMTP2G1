@@ -7,8 +7,10 @@ package manager;
 
 import beans.ScenarioBean;
 import beans.SequenceBean;
+import database.Consumer;
+import database.Provider;
 import database.Scenario;
-import database.Sequence;
+import database.MySequence;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -63,7 +65,7 @@ public class Database {
     }
 
     public void createSequence(SequenceBean sequenceBean) {
-        Sequence sequence = new Sequence();
+        MySequence sequence = new MySequence();
         sequence.setBegin(sequenceBean.getBegin());
         sequence.setDataSize(sequenceBean.getDataSize());
         sequence.setEnd(sequenceBean.getEnd());
@@ -79,7 +81,7 @@ public class Database {
         em.getTransaction().commit();
     }
 
-    public void updateScenario(String name, ArrayList<Sequence> seqs) {
+    public void updateScenario(String name, ArrayList<MySequence> seqs) {
         em.getTransaction().begin();
 
         Query query = em.createNamedQuery("Scenario.findByName");
@@ -90,4 +92,235 @@ public class Database {
 
         em.getTransaction().commit();
     }
+    
+    public Scenario getScenarioByName(String name){
+        em.getTransaction().begin();
+        Query query = em.createNamedQuery("Scenario.findByName");
+        query.setParameter("name", name);
+        if(!query.getResultList().isEmpty()){
+            Scenario sce = (Scenario) query.getResultList().get(0);
+            em.getTransaction().commit();
+            return sce;
+        }else{
+            em.getTransaction().commit();
+            return null;
+        }
+    }
+     public ArrayList<Scenario> getScenarios(){
+        em.getTransaction().begin();
+        Query query = em.createNamedQuery("Scenario.getAll");
+        ArrayList<Scenario> res = new ArrayList<>();
+        for(int i = 0;i < query.getResultList().size();i++){
+            Scenario sce = (Scenario) query.getResultList().get(i);
+            res.add(sce);
+        }
+        em.getTransaction().commit();
+        return res;
+    }
+    public void addConsumer(String name){
+        if(!name.equals("") && getConsumerByName(name) == null){
+            Consumer toAdd = new Consumer();
+            toAdd.setName(name);
+            toAdd.setSequences(null);
+            System.out.println("Creating Consumer " + toAdd.getId());
+            em.getTransaction().begin();
+            em.persist(toAdd);
+            em.getTransaction().commit();
+        }
+        
+    }
+     public void addProvider(String name){
+        if(!name.equals("")&& getProviderByName(name) == null){
+            Provider toAdd = new Provider();
+            toAdd.setName(name);
+            toAdd.setSequences(null);
+            System.out.println("Creating Consumer " + toAdd.getId());
+            em.getTransaction().begin();
+            em.persist(toAdd);
+            em.getTransaction().commit();
+        }
+    }
+     public void deleteConsumer(Consumer toDelete){
+        
+        
+        em.getTransaction().begin();
+        Query query = em.createNamedQuery("Consumer.deleteByName");
+        query.setParameter("name", toDelete.getName());
+        query.executeUpdate();
+        em.getTransaction().commit();
+        
+    }
+     public void deleteProvider(Provider toDelete){
+        em.getTransaction().begin();
+        Query query = em.createNamedQuery("Provider.deleteByName");
+        query.setParameter("name", toDelete.getName());
+        query.executeUpdate();
+
+        em.getTransaction().commit();
+        
+    }
+      public void deleteScenarios(){
+        em.getTransaction().begin();
+        Query query = em.createNamedQuery("Scenario.del");
+        
+        query.executeUpdate();
+
+        em.getTransaction().commit();
+        
+    }
+    public void deleteSequence(MySequence toDelete){
+        em.getTransaction().begin();
+        Query query = em.createNamedQuery("MySequence.delete");
+        query.setParameter("begin", toDelete.getBegin());
+        query.setParameter("end", toDelete.getEnd());
+        query.setParameter("consumer", toDelete.getConsumer());
+        query.setParameter("dataSize", toDelete.getDataSize());
+        query.setParameter("processingTime", toDelete.getProcessingTime());
+        query.setParameter("provider", toDelete.getProvider());
+        query.setParameter("requestPerSecond", toDelete.getRequestPerSecond());
+        query.executeUpdate();
+
+        em.getTransaction().commit();
+        
+    }
+    public Consumer getConsumerById(long id){
+         em.getTransaction().begin();
+        Query query = em.createNamedQuery("Consumer.findById");
+        query.setParameter("id", id);
+        if(!query.getResultList().isEmpty()){
+           Consumer consumer = (Consumer) query.getResultList().get(0);
+           em.getTransaction().commit();
+           return consumer;
+        }
+        else{
+            em.getTransaction().commit();
+
+            return null;
+        }
+    }
+    public Consumer getConsumerByName(String name){
+         em.getTransaction().begin();
+        Query query = em.createNamedQuery("Consumer.findByName");
+        query.setParameter("name", name);
+        if(!query.getResultList().isEmpty()){
+            Consumer consumer = (Consumer) query.getResultList().get(0);
+            em.getTransaction().commit();
+            return consumer;
+        }
+        else{
+            em.getTransaction().commit();
+            return null;
+        }
+    }
+    public Provider getProviderById(long id){
+         em.getTransaction().begin();
+        Query query = em.createNamedQuery("Provider.findById");
+        query.setParameter("id", id);
+        if(!query.getResultList().isEmpty()){
+            Provider provider = (Provider) query.getResultList().get(0);
+            em.getTransaction().commit();
+            return provider;
+        }
+        else{
+            em.getTransaction().commit();
+            return null;
+        }
+    }
+    public Provider getProviderByName(String name){
+         em.getTransaction().begin();
+        Query query = em.createNamedQuery("Provider.findByName");
+        query.setParameter("name", name);
+        if(!query.getResultList().isEmpty()){
+
+            Provider provider = (Provider) query.getResultList().get(0);
+            em.getTransaction().commit();
+            return provider;
+        }
+        else{
+            em.getTransaction().commit();
+            return null;
+        }
+    }
+    public ArrayList<Consumer> getConsumers(){
+        em.getTransaction().begin();
+        Query query = em.createNamedQuery("Consumer.getAll");
+        ArrayList<Consumer> res = new ArrayList<>();
+        for(int i = 0;i < query.getResultList().size();i++){
+            Consumer consumer = (Consumer) query.getResultList().get(i);
+            res.add(consumer);
+        }
+        em.getTransaction().commit();
+        return res;
+    }
+    public ArrayList<Provider> getProviders(){
+        em.getTransaction().begin();
+        Query query = em.createNamedQuery("Provider.getAll");
+        ArrayList<Provider> res = new ArrayList<>();
+        for(int i = 0;i < query.getResultList().size();i++){
+            Provider provider = (Provider) query.getResultList().get(i);
+            res.add(provider);
+        }
+        em.getTransaction().commit();
+        return res;
+    }
+    public ArrayList<MySequence> getSequences(){
+        em.getTransaction().begin();
+        Query query = em.createNamedQuery("MySequence.getAll");
+        ArrayList<MySequence> res = new ArrayList<>();
+        for(int i = 0;i < query.getResultList().size();i++){
+            MySequence seq = (MySequence) query.getResultList().get(i);
+            res.add(seq);
+        }
+        em.getTransaction().commit();
+        return res;
+    }
+    
+    public ArrayList<MySequence> getSequenceByConsumer(Consumer c){
+        em.getTransaction().begin();
+        Query query = em.createNamedQuery("MySequence.getByConsumer");
+        query.setParameter("consumer", c);
+
+        ArrayList<MySequence> res = new ArrayList<>();
+        for(int i = 0;i < query.getResultList().size();i++){
+            MySequence seq = (MySequence) query.getResultList().get(i);
+            res.add(seq);
+        }
+        em.getTransaction().commit();
+        return res;
+    }
+     public ArrayList<MySequence> getSequenceByProvider(Provider p){
+        em.getTransaction().begin();
+        Query query = em.createNamedQuery("MySequence.getByProvider");
+        query.setParameter("provider", p);
+        ArrayList<MySequence> res = new ArrayList<>();
+        for(int i = 0;i < query.getResultList().size();i++){
+            MySequence seq = (MySequence) query.getResultList().get(i);
+            res.add(seq);
+        }
+        em.getTransaction().commit();
+        return res;
+    }
+    
+     public MySequence getSequenceByParam(int begin,int dataSize,int end,int processTime,int requestPerSecond,Provider p, Consumer c){
+         em.getTransaction().begin();
+        Query query = em.createNamedQuery("MySequence.getOne");
+        query.setParameter("begin", begin);
+        query.setParameter("end", end);
+        query.setParameter("consumer", c);
+        query.setParameter("dataSize", dataSize);
+        query.setParameter("processingTime", processTime);
+        query.setParameter("provider", p);
+        query.setParameter("requestPerSecond", requestPerSecond);
+       
+       if(!query.getResultList().isEmpty()){
+
+            MySequence ms = (MySequence) query.getResultList().get(0);
+            em.getTransaction().commit();
+            return ms;
+        }
+        else{
+            em.getTransaction().commit();
+            return null;
+        }
+     }
 }

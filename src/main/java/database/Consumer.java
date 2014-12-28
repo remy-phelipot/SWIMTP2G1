@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 /**
@@ -16,6 +18,17 @@ import javax.persistence.OneToMany;
  * @author martin
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name="Consumer.findById",
+                query="SELECT c FROM Consumer c WHERE c.id = :id"),
+
+    @NamedQuery(name="Consumer.findByName",
+                query="SELECT c FROM Consumer c WHERE c.name = :name"),
+    @NamedQuery(name="Consumer.getAll",
+                query="SELECT c FROM Consumer c"),
+    @NamedQuery(name="Consumer.deleteByName",
+                query="DELETE FROM Consumer c WHERE  c.name = :name")
+})
 public class Consumer implements Serializable {
  
   @Id
@@ -25,7 +38,7 @@ public class Consumer implements Serializable {
   private String name;
 
   @OneToMany
-  private Collection<Sequence> sequences;
+  private Collection<MySequence> sequences;
 
   private static final long serialVersionUID = 1L;
 
@@ -48,12 +61,26 @@ public class Consumer implements Serializable {
     this.name = name;
   }
 
-    public Collection<Sequence> getSequences() {
+    public Collection<MySequence> getSequences() {
         return sequences;
     }
 
-    public void setSequences(ArrayList<Sequence> sequences) {
+    public void setSequences(ArrayList<MySequence> sequences) {
         this.sequences = sequences;
     }
-
+    @Override
+    public boolean equals(Object other){
+        if(other.getClass() != this.getClass()){
+            return false;
+        }else if(other == null){
+            return false;
+        }else{
+            Consumer otherC = (Consumer)other;
+            if(otherC.getName().equalsIgnoreCase(this.getName())){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
 }

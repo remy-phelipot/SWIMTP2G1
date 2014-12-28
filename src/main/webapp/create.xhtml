@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+            xmlns:h="http://xmlns.jcp.org/jsf/html"
+            xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+    <head>
+        <title>Scenario Creation</title>
+        <meta name="viewport" content="width=device-width"/>
+        
+    </head>
+    <body>
+        <div>Scenario Creation</div>
+        
+        <h:form id="PF">
+            <table>
+                <tr>
+                    <td> <h2> Please name your scenario : </h2></td> 
+                    <td> <h:inputText value="#{backingBean.name}" /></td>
+
+                </tr>
+                <tr>
+                       <td> <h2> Please describe it: </h2> </td>
+                       <td> <h:inputText value="#{backingBean.description}" /> </td>
+                </tr> 
+            </table> 
+            <div> Selected Sequences </div>
+            <h:selectOneMenu  id="LSS" value="#{backingBean.toRemoveSequence}" converter="#{sequenceConverter}">
+                <f:selectItems value="#{backingBean.listSelectedSequence}" var="d"
+            itemLabel="#{d.begin}  #{d.dataSize}  #{d.end}  #{d.processingTime}  #{d.requestPerSecond}  #{d.consumer.name}  #{d.provider.name}" itemValue="#{d}" />
+                    
+            </h:selectOneMenu>
+            <h:commandButton id="AS" value="remove Sequence" action="#{backingBean.removeSelectedSequence()}"/>
+            <h:selectOneMenu value="#{backingBean.selectedSequence}" converter="#{sequenceConverter}">
+                            <f:selectItems value="#{createBean.listSequence}" var="c"
+            itemLabel="#{c.begin}  #{c.dataSize}  #{c.end}  #{c.processingTime}  #{c.requestPerSecond}  #{c.consumer.name}  #{c.provider.name}" itemValue="#{c}" />
+            </h:selectOneMenu>
+            <h:commandButton value="add Sequence" action="#{backingBean.addSelectedSequence()}"/>
+        </h:form>
+        <h:form>
+            <h:commandButton value="Create new Consumer Provider Sequence" action="createCPSeq" />
+        </h:form>
+        <h:form>
+            <h:commandButton value="Save Scenario" action="#{backingBean.createScenario()}"/>
+            <h:commandButton value="Go Back" action="index"/>
+                             
+        </h:form>
+    </body>
+</html>

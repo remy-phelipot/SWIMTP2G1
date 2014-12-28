@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+            xmlns:h="http://xmlns.jcp.org/jsf/html"
+            xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+    <head>
+        <title>Scenario Creation</title>
+        <meta name="viewport" content="width=device-width"/>
+        
+    </head>
+    <body>
+        <div>Sequence Creation</div>
+        <h:form rendererType="@none">
+             <h:form rendererType="@none">
+                 
+                 <table id="myTable" border="1" style="border:solid 1px black;">
+                     <tr>
+                         <td>Begin</td>
+                         <td>End</td>
+                         <td>Data Size</td>
+                         <td>RpS</td>
+                         <td>Process Time</td>
+                         <td>Provider</td>
+                         <td>Consumer</td>
+                     </tr>
+                     <tr>
+                         <td><h:inputText value="#{createBean.begin}" /></td>
+                         <td><h:inputText value="#{createBean.end}" /></td>
+                         <td><h:inputText value="#{createBean.dataS}" /></td>
+                         <td><h:inputText value="#{createBean.processTime}" /></td>
+                         <td><h:inputText value="#{createBean.rpS}" /></td>
+                         <td><h:selectOneMenu value="#{createBean.selectedProvider}" converter="#{providerConverter}">
+                                    <f:selectItems value="#{createBean.listProvider}" var="c"
+                                       itemLabel="#{c.name}" itemValue="#{c}" />
+                    
+                             </h:selectOneMenu></td>
+                         <td> <h:selectOneMenu value="#{createBean.selectedConsumer}" converter="#{consumerConverter}">
+                                    <f:selectItems value="#{createBean.listConsumer}" var="c"
+                                       itemLabel="#{c.name}" itemValue="#{c}" />
+                    
+                             </h:selectOneMenu></td>
+                         <td> <h:commandButton value="New Sequence" action="#{createBean.addSequence()}"/></td>
+                        
+
+                     </tr>
+                 </table>   
+                  
+
+            <h:selectOneMenu value="#{createBean.toDeleteSequence}" converter="#{sequenceConverter}">
+                            <f:selectItems value="#{createBean.listSequence}" var="c"
+            itemLabel="#{c.begin}  #{c.dataSize}  #{c.end}  #{c.processingTime}  #{c.requestPerSecond}  #{c.consumer.name}  #{c.provider.name}" itemValue="#{c}" />
+            </h:selectOneMenu>
+            <h:commandButton value="Delete Sequence" action="#{createBean.deleteSequence()}"/>
+           
+                 
+    	  </h:form>
+            
+        </h:form>
+        <h:form>
+            <h2>Consumer Creation : </h2>
+            <p> Please name your Consumer : </p>
+            <h:inputText value="#{createBean.consumerName}" />
+            <h:commandButton value="Add new Consumer" action="#{createBean.addConsumer()}"/>
+        </h:form> 
+            <h:form>
+
+            <h:selectOneMenu value="#{createBean.toDeleteConsumer}" converter="#{consumerConverter}">
+                            <f:selectItems value="#{createBean.listConsumer}" var="c"
+                               itemLabel="#{c.name}" itemValue="#{c}" />
+
+            </h:selectOneMenu>
+            <h:commandButton value="Delete Consumer" action="#{createBean.deleteConsumer()}"/>
+            </h:form>
+        <h:form>
+        <h2> Provider Creation: </h2>
+        <p> Please name your Provider : </p>
+        <h:inputText value="#{createBean.providerName}" />
+        <h:commandButton value="Add new Provider" action="#{createBean.addProvider()}"/>
+        </h:form>
+        <h:form>
+        <h:selectOneMenu value="#{createBean.toDeleteProvider}" converter="#{providerConverter}">
+                        <f:selectItems value="#{createBean.listProvider}" var="c"
+                           itemLabel="#{c.name}" itemValue="#{c}" />
+
+        </h:selectOneMenu>
+        <h:commandButton value="Delete Provider" action="#{createBean.deleteProvider()}"/>
+        </h:form>
+        <h:form>
+            <h:commandButton value="Back" action="create"/>
+        </h:form>      
+    </body>
+</html>

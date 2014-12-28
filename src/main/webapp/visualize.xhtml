@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+   <h:head>
+        <title>Vizualisation</title>
+        <h:outputStylesheet name="ressources/default/css/style.css" />
+    </h:head>
+    <h:body>
+        <h2>Select your Scenario</h2>
+        
+        <h:form id="inputForm" enctype="multipart/form-data">
+            <h:selectOneMenu value="#{visualizeBean.selectedScenario}" converter="#{scenarioConverter}">
+   			<f:selectItems value="#{visualizeBean.listScenario}" var="c"
+                                       itemLabel="#{c.name} - #{c.description}" itemValue="#{c}" />
+                    
+            </h:selectOneMenu>
+            <h:commandButton value="Submit" action="results"/>
+            <h:commandButton value="delall" action="#{visualizeBean.delete()}"/>
+         </h:form>
+         
+    </h:body>
+</html>

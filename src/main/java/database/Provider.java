@@ -28,7 +28,9 @@ import javax.persistence.OneToMany;
     @NamedQuery(name="Provider.getAll",
                 query="SELECT p FROM Provider p"),
     @NamedQuery(name="Provider.deleteByName",
-                query="DELETE FROM Provider p WHERE p.name = :name")
+                query="DELETE FROM Provider p WHERE p.name = :name"),
+    @NamedQuery(name="Provider.del",
+                query="DELETE FROM Provider p")
 })
 public class Provider implements Serializable {
   @Id

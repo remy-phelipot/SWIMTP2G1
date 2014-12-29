@@ -10,6 +10,7 @@ import database.Consumer;
 import database.Provider;
 import database.Scenario;
 import database.MySequence;
+import database.MyResult;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -34,7 +35,41 @@ public class BackingBean {
     private String description;
     private MySequence selectedSequence;
     private MySequence toRemoveSequence;
+    private Scenario selectedScenario;
+    private MyResult selectedResult;
+    private List<MyResult> results;
     private ArrayList<MySequence> listSelectedSequence;   
+ private List<Scenario> listScenario;
+
+  public List<Scenario> getListScenario(){
+         Database db = new Database();
+        db.open();
+        List<Scenario> ret = db.getScenarios();
+        db.close();
+        return ret;
+       
+    }
+    public List<MyResult> getResults() {
+        return this.selectedScenario.getResults();
+    }
+
+   
+
+    public MyResult getSelectedResult() {
+        return selectedResult;
+    }
+
+    public void setSelectedResult(MyResult selectedResult) {
+        this.selectedResult = selectedResult;
+    }
+
+    public Scenario getSelectedScenario() {
+        return selectedScenario;
+    }
+
+    public void setSelectedScenario(Scenario selectedScenario) {
+        this.selectedScenario = selectedScenario;
+    }
 
     public String getName() {
         return name;
@@ -113,6 +148,41 @@ public class BackingBean {
        db.close();
     }
     
- 
-
+ public void addResult(){
+        if(this.selectedScenario.getResults() == null){
+            this.selectedScenario.setResults(new ArrayList<MyResult>());
+            
+        }
+        List<MyResult> alr;
+        alr = this.selectedScenario.getResults();
+        MyResult tmp = new MyResult();
+        tmp.setAverageresponseTime((int)(Math.random()*1000));
+        tmp.setMsgCount(500+(int)(Math.random()*1000));
+        tmp.setMsgLost((int)(Math.random()*500));
+        Database db = new Database();
+        db.open();
+        db.addResult(tmp);
+        alr.add(tmp);
+        db.updateScenarioResult(this.selectedScenario.getName(),alr );
+        db.close();
+        
+        
+        this.selectedScenario.setResults(alr);
+    }
+    public void deleteResult(){
+       Database db = new Database();
+        db.open();
+        MyResult rt = db.getResultById(selectedResult.getId());
+        Scenario sce = db.getScenarioByName(selectedScenario.getName());
+        sce.getResults().remove(rt);
+        this.selectedScenario = sce;
+        this.results = sce.getResults();
+        db.deleteResult(rt.getId());
+        db.close();
+        
+   }
+    public void setSce(Scenario sce){
+        this.selectedScenario = sce;
+    }
+    
 }

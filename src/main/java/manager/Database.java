@@ -11,7 +11,9 @@ import database.Consumer;
 import database.Provider;
 import database.Scenario;
 import database.MySequence;
+import database.MyResult;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
@@ -92,7 +94,17 @@ public class Database {
 
         em.getTransaction().commit();
     }
-    
+    public void updateScenarioResult(String name, List<MyResult> res) {
+        em.getTransaction().begin();
+
+        Query query = em.createNamedQuery("Scenario.findByName");
+        query.setParameter("name", name);
+
+        Scenario sce = (Scenario) query.getResultList().get(0);
+        sce.setResults(res);
+
+        em.getTransaction().commit();
+    }
     public Scenario getScenarioByName(String name){
         em.getTransaction().begin();
         Query query = em.createNamedQuery("Scenario.findByName");
@@ -123,6 +135,7 @@ public class Database {
             toAdd.setName(name);
             toAdd.setSequences(null);
             System.out.println("Creating Consumer " + toAdd.getId());
+            
             em.getTransaction().begin();
             em.persist(toAdd);
             em.getTransaction().commit();
@@ -140,12 +153,28 @@ public class Database {
             em.getTransaction().commit();
         }
     }
+     public void addResult(MyResult rt){
+        if(getResultById(rt.getId()) == null){
+            
+            em.getTransaction().begin();
+            em.persist(rt);
+            em.getTransaction().commit();
+        }
+    }
      public void deleteConsumer(Consumer toDelete){
         
         
         em.getTransaction().begin();
         Query query = em.createNamedQuery("Consumer.deleteByName");
         query.setParameter("name", toDelete.getName());
+        query.executeUpdate();
+        em.getTransaction().commit();
+        
+    }
+     public void deleteResult(long id){ 
+        em.getTransaction().begin();
+        Query query = em.createNamedQuery("MyResult.deleteById");
+        query.setParameter("id", id);
         query.executeUpdate();
         em.getTransaction().commit();
         
@@ -162,6 +191,15 @@ public class Database {
       public void deleteScenarios(){
         em.getTransaction().begin();
         Query query = em.createNamedQuery("Scenario.del");
+        
+        query.executeUpdate();
+
+        em.getTransaction().commit();
+        
+    }
+      public void deleteAllSequence(){
+        em.getTransaction().begin();
+        Query query = em.createNamedQuery("MySequence.del");
         
         query.executeUpdate();
 
@@ -235,6 +273,21 @@ public class Database {
             Provider provider = (Provider) query.getResultList().get(0);
             em.getTransaction().commit();
             return provider;
+        }
+        else{
+            em.getTransaction().commit();
+            return null;
+        }
+    }
+    public MyResult getResultById(long id){
+         em.getTransaction().begin();
+        Query query = em.createNamedQuery("MyResult.findById");
+        query.setParameter("id", id);
+        if(!query.getResultList().isEmpty()){
+
+            MyResult result = (MyResult) query.getResultList().get(0);
+            em.getTransaction().commit();
+            return result;
         }
         else{
             em.getTransaction().commit();
@@ -322,5 +375,28 @@ public class Database {
             em.getTransaction().commit();
             return null;
         }
+     }
+     
+     public void hardReset(){
+        em.getTransaction().begin();
+        Query query = em.createNamedQuery("MySequence.del");
+        query.executeUpdate();
+        em.getTransaction().commit();
+        em.getTransaction().begin();
+        query = em.createNamedQuery("Scenario.del");     
+        query.executeUpdate();
+        em.getTransaction().commit();
+        em.getTransaction().begin();
+        query = em.createNamedQuery("MyResult.del");     
+        query.executeUpdate();
+        em.getTransaction().commit();
+         em.getTransaction().begin();
+        query = em.createNamedQuery("Consumer.del");     
+        query.executeUpdate();
+         em.getTransaction().commit();
+        em.getTransaction().begin();
+        query = em.createNamedQuery("Provider.del");     
+        query.executeUpdate();
+        em.getTransaction().commit();
      }
 }

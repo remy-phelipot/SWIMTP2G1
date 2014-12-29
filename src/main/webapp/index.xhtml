@@ -6,17 +6,41 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       >
     <h:head>
-        <title>Facelet Title</title>
-        <h:outputStylesheet name="ressources/default/css/style.css" />
+        <title>I&lt;3ESB</title>
+        <h:outputStylesheet library="css" name="style.css" />
     </h:head>
-    <h:body>
-        <h1>#(Ceci est un hashtag, pas un dièse)ILOVESB</h1>
-
+    <h:body> 
         <h:form>
-            <h:commandButton value="Upload scenario" action="uploadScenario"  />
-            <h:commandButton value="Launch a scenario" />
-            <h:commandButton value="Create a scenario" action="create"/>
-            <h:commandButton value="Visualize results" action="visualize"/>
+        <table>
+            <thead>
+                <th colspan="5"><h2>#(Ceci est un hashtag, pas un dièse)I&lt;3SB</h2></th>
+                
+                
+            </thead>
+            <tbody>
+                <tr>
+                    <td>             
+                        <h:commandButton styleClass="btn" value="Upload scenario" action="uploadScenario"  />
+                    </td>                  
+                    <td>           
+                        <h:commandButton styleClass="btn" value="Launch a scenario" />
+                    </td>
+                    <td>           
+                        <h:commandButton styleClass="btn" value="Create a scenario" action="create"/>
+                    </td>
+                    <td>           
+                        <h:commandButton styleClass="btn" value="Visualize results" action="visualize"/>
+                    </td>
+                    <td>           
+                        <h:commandButton styleClass="btn" value="reset" action="#{visualizeBean.delete()}"/> 
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+
+       
+           
         </h:form>
     </h:body>
 </html>

@@ -27,7 +27,9 @@ import javax.persistence.OneToMany;
     @NamedQuery(name="Consumer.getAll",
                 query="SELECT c FROM Consumer c"),
     @NamedQuery(name="Consumer.deleteByName",
-                query="DELETE FROM Consumer c WHERE  c.name = :name")
+                query="DELETE FROM Consumer c WHERE  c.name = :name"),
+     @NamedQuery(name="Consumer.del",
+                query="DELETE FROM Consumer c ")
 })
 public class Consumer implements Serializable {
  

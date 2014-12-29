@@ -29,6 +29,8 @@ import javax.persistence.OneToMany;
                 query="SELECT s FROM MySequence s WHERE s.provider = :provider"),
     @NamedQuery(name="MySequence.getAll",
                 query="SELECT s FROM MySequence s"),
+    @NamedQuery(name="MySequence.del",
+                query="DELETE FROM MySequence s"),
     @NamedQuery(name="MySequence.delete",
                 query="DELETE FROM MySequence s WHERE  s.end = :end AND s.begin = :begin AND s.consumer = :consumer AND s.dataSize = :dataSize AND s.processingTime = :processingTime AND s.provider = :provider AND s.requestPerSecond = :requestPerSecond  "),
      @NamedQuery(name="MySequence.getOne",
@@ -54,7 +56,7 @@ public class MySequence implements Serializable {
   private Collection<Scenario> scenarios;
 
   @OneToMany
-  private Collection<Result> results;
+  private Collection<MyResult> results;
 
   private static final long serialVersionUID = 1L;
 
@@ -121,7 +123,7 @@ public class MySequence implements Serializable {
         return scenarios;
     }
 
-    public Collection<Result> getResults() {
+    public Collection<MyResult> getResults() {
         return results;
     }
 
@@ -137,7 +139,7 @@ public class MySequence implements Serializable {
         this.scenarios = scenarios;
     }
 
-    public void setResults(ArrayList<Result> results) {
+    public void setResults(ArrayList<MyResult> results) {
         this.results = results;
     }
    @Override

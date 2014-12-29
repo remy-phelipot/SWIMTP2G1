@@ -289,9 +289,11 @@ public class CreateBean {
         db.deleteSequence(toDeleteSequence);
         db.close();
     }
-   @PostConstruct
-   public void init() {
-       listSelectedSequence = (ArrayList<MySequence>)scenario.getSequences();
-   }
+   public void delete(){
+        Database db = new Database();
+        db.open();
+        db.deleteAllSequence();
+        db.close();
+    }
 
 }

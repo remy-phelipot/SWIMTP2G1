@@ -41,7 +41,7 @@ public class Scenario implements Serializable {
   private List<MySequence> sequences;
 
   @OneToMany
-  private List<Result> results;
+  private List<MyResult> results;
 
   private static final long serialVersionUID = 1L;
 
@@ -76,7 +76,7 @@ public class Scenario implements Serializable {
         this.sequences = sequences;
     }
 
-    public void setResults(ArrayList<Result> results) {
+    public void setResults(List<MyResult> results) {
         this.results = results;
     }
 
@@ -84,7 +84,7 @@ public class Scenario implements Serializable {
         return sequences;
     }
 
-    public List<Result> getResults() {
+    public List<MyResult> getResults() {
         return results;
     }
    @Override

@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-	<xs:element name="consumer" type="xmlConsumer" />
+	<xs:element name="param" type="xmlParameters" />
+
+	<xs:element name="links" type="xmlLinks" />
 
 	<xs:element name="link" type="xmlLink" />
 
-	<xs:element name="param" type="xmlParameters" />
-
+	<xs:element name="consumer" type="xmlConsumer" />
+        
 	<xs:element name="provider" type="xmlProvider" />
 
 	<xs:element name="sequence" type="xmlSequence" />
@@ -23,20 +25,22 @@
 				minOccurs="0" maxOccurs="1" />
 			<xs:element name="providers" type="xmlProviders"
 				minOccurs="0" maxOccurs="1" />
-			<xs:element name="links" type="xmlLink" minOccurs="0"
-				maxOccurs="unbounded" />
+			<xs:element name="links" type="xmlLinks" minOccurs="0"
+				maxOccurs="1" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="xmlConsumers">
 		<xs:sequence>
-			<xs:element name="consumer" type="xmlConsumer" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="consumer" type="xmlConsumer" minOccurs="0"
+				maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="xmlProviders">
 		<xs:sequence>
-			<xs:element name="provider" type="xmlProvider" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="provider" type="xmlProvider" minOccurs="0"
+				maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -49,6 +53,13 @@
 	<xs:complexType name="xmlProvider">
 		<xs:sequence>
 			<xs:element name="name" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="xmlLinks">
+		<xs:sequence>
+			<xs:element name="link" type="xmlLink" minOccurs="0"
+				maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 

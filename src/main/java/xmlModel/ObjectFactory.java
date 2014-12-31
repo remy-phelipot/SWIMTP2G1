@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2014.12.31 à 05:56:03 PM CET 
+// Généré le : 2014.12.31 à 06:30:05 PM CET 
 //
 
 
@@ -35,6 +35,7 @@ public class ObjectFactory {
     private final static QName _Param_QNAME = new QName("", "param");
     private final static QName _Provider_QNAME = new QName("", "provider");
     private final static QName _Link_QNAME = new QName("", "link");
+    private final static QName _Links_QNAME = new QName("", "links");
     private final static QName _Consumers_QNAME = new QName("", "consumers");
     private final static QName _Consumer_QNAME = new QName("", "consumer");
     private final static QName _Providers_QNAME = new QName("", "providers");
@@ -76,6 +77,14 @@ public class ObjectFactory {
      */
     public XmlLink createXmlLink() {
         return new XmlLink();
+    }
+
+    /**
+     * Create an instance of {@link XmlLinks }
+     * 
+     */
+    public XmlLinks createXmlLinks() {
+        return new XmlLinks();
     }
 
     /**
@@ -136,6 +145,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "", name = "link")
     public JAXBElement<XmlLink> createLink(XmlLink value) {
         return new JAXBElement<XmlLink>(_Link_QNAME, XmlLink.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link XmlLinks }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "links")
+    public JAXBElement<XmlLinks> createLinks(XmlLinks value) {
+        return new JAXBElement<XmlLinks>(_Links_QNAME, XmlLinks.class, null, value);
     }
 
     /**

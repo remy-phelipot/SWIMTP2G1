@@ -2,14 +2,12 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2014.12.31 à 05:56:03 PM CET 
+// Généré le : 2014.12.31 à 06:30:05 PM CET 
 //
 
 
 package xmlModel;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
@@ -29,7 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="consumers" type="{}xmlConsumers" minOccurs="0"/>
  *         &lt;element name="providers" type="{}xmlProviders" minOccurs="0"/>
- *         &lt;element name="links" type="{}xmlLink" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="links" type="{}xmlLinks" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -52,7 +50,7 @@ public class XmlParameters {
     protected String description;
     protected XmlConsumers consumers;
     protected XmlProviders providers;
-    protected List<XmlLink> links;
+    protected XmlLinks links;
 
     /**
      * Obtient la valeur de la propriété name.
@@ -151,32 +149,27 @@ public class XmlParameters {
     }
 
     /**
-     * Gets the value of the links property.
+     * Obtient la valeur de la propriété links.
      * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the links property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getLinks().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link XmlLink }
-     * 
-     * 
+     * @return
+     *     possible object is
+     *     {@link XmlLinks }
+     *     
      */
-    public List<XmlLink> getLinks() {
-        if (links == null) {
-            links = new ArrayList<XmlLink>();
-        }
-        return this.links;
+    public XmlLinks getLinks() {
+        return links;
+    }
+
+    /**
+     * Définit la valeur de la propriété links.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XmlLinks }
+     *     
+     */
+    public void setLinks(XmlLinks value) {
+        this.links = value;
     }
 
 }

@@ -1,8 +1,8 @@
 //
-// Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
+// Ce fichier a Ã©tÃ© gÃ©nÃ©rÃ© par l'implÃ©mentation de rÃ©fÃ©rence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
-// Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2014.12.31 à 05:45:05 PM CET 
+// Toute modification apportÃ©e Ã  ce fichier sera perdue lors de la recompilation du schÃ©ma source. 
+// GÃ©nÃ©rÃ© le : 2014.12.31 Ã  05:56:03 PM CET 
 //
 
 
@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java pour xmlSequence complex type.
  * 
- * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schÃ©ma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="xmlSequence">
@@ -58,7 +58,7 @@ public class XmlSequence {
     protected float end;
 
     /**
-     * Obtient la valeur de la propriété processingTimeProvider.
+     * Obtient la valeur de la propriÃ©tÃ© processingTimeProvider.
      * 
      */
     public float getProcessingTimeProvider() {
@@ -66,7 +66,7 @@ public class XmlSequence {
     }
 
     /**
-     * Définit la valeur de la propriété processingTimeProvider.
+     * DÃ©finit la valeur de la propriÃ©tÃ© processingTimeProvider.
      * 
      */
     public void setProcessingTimeProvider(float value) {
@@ -74,7 +74,7 @@ public class XmlSequence {
     }
 
     /**
-     * Obtient la valeur de la propriété dataSize.
+     * Obtient la valeur de la propriÃ©tÃ© dataSize.
      * 
      */
     public int getDataSize() {
@@ -82,7 +82,7 @@ public class XmlSequence {
     }
 
     /**
-     * Définit la valeur de la propriété dataSize.
+     * DÃ©finit la valeur de la propriÃ©tÃ© dataSize.
      * 
      */
     public void setDataSize(int value) {
@@ -90,7 +90,7 @@ public class XmlSequence {
     }
 
     /**
-     * Obtient la valeur de la propriété nbrReqPerSecConsumer.
+     * Obtient la valeur de la propriÃ©tÃ© nbrReqPerSecConsumer.
      * 
      */
     public int getNbrReqPerSecConsumer() {
@@ -98,7 +98,7 @@ public class XmlSequence {
     }
 
     /**
-     * Définit la valeur de la propriété nbrReqPerSecConsumer.
+     * DÃ©finit la valeur de la propriÃ©tÃ© nbrReqPerSecConsumer.
      * 
      */
     public void setNbrReqPerSecConsumer(int value) {
@@ -106,7 +106,7 @@ public class XmlSequence {
     }
 
     /**
-     * Obtient la valeur de la propriété begin.
+     * Obtient la valeur de la propriÃ©tÃ© begin.
      * 
      */
     public float getBegin() {
@@ -114,7 +114,7 @@ public class XmlSequence {
     }
 
     /**
-     * Définit la valeur de la propriété begin.
+     * DÃ©finit la valeur de la propriÃ©tÃ© begin.
      * 
      */
     public void setBegin(float value) {
@@ -122,7 +122,7 @@ public class XmlSequence {
     }
 
     /**
-     * Obtient la valeur de la propriété end.
+     * Obtient la valeur de la propriÃ©tÃ© end.
      * 
      */
     public float getEnd() {
@@ -130,7 +130,7 @@ public class XmlSequence {
     }
 
     /**
-     * Définit la valeur de la propriété end.
+     * DÃ©finit la valeur de la propriÃ©tÃ© end.
      * 
      */
     public void setEnd(float value) {

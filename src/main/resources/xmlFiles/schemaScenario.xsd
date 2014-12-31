@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="consumer" type="xmlConsumer" />
+
+	<xs:element name="link" type="xmlLink" />
+
+	<xs:element name="param" type="xmlParameters" />
+
+	<xs:element name="provider" type="xmlProvider" />
+
+	<xs:element name="sequence" type="xmlSequence" />
+
+	<xs:element name="consumers" type="xmlConsumers" />
+
+	<xs:element name="providers" type="xmlProviders" />
+
+	<xs:complexType name="xmlParameters">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" minOccurs="0" />
+			<xs:element name="description" type="xs:string" minOccurs="0" />
+			<xs:element name="consumers" type="xmlConsumers"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="providers" type="xmlProviders"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="links" type="xmlLink" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="xmlConsumers">
+		<xs:sequence>
+			<xs:element name="consumer" type="xmlConsumer" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="xmlProviders">
+		<xs:sequence>
+			<xs:element name="provider" type="xmlProvider" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="xmlConsumer">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="xmlProvider">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="xmlLink">
+		<xs:sequence>
+			<xs:element ref="consumer" minOccurs="0" />
+			<xs:element ref="provider" minOccurs="0" />
+			<xs:element name="sequences" type="xmlSequence" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="xmlSequence">
+		<xs:sequence>
+			<xs:element name="processing_time_provider" type="xs:float" />
+			<xs:element name="data_size" type="xs:int" />
+			<xs:element name="nbr_req_per_sec_consumer" type="xs:int" />
+		</xs:sequence>
+		<xs:attribute name="begin" type="xs:float" use="required" />
+		<xs:attribute name="end" type="xs:float" use="required" />
+	</xs:complexType>
+</xs:schema>

@@ -22,6 +22,13 @@ import xmlModel.XmlParameters;
  */
 public class XmlParser {
     
+    /**
+     * Parse a scenario file with the configuration
+     * @param filePath
+     * @return the parametersfor the simulation
+     * @throws JAXBException
+     * @throws SAXException 
+     */
     public static XmlParameters parseConfiguration(String filePath) throws JAXBException, SAXException {
         XmlParameters params = null;
         // creating jaxb context
@@ -42,6 +49,11 @@ public class XmlParser {
     }
     
     
+    /**
+     * Generates the configuration file from parameters
+     * @param parameters
+     * @throws JAXBException 
+     */
     public static void generateConfigFile(XmlParameters params) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(XmlParameters.class);
         Marshaller marshaller = jaxbContext.createMarshaller();

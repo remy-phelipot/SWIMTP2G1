@@ -1,8 +1,8 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
-*/
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package xmlParsing;
 
 import java.io.File;
@@ -21,13 +21,14 @@ import xmlModel.XmlParameters;
  * @author Guillaume
  */
 public class XmlParser {
-    
+
     /**
      * Parse a scenario file with the configuration
+     *
      * @param filePath
      * @return the parametersfor the simulation
      * @throws JAXBException
-     * @throws SAXException 
+     * @throws SAXException
      */
     public static XmlParameters parseConfiguration(String filePath) throws JAXBException, SAXException {
         XmlParameters params = null;
@@ -35,24 +36,24 @@ public class XmlParser {
         JAXBContext jaxbContext = JAXBContext.newInstance(XmlParameters.class);
         // creating unmarshaller
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        
+
         // verifying that the XML file respects the XSD schema
         // creating a schema factory
-        SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI) ;
+        SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         // creating the schema object corresponding to the XSD schema
-        Schema schema = sf.newSchema(new File("src/main/resources/xmlFiles/schemaScenario.xsd")) ;
+        Schema schema = sf.newSchema(new File("src/main/resources/xmlFiles/schemaScenario.xsd"));
         // setting xsd schema
-        unmarshaller.setSchema(schema);        
+        unmarshaller.setSchema(schema);
         // parsing XML file
         params = (XmlParameters) unmarshaller.unmarshal(new File(filePath));
         return params;
     }
-    
-    
+
     /**
      * Generates the configuration file from parameters
+     *
      * @param parameters
-     * @throws JAXBException 
+     * @throws JAXBException
      */
     public static void generateConfigFile(XmlParameters params, File file) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(XmlParameters.class);

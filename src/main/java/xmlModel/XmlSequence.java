@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2014.12.31 à 06:30:05 PM CET 
+// Généré le : 2015.01.03 à 01:07:56 PM CET 
 //
 
 
@@ -25,12 +25,12 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="processing_time_provider" type="{http://www.w3.org/2001/XMLSchema}float"/>
+ *         &lt;element name="processing_time_provider" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="data_size" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="nbr_req_per_sec_consumer" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
- *       &lt;attribute name="begin" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="end" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="begin" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
+ *       &lt;attribute name="end" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -47,21 +47,21 @@ import javax.xml.bind.annotation.XmlType;
 public class XmlSequence {
 
     @XmlElement(name = "processing_time_provider")
-    protected float processingTimeProvider;
+    protected int processingTimeProvider;
     @XmlElement(name = "data_size")
     protected int dataSize;
     @XmlElement(name = "nbr_req_per_sec_consumer")
     protected int nbrReqPerSecConsumer;
     @XmlAttribute(name = "begin", required = true)
-    protected float begin;
+    protected int begin;
     @XmlAttribute(name = "end", required = true)
-    protected float end;
+    protected int end;
 
     /**
      * Obtient la valeur de la propriété processingTimeProvider.
      * 
      */
-    public float getProcessingTimeProvider() {
+    public int getProcessingTimeProvider() {
         return processingTimeProvider;
     }
 
@@ -69,7 +69,7 @@ public class XmlSequence {
      * Définit la valeur de la propriété processingTimeProvider.
      * 
      */
-    public void setProcessingTimeProvider(float value) {
+    public void setProcessingTimeProvider(int value) {
         this.processingTimeProvider = value;
     }
 
@@ -109,7 +109,7 @@ public class XmlSequence {
      * Obtient la valeur de la propriété begin.
      * 
      */
-    public float getBegin() {
+    public int getBegin() {
         return begin;
     }
 
@@ -117,7 +117,7 @@ public class XmlSequence {
      * Définit la valeur de la propriété begin.
      * 
      */
-    public void setBegin(float value) {
+    public void setBegin(int value) {
         this.begin = value;
     }
 
@@ -125,7 +125,7 @@ public class XmlSequence {
      * Obtient la valeur de la propriété end.
      * 
      */
-    public float getEnd() {
+    public int getEnd() {
         return end;
     }
 
@@ -133,7 +133,7 @@ public class XmlSequence {
      * Définit la valeur de la propriété end.
      * 
      */
-    public void setEnd(float value) {
+    public void setEnd(int value) {
         this.end = value;
     }
 

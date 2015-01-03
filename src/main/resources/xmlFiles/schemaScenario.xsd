@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:element name="params" type="xmlParams"/>
+  <xs:element name="params" type="xmlParameters"/>
 
-  <xs:complexType name="xmlParams">
+  <xs:complexType name="xmlParameters">
     <xs:sequence>
       <xs:element name="name" type="xs:string" minOccurs="0"/>
       <xs:element name="description" type="xs:string" minOccurs="0"/>
@@ -53,11 +53,11 @@
 
   <xs:complexType name="xmlSequence">
     <xs:sequence>
-      <xs:element name="processing_time_provider" type="xs:float"/>
+      <xs:element name="processing_time_provider" type="xs:int"/>
       <xs:element name="data_size" type="xs:int"/>
       <xs:element name="nbr_req_per_sec_consumer" type="xs:int"/>
     </xs:sequence>
-    <xs:attribute name="begin" type="xs:float" use="required"/>
-    <xs:attribute name="end" type="xs:float" use="required"/>
+    <xs:attribute name="begin" type="xs:int" use="required"/>
+    <xs:attribute name="end" type="xs:int" use="required"/>
   </xs:complexType>
 </xs:schema>

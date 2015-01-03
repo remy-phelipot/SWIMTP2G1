@@ -61,4 +61,16 @@ public class XmlParser {
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, new Boolean(true));
         marshaller.marshal(jaxbContext, file);
     }
+    
+    /**
+     * Loads a scenario from xml into db
+     * @param filePath
+     * @throws SAXException
+     * @throws JAXBException 
+     */
+    public static void loadScenario(String filePath) throws SAXException, JAXBException {
+        XmlParameters params = parseConfiguration(filePath);
+        XmlToDatabase.loadDatabase(params);
+        params = null ;
+    }
 }

@@ -8,39 +8,26 @@
     <h:head>
         <title>I&lt;3ESB</title>
         <h:outputStylesheet library="css" name="style.css" />
+        <h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
+        <h:outputScript library="default" name="javascript/jquery-2.1.1.js" />
+        <h:outputScript library="bootstrap" name="js/bootstrap.js" />
     </h:head>
     <h:body> 
-        <h:form>
-        <table>
-            <thead>
-                <th colspan="5"><h2>#(Ceci est un hashtag, pas un dièse)I&lt;3SB</h2></th>
-                
-                
-            </thead>
-            <tbody>
-                <tr>
-                    <td>             
-                        <h:commandButton styleClass="btn" value="Upload scenario" action="uploadScenario"  />
-                    </td>                  
-                    <td>           
-                        <h:commandButton styleClass="btn" value="Launch a scenario" />
-                    </td>
-                    <td>           
-                        <h:commandButton styleClass="btn" value="Create a scenario" action="create"/>
-                    </td>
-                    <td>           
-                        <h:commandButton styleClass="btn" value="Visualize results" action="visualize"/>
-                    </td>
-                    <td>           
-                        <h:commandButton styleClass="btn" value="reset" action="#{visualizeBean.delete()}"/> 
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        
+        <div class="page-header text-center bg-primary">
+            <h1>#(Ceci est un hashtag, pas un dièse)I&lt;3SB</h1>
+        </div>
 
-       
-           
+        <h:form>
+            <div class="text-center">
+                <div class="btn-group">
+                    <h:commandButton styleClass="btn btn-success" value="Upload scenario" action="uploadScenario"  />
+                    <h:commandButton styleClass="btn btn-success" value="Create a scenario" action="create"/>
+                    <h:commandButton styleClass="btn btn-success" value="Visualize a scenario" action="visualizeScenario" />
+                    <h:commandButton styleClass="btn btn-success" value="Launch a scenario" />
+                    <h:commandButton styleClass="btn btn-success" value="Visualize results" action="visualizeResults"/>
+                    <h:commandButton styleClass="btn btn-success" value="Reset" action="#{visualizeBean.delete()}"/> 
+                </div>
+            </div>
         </h:form>
     </h:body>
 </html>

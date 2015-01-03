@@ -54,9 +54,10 @@ public class XmlParser {
      * @param parameters
      * @throws JAXBException 
      */
-    public static void generateConfigFile(XmlParameters params) throws JAXBException {
+    public static void generateConfigFile(XmlParameters params, File file) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(XmlParameters.class);
         Marshaller marshaller = jaxbContext.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, new Boolean(true));
+        marshaller.marshal(jaxbContext, file);
     }
 }

@@ -61,4 +61,21 @@ public class ScenarioBean {
         this.description = description;
     }
     
+    
+  @Override
+    public boolean equals(Object other){
+        if(other.getClass() != this.getClass()){
+            return false;
+        }else if(other == null){
+            return false;
+        }else{
+            ScenarioBean otherSb = (ScenarioBean)other;
+            if(otherSb.getName().equalsIgnoreCase(this.getName())){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
+    
 }

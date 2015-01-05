@@ -1,39 +1,48 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Upload a scenario</title>
         <h:outputStylesheet library="css" name="style.css" />
-        <h:outputStylesheet library="bootstrap" name="css/bootstrap.css"  />
+        <h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
         <h:outputScript library="default" name="javascript/jquery-2.1.1.js" />
         <h:outputScript library="bootstrap" name="js/bootstrap.js" />
     </h:head>
     <h:body>
-        <h2>Upload a file</h2>
-   
-        <h:form id="inputForm" enctype="multipart/form-data">
-            <h:outputLabel for="name" value="Enter a name for this scenario "/>
-            <h:inputText id="name" value="#{scenarioBean.name}" required="true" />
-            <br />
-            <h:outputLabel for="description" value="Enter a description for this scenario " />
-            <h:inputText id="description" value="#{scenarioBean.description}" />
-            <br />
-            <h:inputFile id="file" value="#{scenarioBean.part}"
-                         validator="#{scenarioBean.validateFile}"
+        <h1>Upload a file</h1>
+
+        <h:form styleClass="form-horizontal well col-md-10 col-md-offset-1" id="inputForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <h:outputLabel styleClass="control-label col-md-3" for="scenarioName" value="Name" />
+                <div class="col-md-8">
+                    <h:inputText class="form-control" id="scenarioName" value="#{scenarioBean.name}" p:placeholder="Enter a name for this scenario" required="true" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h:outputLabel styleClass="control-label col-md-3" for="scenarioDescription" value="Description" />
+                <div class="col-md-8">
+                    <h:inputText styleClass="form-control" id="scenarioDescription" value="#{scenarioBean.description}" p:placeholder="Enter a description for this scenario" />
+                </div>
+            </div>
+
+            <h:inputFile class="col-md-offset-3" id="file" value="#{fileUploadBean.part}"
+                         validator="#{fileUploadBean.validateFile}"
                          required="true"
                          requiredMessage="You didn't select any file!"
                          >
             </h:inputFile>
+            <h:outputText styleClass="help-block col-md-offset-3" id="fileMessage" value="#{fileUploadBean.statusMessage}"
+                          rendered="#{not empty fileUploadBean.statusMessage}"/>
+
             <br />
-            <br />
-            <h:commandButton id="submit"
-                             action="#{scenarioBean.uploadFile}"
-                             value="Upload file"/>
-            <br />
-            <h:outputText id="fileMessage" value="#{scenarioBean.statusMessage}"
-                          rendered="#{not empty scenarioBean.statusMessage}"/>
+            <div class="form-group">
+                <h:commandButton styleClass="btn btn-success col-md-2 col-md-offset-5" id="submit"
+                                 action="#{fileUploadBean.uploadFile}"
+                                 value="Upload file"/>
+            </div>
         </h:form>
     </h:body>
 </html>
-

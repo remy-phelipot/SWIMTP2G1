@@ -19,8 +19,17 @@ import javax.persistence.OneToMany;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name="Consumer.selectAll",
-                query="SELECT c FROM Consumer c")
+    @NamedQuery(name="Consumer.findById",
+                query="SELECT c FROM Consumer c WHERE c.id = :id"),
+
+    @NamedQuery(name="Consumer.findByName",
+                query="SELECT c FROM Consumer c WHERE c.name = :name"),
+    @NamedQuery(name="Consumer.getAll",
+                query="SELECT c FROM Consumer c"),
+    @NamedQuery(name="Consumer.deleteByName",
+                query="DELETE FROM Consumer c WHERE  c.name = :name"),
+     @NamedQuery(name="Consumer.del",
+                query="DELETE FROM Consumer c ")
 })
 public class Consumer implements Serializable {
  
@@ -31,7 +40,7 @@ public class Consumer implements Serializable {
   private String name;
 
   @OneToMany
-  private Collection<Sequence> sequences;
+  private Collection<MySequence> sequences;
 
   private static final long serialVersionUID = 1L;
 
@@ -54,12 +63,26 @@ public class Consumer implements Serializable {
     this.name = name;
   }
 
-    public Collection<Sequence> getSequences() {
+    public Collection<MySequence> getSequences() {
         return sequences;
     }
 
-    public void setSequences(ArrayList<Sequence> sequences) {
+    public void setSequences(ArrayList<MySequence> sequences) {
         this.sequences = sequences;
     }
-
+    @Override
+    public boolean equals(Object other){
+        if(other.getClass() != this.getClass()){
+            return false;
+        }else if(other == null){
+            return false;
+        }else{
+            Consumer otherC = (Consumer)other;
+            if(otherC.getName().equalsIgnoreCase(this.getName())){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
 }

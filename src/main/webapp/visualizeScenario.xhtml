@@ -17,17 +17,57 @@
             <div class="form-group">
                 <h:outputLabel styleClass="control-label col-md-3" value="Select a scenario" />
                 <div class="col-md-8">
-                    <h:selectOneMenu styleClass="form-control" value="#{scenarioBean.name}">
-                        <f:selectItem itemLabel="Scenario1" itemValue="Scenario1" />
-                        <f:selectItem itemLabel="Scenario2" itemValue="Scenario2" />
-                        <f:selectItem itemLabel="Scenario3" itemValue="Scenario3" />
+                    <h:selectOneMenu styleClass="form-control" value="#{backingBean.selectedScenario}" converter="#{scenarioConverter}">
+                        <f:selectItems value="#{visualizeBean.listScenario}" var="c"
+                                       itemLabel="#{c.name} - #{c.description}" itemValue="#{c}" />
+
                     </h:selectOneMenu>
                 </div>
             </div>
 
             <div class="form-group">
-                <h:commandButton styleClass="btn btn-success col-md-offset-3" value="Save" />
+                <h:commandButton styleClass="btn btn-success col-md-offset-3" value="Submit"/>
             </div>
+            <h:selectOneMenu styleClass="form-control" value="#{backingBean.selectedSequence}" converter="#{sequenceConverter}">
+                <f:selectItems value="#{backingBean.selectedScenario.sequences}" var="c"
+                                       itemLabel="#{c.begin}  #{c.dataSize}  #{c.end}  #{c.processingTime}  #{c.requestPerSecond}  #{c.consumer.name}  #{c.provider.name}" itemValue="#{c}" />
+
+              </h:selectOneMenu>
+                            <h:commandButton styleClass="btn btn-success col-md-offset-3" value="Submit"/>
+
+            <table>
+                <thead>
+                    <tr>
+                        <td>Sequence ID  </td>
+                        <td>Start  </td>
+                        <td>End  </td>
+                        <td>DataSize  </td>
+                        <td>Process Time  </td>
+                        <td>Request per Second  </td>
+                        <td>Consumer  </td>
+                        <td>Provider  </td>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                     <tr>
+                         <td>#{backingBean.selectedSequence.id}</td>
+                         <td>#{backingBean.selectedSequence.begin}</td>
+                         <td>#{backingBean.selectedSequence.end}</td>
+                         <td>#{backingBean.selectedSequence.dataSize}</td>
+                         <td>#{backingBean.selectedSequence.processingTime}</td>
+                         <td>#{backingBean.selectedSequence.requestPerSecond}</td>
+                         <td>#{backingBean.selectedSequence.consumer.name}</td>
+                         <td>#{backingBean.selectedSequence.provider.name}</td>
+
+
+                    </tr>
+                </tbody>
+                
+            </table>
+            <h:commandButton styleClass="btn btn-success col-md-offset-3" value="Go Back" action="index"/>
+     
         </h:form>
     </h:body>
 </html>

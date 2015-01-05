@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package beans;
 
 import database.Consumer;
@@ -49,16 +48,21 @@ public class SequenceConverter implements Converter {
         db.open();
         Consumer cons = db.getConsumerByName(cName);
         Provider prov = db.getProviderByName(pName);
-        
+
         sb = db.getSequenceByParam(beg, daS, en, prT, RpS, prov, cons);
         db.close();
-        return (Object)sb;
+        return (Object) sb;
     }
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-        MySequence sb = (MySequence)value;
-        return sb.getBegin() + " " + sb.getDataSize() + " " + sb.getEnd() + " " + sb.getProcessingTime() + " " + sb.getRequestPerSecond() + " " + sb.getConsumer().getName() + " " + sb.getProvider().getName();
+        MySequence sb = (MySequence) value;
+        if (sb != null) {
+            return sb.getBegin() + " " + sb.getDataSize() + " " + sb.getEnd() + " " + sb.getProcessingTime() + " " + sb.getRequestPerSecond() + " " + sb.getConsumer().getName() + " " + sb.getProvider().getName();
+        }
+        else {
+            return "lolo";
+        }
     }
-    
+
 }

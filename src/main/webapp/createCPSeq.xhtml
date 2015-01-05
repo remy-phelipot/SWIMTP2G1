@@ -8,17 +8,185 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      >
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Sequence Creation</title>
         <meta name="viewport" content="width=device-width"/>
         <h:outputStylesheet library="css" name="style.css" />
+        <h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
+        <h:outputScript library="default" name="javascript/jquery-2.1.1.js" />
+        <h:outputScript library="bootstrap" name="js/bootstrap.js" />
 
     </h:head>
     <body>
-        <h:form rendererType="@none">
+        <h1>Create a sequence</h1>
+        
+        <h:form styleClass="form-horizontal col-md-10 col-md-offset-1" rendererType="@none">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    Consumer
+                </div>
+                <div class="panel-body well">
+                    <h4>Create a new consumer</h4>
+                    <div class="form-group">
+                        <label class="col-md-3">Name</label>
+                        <div class="col-md-8">
+                            <h:inputText styleClass="form-control" value="#{createBean.consumerName}" p:placeholder="Enter a name for your consumer" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-3">
+                        <h:commandButton styleClass="btn btn-success" value="Create Consumer" action="#{createBean.addConsumer()}"/>
+                        </div>
+                    </div>
+                    
+                    <h4>Delete an existing consumer</h4>
+                    <div class="form-group">
+                        <label class="control-label">Select a consumer</label>
+                        <div class="col-md-8">
+                            <h:selectOneMenu class="form-control" value="#{createBean.toDeleteConsumer}" converter="#{consumerConverter}">
+                                <f:selectItems value="#{createBean.listConsumer}" var="c"
+                                               itemLabel="#{c.name}" itemValue="#{c}" />
 
+                            </h:selectOneMenu>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-3">
+                            <h:commandButton styleClass="btn delete" value="Delete Consumer" action="#{createBean.deleteConsumer()}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    Provider
+                </div>
+                <div class="panel-body well">
+                    <h4>Create a new provider</h4>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Name</label>
+                        <div class="col-md-8">
+                            <h:inputText styleClass="form-control" value="#{createBean.providerName}" /> 
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-md-offset-3">
+                            
+                        </div>
+                    </div>
+                    
+                    <h4>Delete an existing provider</h4>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Select a provider</label>
+                        <div class="col-md-8">
+                            <h:selectOneMenu styleClass="form-control" value="#{createBean.toDeleteProvider}" converter="#{providerConverter}">
+                                <f:selectItems value="#{createBean.listProvider}" var="c"
+                                               itemLabel="#{c.name}" itemValue="#{c}" />
 
+                            </h:selectOneMenu>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-md-offset-3">
+                            <h:commandButton styleClass="btn btn-success" value="Delete Provider" action="#{createBean.deleteProvider()}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    Sequence
+                </div>
+                
+                <div class="panel-body well">
+                    <h4>Create a new sequence</h4>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Begin of the simulation</label>
+                        <div class="col-md-8">
+                            <h:inputText styleClass="form-control" value="#{createBean.begin}" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="control-label col-md-3">End of the simulation</label>
+                        <div class="col-md-8">
+                            <h:inputText styleClass="form-control" value="#{createBean.end}" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Data size</label>
+                        <div class="col-md-8">
+                            <h:inputText styleClass="form-control" value="#{createBean.dataS}" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Processing Time</label>
+                        <div class="col-md-8">
+                            <h:inputText styleClass="form-control" value="#{createBean.processTime}" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Number of request per second</label>
+                        <div class="col-md-8">
+                            <h:inputText styleClass="form-control" value="#{createBean.rpS}" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Select a consumer</label>
+                        <div class="col-md-8">
+                            <h:selectOneMenu styleClass="form-control" value="#{createBean.selectedConsumer}" converter="#{consumerConverter}">
+                                <f:selectItems value="#{createBean.listConsumer}" var="c"
+                                               itemLabel="#{c.name}" itemValue="#{c}" />
+                            </h:selectOneMenu>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Select a provider</label>
+                        <div class="col-md-8">
+                            <h:selectOneMenu styleClass="form-control" value="#{createBean.selectedProvider}" converter="#{providerConverter}">
+                                <f:selectItems value="#{createBean.listProvider}" var="c"
+                                               itemLabel="#{c.name}" itemValue="#{c}" />
+                            </h:selectOneMenu>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-md-offset-3">
+                            <h:commandButton styleClass="btn btn-success" value="New Sequence" action="#{createBean.addSequence()}"/>
+                        </div>
+                    </div>
+                    
+                    <h4>Delete an existing sequence</h4>
+                    <div class="form-group">
+                        <label class="control-label">Select a sequence</label>
+                        <div class="col-md-8">
+                            <h:selectOneMenu styleClass="form-control" value="#{createBean.toDeleteSequence}" converter="#{sequenceConverter}">
+                                <f:selectItems value="#{createBean.listSequence}" var="c"
+                                               itemLabel="#{c.begin}  #{c.dataSize}  #{c.end}  #{c.processingTime}  #{c.requestPerSecond}  #{c.consumer.name}  #{c.provider.name}" itemValue="#{c}" />
+                            </h:selectOneMenu>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-md-offset-3">
+                            <h:commandButton styleClass="btn btn-success" value="Delete Sequence" action="#{createBean.deleteSequence()}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!--
             <table id="myTable">
                 <thead>
                     <tr>
@@ -102,7 +270,7 @@ and open the template in the editor.
                     </tr>
                 </tbody>
             </table>
-
+-->
         </h:form>
         <br/>
         <h:form>

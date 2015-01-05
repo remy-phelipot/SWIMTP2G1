@@ -1,6 +1,7 @@
 package controller;
 
 import database.Consumer;
+import database.MySequence;
 import database.Provider;
 import database.Scenario;
 import java.io.File;
@@ -43,7 +44,23 @@ public class MainController {
                 Scenario scenario = XmlToDatabase.paramsToScenarioDb(params);
                 
                 // Verify for each provider and consumer if they exist in the database
-
+                for(MySequence sequence: scenario.getSequences()){
+                    Provider provider = sequence.getProvider();
+                    Consumer consumer = sequence.getConsumer();
+                    
+                    if(!providers.contains(provider)){
+                        throw new RuntimeException("Provider " +
+                                provider.getName() +
+                                " is not in the database");
+                    }
+                    
+                    if(!consumers.contains(consumer)){
+                        throw new RuntimeException("Consumer " +
+                                consumer.getName() +
+                                " is not in the database");
+                    }
+                }
+                
                 // Persist the object in database 
                 database.createScenario(scenario);
             } catch (JAXBException ex) {

@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2015.01.03 à 01:07:56 PM CET 
+// Généré le : 2015.01.05 à 02:53:14 PM CET 
 //
 
 
@@ -70,6 +70,14 @@ public class ObjectFactory {
      */
     public XmlConsumer createXmlConsumer() {
         return new XmlConsumer();
+    }
+
+    /**
+     * Create an instance of {@link XmlSequences }
+     * 
+     */
+    public XmlSequences createXmlSequences() {
+        return new XmlSequences();
     }
 
     /**

@@ -47,8 +47,14 @@
     <xs:sequence>
       <xs:element name="consumer" type="xmlConsumer" minOccurs="0"/>
       <xs:element name="provider" type="xmlProvider" minOccurs="0"/>
-      <xs:element name="sequences" type="xmlSequence" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="sequences" type="xmlSequences" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="xmlSequences">
+  	<xs:sequence>
+  		<xs:element name="sequence" type="xmlSequence" minOccurs="0" maxOccurs="unbounded"/>
+  	</xs:sequence>
   </xs:complexType>
 
   <xs:complexType name="xmlSequence">

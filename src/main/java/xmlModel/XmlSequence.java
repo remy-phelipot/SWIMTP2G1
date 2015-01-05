@@ -1,68 +1,140 @@
+//
+// Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
+// Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
+// Généré le : 2015.01.03 à 01:07:56 PM CET 
+//
+
+
 package xmlModel;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
+
+/**
+ * <p>Classe Java pour xmlSequence complex type.
+ * 
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+ * 
+ * <pre>
+ * &lt;complexType name="xmlSequence">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="processing_time_provider" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="data_size" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="nbr_req_per_sec_consumer" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *       &lt;/sequence>
+ *       &lt;attribute name="begin" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
+ *       &lt;attribute name="end" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "sequence")
+@XmlType(name = "xmlSequence", propOrder = {
+    "processingTimeProvider",
+    "dataSize",
+    "nbrReqPerSecConsumer"
+})
 public class XmlSequence {
 
-	@XmlAttribute(name = "begin")
-	private int begin;
+    @XmlElement(name = "processing_time_provider")
+    protected int processingTimeProvider;
+    @XmlElement(name = "data_size")
+    protected int dataSize;
+    @XmlElement(name = "nbr_req_per_sec_consumer")
+    protected int nbrReqPerSecConsumer;
+    @XmlAttribute(name = "begin", required = true)
+    protected int begin;
+    @XmlAttribute(name = "end", required = true)
+    protected int end;
 
-	@XmlAttribute(name = "begin")
-	private int end;
+    /**
+     * Obtient la valeur de la propriété processingTimeProvider.
+     * 
+     */
+    public int getProcessingTimeProvider() {
+        return processingTimeProvider;
+    }
 
-	@XmlElement(name = "processing_time_provider")
-	private float processingTimeProvider;
+    /**
+     * Définit la valeur de la propriété processingTimeProvider.
+     * 
+     */
+    public void setProcessingTimeProvider(int value) {
+        this.processingTimeProvider = value;
+    }
 
-	@XmlElement(name = "data_size")
-	private float dataSize;
+    /**
+     * Obtient la valeur de la propriété dataSize.
+     * 
+     */
+    public int getDataSize() {
+        return dataSize;
+    }
 
-	@XmlElement(name = "nbr_req_per_sec_consumer")
-	private int nbReqPerSecConsumer;
+    /**
+     * Définit la valeur de la propriété dataSize.
+     * 
+     */
+    public void setDataSize(int value) {
+        this.dataSize = value;
+    }
 
-	public int getBegin() {
-		return begin;
-	}
+    /**
+     * Obtient la valeur de la propriété nbrReqPerSecConsumer.
+     * 
+     */
+    public int getNbrReqPerSecConsumer() {
+        return nbrReqPerSecConsumer;
+    }
 
-	public void setBegin(int begin) {
-		this.begin = begin;
-	}
+    /**
+     * Définit la valeur de la propriété nbrReqPerSecConsumer.
+     * 
+     */
+    public void setNbrReqPerSecConsumer(int value) {
+        this.nbrReqPerSecConsumer = value;
+    }
 
-	public int getEnd() {
-		return end;
-	}
+    /**
+     * Obtient la valeur de la propriété begin.
+     * 
+     */
+    public int getBegin() {
+        return begin;
+    }
 
-	public void setEnd(int end) {
-		this.end = end;
-	}
+    /**
+     * Définit la valeur de la propriété begin.
+     * 
+     */
+    public void setBegin(int value) {
+        this.begin = value;
+    }
 
-	public float getProcessingTimeProvider() {
-		return processingTimeProvider;
-	}
+    /**
+     * Obtient la valeur de la propriété end.
+     * 
+     */
+    public int getEnd() {
+        return end;
+    }
 
-	public void setProcessingTimeProvider(float processingTimeProvider) {
-		this.processingTimeProvider = processingTimeProvider;
-	}
-
-	public float getDataSize() {
-		return dataSize;
-	}
-
-	public void setDataSize(float dataSize) {
-		this.dataSize = dataSize;
-	}
-
-	public int getNbReqPerSecConsumer() {
-		return nbReqPerSecConsumer;
-	}
-
-	public void setNbReqPerSecConsumer(int nbReqPerSecConsumer) {
-		this.nbReqPerSecConsumer = nbReqPerSecConsumer;
-	}
+    /**
+     * Définit la valeur de la propriété end.
+     * 
+     */
+    public void setEnd(int value) {
+        this.end = value;
+    }
 
 }

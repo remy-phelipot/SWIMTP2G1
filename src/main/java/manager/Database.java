@@ -70,6 +70,14 @@ public class Database {
         em.persist(scenario);
         em.getTransaction().commit();
     }
+    
+    
+    public void createScenario(Scenario scenario) {
+        System.out.println("Creating scenario " + scenario.getName());
+        em.getTransaction().begin();
+        em.persist(scenario);
+        em.getTransaction().commit();
+    }
 
     public void createSequence(SequenceBean sequenceBean) {
         MySequence sequence = new MySequence();
@@ -88,9 +96,7 @@ public class Database {
         em.getTransaction().commit();
     }
 
-
     public void updateScenario(String name, ArrayList<MySequence> seqs) {
-
         em.getTransaction().begin();
 
         Query query = em.createNamedQuery("Scenario.findByName");

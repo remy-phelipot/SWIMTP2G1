@@ -8,7 +8,7 @@ package xmlParsing;
 import database.Consumer;
 import database.Provider;
 import database.Scenario;
-import database.Sequence;
+import database.MySequence;
 import java.util.ArrayList;
 import manager.Database;
 import xmlModel.XmlLink;
@@ -30,13 +30,13 @@ public class XmlToDatabase {
 
     public static Scenario paramsToScenarioDb(XmlParameters params) {
         Scenario scenario = new Scenario();
-        scenario.setSequences(new ArrayList<Sequence>());
+        scenario.setSequences(new ArrayList<MySequence>());
         scenario.setName(params.getName());
         scenario.setDescription(params.getDescription());
 
         for (XmlLink link : params.getLinks().getLink()) {
             for (XmlSequence xmlSeq : link.getSequences()) {
-                Sequence sequence = new Sequence();
+                MySequence sequence = new MySequence();
                 sequence.setBegin(xmlSeq.getBegin());
                 sequence.setEnd(xmlSeq.getEnd());
                 sequence.setProcessingTime(xmlSeq.getProcessingTimeProvider());

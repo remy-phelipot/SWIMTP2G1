@@ -8,82 +8,93 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
-   <h:head>
+    <h:head>
         <title>Vizualisation</title>
         <h:outputStylesheet library="css" name="style.css" />
+        <h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
+        <h:outputScript library="default" name="javascript/jquery-2.1.1.js" />
+        <h:outputScript library="bootstrap" name="js/bootstrap.js" />
+
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script type="text/javascript">
-          google.load("visualization", "1", {packages:["corechart"]});
-          google.setOnLoadCallback(drawChart);
-          function drawChart() {
+            google.load("visualization", "1", {packages: ["corechart"]});
+            google.setOnLoadCallback(drawChart);
+            function drawChart() {
 
-            var data = google.visualization.arrayToDataTable([
-              ['Msg', 'number'],
-              ['MsgOk',     #{backingBean.selectedResult.msgCount}-#{backingBean.selectedResult.msgLost}],
-              ['MsgLost',   #{backingBean.selectedResult.msgLost}]
-              
-            ]);
+                var data = google.visualization.arrayToDataTable([
+                    ['Msg', 'number'],
+                    ['MsgOk', #{backingBean.selectedResult.msgCount} -#{backingBean.selectedResult.msgLost}],
+                    ['MsgLost', #{backingBean.selectedResult.msgLost}]
 
-            var options = {
-              title: 'Msg received / Msg Lost',
-              is3D: true,
-              pieHole: 0.5
-            };
+                ]);
 
-            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                var options = {
+                    title: 'Msg received / Msg Lost',
+                    is3D: true,
+                    pieHole: 0.5
+                };
 
-            chart.draw(data, options);
-          }
+                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+                chart.draw(data, options);
+            }
         </script>      
     </h:head>
     <h:body>
-        <h:form id="inputForm" enctype="multipart/form-data">
-        <table>
-            <thead>
-                <th colspan="4"><h2>Results Overview</h2></th>
-                
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                         <h2>Select your Scenario : </h2>
-                    </td> 
-                    <td>
-                        <h:selectOneMenu value="#{backingBean.selectedScenario}" converter="#{scenarioConverter}">
-   			<f:selectItems value="#{visualizeBean.listScenario}" var="c"
+        <h1>Results overview</h1>
+
+        <h:form styleClass="form-horizontal well col-md-10 col-md-offset-1" id="inputForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <h:outputLabel styleClass="control-label col-md-3" value="Select a scenario" />
+                <div class="col-md-8">
+                    <h:selectOneMenu styleClass="form-control" value="#{backingBean.selectedScenario}" converter="#{scenarioConverter}">
+                        <f:selectItems value="#{visualizeBean.listScenario}" var="c"
                                        itemLabel="#{c.name} - #{c.description}" itemValue="#{c}" />
-                    
-                        </h:selectOneMenu>
-                    </td>
-                    <td>
-                        <h:commandButton styleClass="btn save" value="Submit"/>
-                    </td>
-                    <td>
-                        <h:commandButton styleClass="btn delete" value="Add Result" action="#{backingBean.addResult()}"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h2>Select one Result : </h2>
-                    </td> 
-                    <td>
-                         <h:selectOneMenu id="som" value="#{backingBean.selectedResult}" converter="#{resultConverter}">
-                 <f:selectItems value="#{backingBean.selectedScenario.results}" var="c"
-                                           itemLabel="#{c.id}" itemValue="#{c}" /> 
 
-                        </h:selectOneMenu>
-                    </td>
-                    <td>
-                        <h:commandButton styleClass="btn save" value="Submit"/>
-                    </td>
-                    <td>
-                        <h:commandButton styleClass="btn delete" value="Delete Result" action="#{backingBean.deleteResult()}"/> 
-                    </td>
-                </tr>                
-            </tbody>
-        </table>
+                    </h:selectOneMenu>
+                </div>
+            </div>
 
+            <div class="form-group">
+                <div class="col-md-offset-3">
+                    <h:commandButton styleClass="btn btn-success save" value="Submit"/>
+                    <h:commandButton styleClass="btn btn-success delete" value="Add Result" action="#{backingBean.addResult()}"/>
+                </div>
+            </div>
+
+            <hr />
+            <div class="form-group">
+                <h:outputLabel class="control-label col-md-3" value="Select one result" />
+                <div class="col-md-8">
+                    <h:selectOneMenu styleClass="form-control" id="som" value="#{backingBean.selectedResult}" converter="#{resultConverter}">
+                        <f:selectItems value="#{backingBean.selectedScenario.results}" var="c"
+                                       itemLabel="#{c.id}" itemValue="#{c}" /> 
+
+                    </h:selectOneMenu>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-3">
+                    <h:commandButton styleClass="btn btn-success save" value="Submit"/>
+                    <h:commandButton styleClass="btn btn-success delete" value="Delete Result" action="#{backingBean.deleteResult()}"/> 
+                </div>
+            </div>
         </h:form>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+
         <div id="piechart" style="width: 900px; height: 500px;"></div>
     </h:body>
 </html>

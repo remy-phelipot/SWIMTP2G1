@@ -10,6 +10,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * JPA Entity related to the element MyResult
@@ -25,13 +29,18 @@ import javax.persistence.OneToMany;
     @NamedQuery(name="MyResult.del",
                 query="DELETE FROM MyResult r")
 })
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name="results")
 public class MyResult implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
 
+  @XmlElement(name="averageresponseTime")
   private int averageresponseTime;
+  @XmlElement(name="msgCount")
   private int msgCount;
+  @XmlElement(name="msgLost")
   private int msgLost;
 
   @ManyToOne

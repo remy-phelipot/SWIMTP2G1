@@ -18,13 +18,13 @@ import javax.xml.bind.Marshaller;
 public class ResultsToXml {
     
     public static void generateXml(MyResult results) throws JAXBException{
+//        File result = new File("xmlResources/schemaScenario.xsd") ;
         // creation of the context
         JAXBContext jaxbContext = JAXBContext.newInstance(MyResult.class);
         // creation of the marshaller
         Marshaller marshaller = jaxbContext.createMarshaller();
         // setting properties for output XML
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, new Boolean(true));
-        
         // marshalling the object into the library_output.xml
         marshaller.marshal(results, System.out);
     }

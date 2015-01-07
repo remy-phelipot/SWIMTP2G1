@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package xmlParsing;
 
 import java.io.File;
@@ -21,7 +21,7 @@ import xmlModel.XmlParameters;
  * @author Guillaume
  */
 public class XmlParser {
-
+    
     /**
      * Parse a scenario file with the configuration
      *
@@ -36,19 +36,19 @@ public class XmlParser {
         JAXBContext jaxbContext = JAXBContext.newInstance(XmlParameters.class);
         // creating unmarshaller
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-
+        
         // verifying that the XML file respects the XSD schema
         // creating a schema factory
         SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         // creating the schema object corresponding to the XSD schema
-        Schema schema = sf.newSchema(new File("src/main/resources/xmlFiles/schemaScenario.xsd"));
+        Schema schema = sf.newSchema(new File("xmlResources/schemaScenario.xsd"));
         // setting xsd schema
         unmarshaller.setSchema(schema);
         // parsing XML file
         params = (XmlParameters) unmarshaller.unmarshal(new File(filePath));
         return params;
     }
-
+    
     /**
      * Generates the configuration file from parameters
      *
@@ -64,13 +64,14 @@ public class XmlParser {
     
     /**
      * Loads a scenario from xml into db
+     *
      * @param filePath
      * @throws SAXException
-     * @throws JAXBException 
+     * @throws JAXBException
      */
     public static void loadScenario(String filePath) throws SAXException, JAXBException {
         XmlParameters params = parseConfiguration(filePath);
         XmlToDatabase.loadDatabase(params);
-        params = null ;
+        params = null;
     }
 }

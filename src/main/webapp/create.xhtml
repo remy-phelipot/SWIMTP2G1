@@ -41,7 +41,7 @@ and open the template in the editor.
             <div class="form-group">
                 <h:outputLabel styleClass="control-label col-md-3" value="Description" />
                 <div class="col-md-8">
-                    <h:inputText styleClass="form-control" value="#{backingBean.description}" p:placeholder="Please describe it" /> 
+                    <h:inputTextarea styleClass="form-control" value="#{backingBean.description}" p:placeholder="Please describe it" /> 
                 </div>
 
             </div>
@@ -81,7 +81,9 @@ and open the template in the editor.
 
             <div class="form-group">
                 <div class="col-md-offset-3 col-md-8">
-                    <h:commandButton styleClass="btn btn-success btn-block" value="Save Scenario" action="#{backingBean.createScenario()}"/>          
+                    <h:commandButton styleClass="btn btn-success btn-block" value="Save Scenario" action="index">
+                        <f:actionListener binding="#{backingBean.createScenario()}" />
+                    </h:commandButton>           
                 </div>
             </div>
         </h:form>

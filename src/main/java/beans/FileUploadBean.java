@@ -7,16 +7,13 @@ package beans;
  */
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import javax.faces.component.UIComponent;
 
 /**
@@ -99,7 +96,7 @@ public class FileUploadBean {
     }
 
     public void validateFile(FacesContext context, UIComponent comp, Object value) {
-        ArrayList<FacesMessage> msgs = new ArrayList<>();
+        //ArrayList<FacesMessage> msgs = new ArrayList<>();
         Part file = (Part) value;
         String contentType = "text/xml";
         System.out.println("content type: " + file.getContentType());
@@ -110,10 +107,11 @@ public class FileUploadBean {
             msgs.add(new FacesMessage("The selected file is too big"));
         }*/
         if (!contentType.equals(file.getContentType())) {
-            msgs.add(new FacesMessage("The selected file is not a XML file."));
+            statusMessage = "The selected file is not a XML file.";
+            //msgs.add(new FacesMessage("The selected file is not a XML file."));
         }
-        if (!msgs.isEmpty()) {
+        /*if (!msgs.isEmpty()) {
             throw new ValidatorException(msgs);
-        }
+        }*/
     }
 }

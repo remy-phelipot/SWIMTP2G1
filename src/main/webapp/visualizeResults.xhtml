@@ -41,7 +41,15 @@ and open the template in the editor.
         </script>      
     </h:head>
     <h:body>
-        <h1>Results overview</h1>
+        <div>
+            <h1 id="page-title">Results overview</h1>
+
+            <h:form id="nav-bar" styleClass="text-center">
+                <ul class="nav nav-pills">
+                    <li><h:commandLink action="index" value="Go Back" /></li>
+                </ul>
+            </h:form>
+        </div>
 
         <h:form styleClass="form-horizontal well col-md-10 col-md-offset-1" id="inputForm" enctype="multipart/form-data">
             <div class="form-group">

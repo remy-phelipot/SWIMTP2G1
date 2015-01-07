@@ -19,12 +19,16 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width"/>
     </h:head>
     <body>
-        <h1>Create a scenario</h1>
+        <div>
+            <h1 id="page-title">Create a scenario</h1>
 
-        <h:form styleClass="text-center">
-            <h:commandLink action="index" value="Go Back" />
-            <h:commandLink action="createCPSeq" value="Create new Consumer Provider Sequence" />
-        </h:form>
+            <h:form id="nav-bar" styleClass="text-center">
+                <ul class="nav nav-pills">
+                    <li><h:commandLink action="index" value="Go Back" /></li>
+                    <li><h:commandLink action="createCPSeq" value="Create new Consumer Provider Sequence" /></li>
+                </ul>
+            </h:form>
+        </div>
 
         <h:form styleClass="form-horizontal well col-md-10 col-md-offset-1" id="PF">
             <div class="form-group">

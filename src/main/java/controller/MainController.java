@@ -49,15 +49,17 @@ public class MainController {
                 Consumer consumer = sequence.getConsumer();
 
                 if (!providers.contains(provider)) {
-                    throw new RuntimeException("Provider "
+                    /*throw new RuntimeException("Provider "
                             + provider.getName()
-                            + " is not in the database");
+                            + " is not in the database");*/
+                    database.addConsumer(consumer);
                 }
 
                 if (!consumers.contains(consumer)) {
-                    throw new RuntimeException("Consumer "
+                    /*throw new RuntimeException("Consumer "
                             + consumer.getName()
-                            + " is not in the database");
+                            + " is not in the database");*/
+                    database.addProvider(provider);
                 }
             }
 

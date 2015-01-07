@@ -49,15 +49,17 @@ public class MainController {
                 Consumer consumer = sequence.getConsumer();
 
                 if (!providers.contains(provider)) {
-                    throw new RuntimeException("Provider "
+                    /*throw new RuntimeException("Provider "
                             + provider.getName()
-                            + " is not in the database");
+                            + " is not in the database");*/
+                    database.addConsumer(consumer);
                 }
 
                 if (!consumers.contains(consumer)) {
-                    throw new RuntimeException("Consumer "
+                    /*throw new RuntimeException("Consumer "
                             + consumer.getName()
-                            + " is not in the database");
+                            + " is not in the database");*/
+                    database.addProvider(provider);
                 }
             }
 
@@ -71,5 +73,33 @@ public class MainController {
 
     public void onEndOfScenario() {
 
+    }
+    
+    public void launchScenario(Scenario scenario){
+        
+        //ArrayList<ConsumerWs> consumersToStart = new ArrayList<ConsumerWs>();
+        
+        /* For each sequence of the scenario, we initialize the webs services */
+        for (MySequence currentSequence: scenario.getSequences()){
+            /* set the web service consumer */
+            currentSequence.getConsumer().getName(); 
+            currentSequence.getBegin(); // parameter
+            currentSequence.getEnd(); // parameter
+            currentSequence.getRequestPerSecond(); // parameter
+            currentSequence.getDataSize(); // parameter
+            
+            //consumersToStart.add(/*the current web service*/);
+            
+            /* set the web service provider */
+            currentSequence.getProvider().getName();
+            currentSequence.getDataSize(); // parameter
+            currentSequence.getProcessingTime(); // parameter
+            
+        }
+        
+      /*  for (ConsumerWs consumer: consumersToStart){
+            consumer.run();
+        }*/
+        
     }
 }

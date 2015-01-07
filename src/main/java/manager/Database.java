@@ -166,6 +166,12 @@ public class Database {
         }
 
     }
+    
+    public void addConsumer(Consumer c){
+         em.getTransaction().begin();
+         em.persist(c);
+         em.getTransaction().commit();
+    }
 
     public void addProvider(String name) {
         if (!name.equals("") && getProviderByName(name) == null) {
@@ -179,6 +185,12 @@ public class Database {
         }
     }
 
+    public void addProvider(Provider p){
+         em.getTransaction().begin();
+         em.persist(p);
+         em.getTransaction().commit();
+    }
+    
     public void addResult(MyResult rt) {
         if (getResultById(rt.getId()) == null) {
 

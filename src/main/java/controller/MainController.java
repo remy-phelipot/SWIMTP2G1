@@ -20,71 +20,56 @@ import xmlParsing.XmlToDatabase;
  * @author Rémy
  */
 public class MainController {
-
-    private Database database;
-    private MessageService messageService;
+    private final Database database;
+    private final MessageService messageService;
 
     public MainController() {
         database = new Database();
-        //messageService = new MessageService();
+        messageService = new MessageService();
     }
 
-    public String addScenario(File xmlFile) {
-        if (this.verifyXML(xmlFile)) {
-            // Get the saved providers and consumers
-            List<Provider> providers = database.getProviders();
-            List<Consumer> consumers = database.getConsumers();
+    public void addScenario(File xmlFile) {
+        // Get the saved providers and consumers
+        database.open();
+        List<Provider> providers = database.getProviders();
+        List<Consumer> consumers = database.getConsumers();
+        database.close();
+        
+        XmlParameters params = null;
+        try {
+            //Transform the XML file to an object 
+            params = XmlParser.parseConfiguration(xmlFile.toString());
 
-            XmlParameters params = null;
-            try {
-                //Transform the XML file to an object 
-                params = XmlParser.parseConfiguration(xmlFile.toString());
-                
-                // Create the scenario object //TODO add scenario parameters
-                Scenario scenario = XmlToDatabase.paramsToScenarioDb(params);
-                
-                // Verify for each provider and consumer if they exist in the database
-                for(MySequence sequence: scenario.getSequences()){
-                    Provider provider = sequence.getProvider();
-                    Consumer consumer = sequence.getConsumer();
-                    
-                    if(!providers.contains(provider)){
-                        throw new RuntimeException("Provider " +
-                                provider.getName() +
-                                " is not in the database");
-                    }
-                    
-                    if(!consumers.contains(consumer)){
-                        throw new RuntimeException("Consumer " +
-                                consumer.getName() +
-                                " is not in the database");
-                    }
+            // Create the scenario object //TODO add scenario parameters
+            Scenario scenario = XmlToDatabase.paramsToScenarioDb(params);
+
+            // Verify for each provider and consumer if they exist in the database
+            for (MySequence sequence : scenario.getSequences()) {
+                Provider provider = sequence.getProvider();
+                Consumer consumer = sequence.getConsumer();
+
+                if (!providers.contains(provider)) {
+                    throw new RuntimeException("Provider "
+                            + provider.getName()
+                            + " is not in the database");
                 }
-                
-                // Persist the object in database 
-                database.createScenario(scenario);
-            } catch (JAXBException ex) {
-                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SAXException ex) {
-                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+
+                if (!consumers.contains(consumer)) {
+                    throw new RuntimeException("Consumer "
+                            + consumer.getName()
+                            + " is not in the database");
+                }
             }
+
+            // Persist the object in database 
+            database.createScenario(scenario);
+        } catch (JAXBException | SAXException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException(ex.getMessage());
         }
-        
-        return null;
-    }
-
-    /*    public void addScenario(File xmlFile){
-        
-     }*/
-    public void launchScenario(Scenario scenario) {
-
     }
 
     public void onEndOfScenario() {
 
-    }
-
-    private boolean verifyXML(File xmlFile) {
-        return false;
     }
 }

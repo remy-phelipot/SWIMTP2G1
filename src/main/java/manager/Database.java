@@ -48,12 +48,18 @@ public class Database {
         }
     }
 
-    public void open() {
+    public synchronized void open() {
+        if(this.emf != null || this.em != null)
+            throw new RuntimeException("Database already opened");
+        
         this.emf = Persistence.createEntityManagerFactory(persistenceUnitName);
         this.em = emf.createEntityManager();
     }
 
-    public void close() {
+    public synchronized void close() {
+        if(this.emf == null || this.em == null)
+            throw new RuntimeException("Database is not opened");
+        
         em.close();
         emf.close();
         this.emf = null;

@@ -5,6 +5,7 @@ package beans;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import controller.MainController;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -75,7 +76,14 @@ public class FileUploadBean {
             statusMessage = "File upload successful!";
             
             /* TODO: parser le fichier et inserer les donnees dans la database */
-
+            MainController mainController = new MainController();
+            try{
+                System.out.println(outputFilePath);
+                mainController.addScenario(outputFilePath);
+            } catch(Exception e){
+                e.printStackTrace();
+                statusMessage = e.getMessage();
+            }
         } catch (IOException ex) {
             ex.printStackTrace();
             statusMessage = "File upload failed!" + ex.toString();

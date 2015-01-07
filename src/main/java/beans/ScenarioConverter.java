@@ -34,6 +34,7 @@ public class ScenarioConverter implements Converter {
         Database db = new Database();
         db.open();
         Scenario sb = db.getScenarioByName(value.split(" ")[0]);
+        db.close();
         
         return (Object)sb;
     }

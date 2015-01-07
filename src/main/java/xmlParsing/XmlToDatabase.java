@@ -14,6 +14,7 @@ import manager.Database;
 import xmlModel.XmlLink;
 import xmlModel.XmlParameters;
 import xmlModel.XmlSequence;
+import xmlModel.XmlSequences;
 
 /**
  *
@@ -24,8 +25,12 @@ public class XmlToDatabase {
     public static void loadDatabase(XmlParameters params) {
         Database db = new Database();
         Scenario scenario = paramsToScenarioDb(params);
+        
+        db.open();
         db.createScenario(scenario);
-        scenario = null ;
+        db.close();
+        
+        scenario = null;
     }
 
     public static Scenario paramsToScenarioDb(XmlParameters params) {
@@ -35,23 +40,25 @@ public class XmlToDatabase {
         scenario.setDescription(params.getDescription());
 
         for (XmlLink link : params.getLinks().getLink()) {
-            for (XmlSequence xmlSeq : link.getSequences()) {
-                MySequence sequence = new MySequence();
-                sequence.setBegin(xmlSeq.getBegin());
-                sequence.setEnd(xmlSeq.getEnd());
-                sequence.setProcessingTime(xmlSeq.getProcessingTimeProvider());
-                sequence.setRequestPerSecond(xmlSeq.getNbrReqPerSecConsumer());
-                
-                Consumer consumer = new Consumer();
-                consumer.setName(link.getConsumer().getName());
-                
-                Provider provider = new Provider();
-                provider.setName(link.getProvider().getName());
-                
-                sequence.setConsumer(consumer);
-                sequence.setProvider(provider);
-                
-                scenario.getSequences().add(sequence);
+            for (XmlSequences xmlSeqs : link.getSequences()) {
+                for (XmlSequence xmlSeq : xmlSeqs.getSequence()) {
+                    MySequence sequence = new MySequence();
+                    sequence.setBegin(xmlSeq.getBegin());
+                    sequence.setEnd(xmlSeq.getEnd());
+                    sequence.setProcessingTime(xmlSeq.getProcessingTimeProvider());
+                    sequence.setRequestPerSecond(xmlSeq.getNbrReqPerSecConsumer());
+
+                    Consumer consumer = new Consumer();
+                    consumer.setName(link.getConsumer().getName());
+
+                    Provider provider = new Provider();
+                    provider.setName(link.getProvider().getName());
+
+                    sequence.setConsumer(consumer);
+                    sequence.setProvider(provider);
+
+                    scenario.getSequences().add(sequence);
+                }
             }
         }
 

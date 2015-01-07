@@ -57,12 +57,7 @@ public class SequenceConverter implements Converter {
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
         MySequence sb = (MySequence) value;
-        if (sb != null) {
-            return sb.getBegin() + " " + sb.getDataSize() + " " + sb.getEnd() + " " + sb.getProcessingTime() + " " + sb.getRequestPerSecond() + " " + sb.getConsumer().getName() + " " + sb.getProvider().getName();
-        }
-        else {
-            return "lolo";
-        }
+        return sb.getBegin() + " " + sb.getDataSize() + " " + sb.getEnd() + " " + sb.getProcessingTime() + " " + sb.getRequestPerSecond() + " " + sb.getConsumer().getName() + " " + sb.getProvider().getName();
     }
 
 }

@@ -23,12 +23,17 @@
                     <h:commandButton styleClass="btn btn-success" value="Upload scenario" action="uploadScenario"  />
                     <h:commandButton styleClass="btn btn-success" value="Create a scenario" action="create"/>
                     <h:commandButton styleClass="btn btn-success" value="Visualize a scenario" action="visualizeScenario" />
-                    <h:commandButton styleClass="btn btn-success" value="Launch a scenario" />
+                    <h:commandButton styleClass="btn btn-success" value="Launch a scenario" action="launch"/>
                     <h:commandButton styleClass="btn btn-success" value="Visualize results" action="visualizeResults"/>
                     <h:commandButton styleClass="btn btn-success" value="Reset" action="#{visualizeBean.delete()}"/> 
                 </div>
             </div>
         </h:form>
+
+
+        <div class="navbar navbar-fixed-bottom text-right text-muted">
+            <p><em>This application has been tested and optimized for a use with Mozilla Firefox and Google Chrome.</em></p>
+        </div>
 
     </h:body>
 </html>

@@ -41,7 +41,15 @@ and open the template in the editor.
         </script>      
     </h:head>
     <h:body>
-        <h1>Results overview</h1>
+        <div>
+            <h1 id="page-title">Results overview</h1>
+
+            <h:form id="nav-bar" styleClass="text-center">
+                <ul class="nav nav-pills">
+                    <li><h:commandLink action="index" value="Go Back" /></li>
+                </ul>
+            </h:form>
+        </div>
 
         <h:form styleClass="form-horizontal well col-md-10 col-md-offset-1" id="inputForm" enctype="multipart/form-data">
             <div class="form-group">
@@ -57,8 +65,12 @@ and open the template in the editor.
 
             <div class="form-group">
                 <div class="col-md-offset-3">
-                    <h:commandButton styleClass="btn btn-success save" value="Submit"/>
-                    <h:commandButton styleClass="btn btn-success delete" value="Add Result" action="#{backingBean.addResult()}"/>
+                    <div class="col-md-2">
+                        <h:commandButton styleClass="btn btn-success" value="Submit"/>
+                    </div>
+                    <div class="col-md-2">
+                        <h:commandButton styleClass="btn btn-success" value="Add Result" action="#{backingBean.addResult()}"/>
+                    </div>
                 </div>
             </div>
 
@@ -76,25 +88,16 @@ and open the template in the editor.
 
             <div class="form-group">
                 <div class="col-md-offset-3">
-                    <h:commandButton styleClass="btn btn-success save" value="Submit"/>
-                    <h:commandButton styleClass="btn btn-success delete" value="Delete Result" action="#{backingBean.deleteResult()}"/> 
+                    <div class="col-md-2">
+                        <h:commandButton styleClass="btn btn-success" value="Submit"/>
+                    </div>
+                    <div class="col-md-2">
+                        <h:commandButton styleClass="btn btn-success" value="Delete Result" action="#{backingBean.deleteResult()}"/> 
+                    </div>
                 </div>
             </div>
         </h:form>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-
-        <div id="piechart" style="width: 900px; height: 500px;"></div>
+        
+        <div id="piechart"></div>
     </h:body>
 </html>

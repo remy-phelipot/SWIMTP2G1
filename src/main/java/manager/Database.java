@@ -107,10 +107,10 @@ public class Database {
 
         Query query = em.createNamedQuery("Scenario.findByName");
         query.setParameter("name", name);
-
-        Scenario sce = (Scenario) query.getResultList().get(0);
+        if (!query.getResultList().isEmpty()) {
+              Scenario sce = (Scenario) query.getResultList().get(0);
         sce.setSequences(seqs);
-
+        } 
         em.getTransaction().commit();
     }
 

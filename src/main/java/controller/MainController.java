@@ -28,7 +28,7 @@ public class MainController {
         messageService = new MessageService();
     }
 
-    public void addScenario(File xmlFile) {
+    public void addScenario(File xmlFile, String name, String description) {
         // Get the saved providers and consumers
         database.open();
         List<Provider> providers = database.getProviders();
@@ -52,23 +52,32 @@ public class MainController {
                     /*throw new RuntimeException("Provider "
                             + provider.getName()
                             + " is not in the database");*/
-                    database.addConsumer(consumer);
+                    database.open();
+                    database.addProvider(provider);
+                    database.close();
                 }
 
                 if (!consumers.contains(consumer)) {
                     /*throw new RuntimeException("Consumer "
                             + consumer.getName()
                             + " is not in the database");*/
-                    database.addProvider(provider);
+                    database.open();
+                    database.addConsumer(consumer);
+                    database.close();
                 }
             }
 
             // Persist the object in database 
+            database.open();
+            scenario.setName(name);
+            scenario.setDescription(description);
             database.createScenario(scenario);
+            database.close();  System.out.println(scenario.getSequences().get(0).getConsumer().getName());
         } catch (JAXBException | SAXException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
             throw new RuntimeException(ex.getMessage());
         }
+       
     }
 
     public void onEndOfScenario() {

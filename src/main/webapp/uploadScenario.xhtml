@@ -17,14 +17,14 @@
             <div class="form-group">
                 <h:outputLabel styleClass="control-label col-md-3" for="scenarioName" value="Name" />
                 <div class="col-md-8">
-                    <h:inputText class="form-control" id="scenarioName" value="#{scenarioBean.name}" p:placeholder="Enter a name for this scenario" required="true" />
+                    <h:inputText class="form-control" id="scenarioName" value="#{fileUploadBean.name}" p:placeholder="Enter a name for this scenario" required="true" />
                 </div>
             </div>
 
             <div class="form-group">
                 <h:outputLabel styleClass="control-label col-md-3" for="scenarioDescription" value="Description" />
                 <div class="col-md-8">
-                    <h:inputText styleClass="form-control" id="scenarioDescription" value="#{scenarioBean.description}" p:placeholder="Enter a description for this scenario" />
+                    <h:inputText styleClass="form-control" id="scenarioDescription" value="#{fileUploadBean.desc}" p:placeholder="Enter a description for this scenario" />
                 </div>
             </div>
 

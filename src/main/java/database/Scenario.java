@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -36,10 +37,10 @@ public class Scenario implements Serializable {
   private String name;
   private String description;
 
-  @ManyToMany
+  @ManyToMany(cascade = CascadeType.ALL)
   private List<MySequence> sequences;
 
-  @OneToMany
+  @OneToMany(cascade = CascadeType.ALL)
   private List<MyResult> results;
 
   private static final long serialVersionUID = 1L;

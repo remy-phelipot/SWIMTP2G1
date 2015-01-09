@@ -30,6 +30,24 @@ public class FileUploadBean {
 
     private Part part;
     private String statusMessage;
+    private String name;
+    private String desc;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
 
     /**
      * Creates a new instance of FileUploadBean
@@ -79,7 +97,7 @@ public class FileUploadBean {
             MainController mainController = new MainController();
             try{
                 System.out.println(outputFilePath);
-                mainController.addScenario(outputFilePath);
+                mainController.addScenario(outputFilePath,name,desc);
             } catch(Exception e){
                 e.printStackTrace();
                 statusMessage = e.getMessage();

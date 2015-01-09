@@ -3,6 +3,7 @@ package database;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -39,7 +40,7 @@ public class Provider implements Serializable {
 
   private String name;
 
-  @OneToMany
+  @OneToMany(cascade = CascadeType.PERSIST)
   private Collection<MySequence> sequences;
 
   private static final long serialVersionUID = 1L;

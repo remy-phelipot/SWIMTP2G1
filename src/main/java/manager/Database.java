@@ -187,7 +187,7 @@ public class Database {
 
     public void addProvider(Provider p){
          em.getTransaction().begin();
-         em.persist(p);
+         em.persist(p);  
          em.getTransaction().commit();
     }
     

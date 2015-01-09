@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -46,16 +47,16 @@ public class MySequence implements Serializable {
   private int processingTime;
   private int requestPerSecond;
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.PERSIST)
   private Consumer consumer;
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.PERSIST)
   private Provider provider;
 
-  @ManyToMany
+  @ManyToMany(cascade = CascadeType.PERSIST)
   private Collection<Scenario> scenarios;
 
-  @OneToMany
+  @OneToMany(cascade = CascadeType.PERSIST)
   private Collection<MyResult> results;
 
   private static final long serialVersionUID = 1L;

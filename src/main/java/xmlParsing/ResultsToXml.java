@@ -7,6 +7,7 @@ package xmlParsing;
 
 import database.MyResult;
 import java.io.File;
+import java.io.FileNotFoundException;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -17,16 +18,22 @@ import javax.xml.bind.Marshaller;
  */
 public class ResultsToXml {
     
-    public static void generateXml(MyResult results) throws JAXBException{
-//        File result = new File("xmlResources/schemaScenario.xsd") ;
+    /**
+     * Allows to generate an XML file for the results given in parameters
+     * @param results to serialize
+     * @param filePath to the XML file (file must be created before calling this method)
+     * @throws JAXBException in case of error while marshaling
+     * @throws FileNotFoundException in case of wrong path
+     */
+    public static void generateXml(MyResult results, String filePath) throws JAXBException,FileNotFoundException{
         // creation of the context
         JAXBContext jaxbContext = JAXBContext.newInstance(MyResult.class);
         // creation of the marshaller
         Marshaller marshaller = jaxbContext.createMarshaller();
         // setting properties for output XML
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, new Boolean(true));
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         // marshalling the object into the library_output.xml
-        marshaller.marshal(results, System.out);
+        marshaller.marshal(results, new File(filePath));
     }
     
 }

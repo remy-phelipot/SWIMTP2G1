@@ -14,6 +14,7 @@ import database.Provider;
 import database.Scenario;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Query;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -496,6 +497,67 @@ public class DatabaseTest {
         instance.hardReset();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
+    }
+    
+    
+    public boolean isExisting(Consumer c, String name ){
+        
+        boolean result = false;
+        
+        Database db = new Database();
+        db.open();
+        db.getEm().getTransaction().begin();
+
+        Query query =  db.getEm().createNamedQuery("Consumer.findByName");
+        query.setParameter("name", name);
+
+        if (!query.getResultList().isEmpty())
+           result = true;    
+
+        db.getEm().getTransaction().commit();
+        db.close();
+        
+        return result;
+    }
+    
+    public boolean isExisting(Provider p, String name ){
+        
+        boolean result = false;
+        
+        Database db = new Database();
+        db.open();
+        db.getEm().getTransaction().begin();
+
+        Query query =  db.getEm().createNamedQuery("Provider.findByName");
+        query.setParameter("name", name);
+
+        if (!query.getResultList().isEmpty())
+           result = true;    
+
+        db.getEm().getTransaction().commit();
+        db.close();
+        
+        return result;
+    }
+    
+    public boolean isExisting(Scenario s, String name ){
+        
+        boolean result = false;
+        
+        Database db = new Database();
+        db.open();
+        db.getEm().getTransaction().begin();
+
+        Query query =  db.getEm().createNamedQuery("Scenario.findByName");
+        query.setParameter("name", name);
+
+        if (!query.getResultList().isEmpty())
+           result = true;    
+
+        db.getEm().getTransaction().commit();
+        db.close();
+        
+        return result;
     }
     
 }

@@ -445,4 +445,9 @@ public class Database {
         query.executeUpdate();
         em.getTransaction().commit();
     }
+    
+    /* For test purpose only */
+    public EntityManager getEm(){
+        return this.em;
+    }
 }

@@ -51,7 +51,7 @@ and open the template in the editor.
                 <div class="col-md-8">
                     <h:selectOneMenu styleClass="form-control" value="#{backingBean.selectedSequence}" converter="#{sequenceConverter}">
                         <f:selectItems value="#{createBean.listSequence}" var="c"
-                                       itemLabel="#{c.begin}  #{c.dataSize}  #{c.end}  #{c.processingTime}  #{c.requestPerSecond}  #{c.consumer.name}  #{c.provider.name}"  itemValue="#{c}" />
+                                       itemLabel="#{c.consumer.name} => #{c.provider.name} - #{c.processingTime} sec - #{c.requestPerSecond} req/sec - #{c.dataSize} chars - #{c.begin} => #{c.end}"  itemValue="#{c}" />
                     </h:selectOneMenu>
                 </div>
             </div>
@@ -67,7 +67,7 @@ and open the template in the editor.
                 <div class="col-md-8">
                     <h:selectOneMenu styleClass="form-control" id="LSS" value="#{backingBean.toRemoveSequence}" converter="#{sequenceConverter}" >
                         <f:selectItems value="#{backingBean.listSelectedSequence}" var="d"
-                                       itemLabel="#{d.begin}  #{d.dataSize}  #{d.end}  #{d.processingTime}  #{d.requestPerSecond}  #{d.consumer.name}  #{d.provider.name}"  itemValue="#{d}" />
+                                       itemLabel="#{d.consumer.name} => #{d.provider.name} - #{d.processingTime} sec - #{d.requestPerSecond} req/sec - #{d.dataSize} chars - #{d.begin} => #{d.end}"  itemValue="#{d}" />
 
                     </h:selectOneMenu>
                 </div>

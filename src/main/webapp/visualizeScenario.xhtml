@@ -46,7 +46,7 @@
                 <div class="col-md-8">
                     <h:selectOneMenu styleClass="form-control" value="#{backingBean.selectedSequence}" converter="#{sequenceConverter}">
                         <f:selectItems value="#{backingBean.selectedScenario.sequences}" var="c"
-                                       itemLabel="#{c.begin}  #{c.dataSize}  #{c.end}  #{c.processingTime}  #{c.requestPerSecond}  #{c.consumer.name}  #{c.provider.name}" itemValue="#{c}" />
+                                       itemLabel="#{c.consumer.name} => #{c.provider.name} - #{c.processingTime} sec - #{c.requestPerSecond} req/sec - #{c.dataSize} chars - #{c.begin} => #{c.end}" itemValue="#{c}" />
 
                     </h:selectOneMenu>
                 </div>

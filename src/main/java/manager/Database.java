@@ -178,7 +178,7 @@ public class Database {
             Provider toAdd = new Provider();
             toAdd.setName(name);
             toAdd.setSequences(null);
-            System.out.println("Creating Consumer " + toAdd.getId());
+            System.out.println("Creating Provider " + toAdd.getId());
             em.getTransaction().begin();
             em.persist(toAdd);
             em.getTransaction().commit();

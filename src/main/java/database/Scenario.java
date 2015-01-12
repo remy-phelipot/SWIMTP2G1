@@ -37,10 +37,10 @@ public class Scenario implements Serializable {
   private String name;
   private String description;
 
-  @ManyToMany(cascade = CascadeType.ALL)
+  @ManyToMany
   private List<MySequence> sequences;
 
-  @OneToMany(cascade = CascadeType.ALL)
+  @OneToMany
   private List<MyResult> results;
 
   private static final long serialVersionUID = 1L;

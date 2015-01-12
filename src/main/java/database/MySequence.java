@@ -47,16 +47,16 @@ public class MySequence implements Serializable {
   private int processingTime;
   private int requestPerSecond;
 
-  @ManyToOne(cascade = CascadeType.PERSIST)
+  @ManyToOne
   private Consumer consumer;
 
-  @ManyToOne(cascade = CascadeType.PERSIST)
+  @ManyToOne
   private Provider provider;
 
-  @ManyToMany(cascade = CascadeType.PERSIST)
+  @ManyToMany
   private Collection<Scenario> scenarios;
 
-  @OneToMany(cascade = CascadeType.PERSIST)
+  @OneToMany
   private Collection<MyResult> results;
 
   private static final long serialVersionUID = 1L;

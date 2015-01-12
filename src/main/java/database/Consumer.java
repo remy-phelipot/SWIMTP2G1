@@ -40,7 +40,7 @@ public class Consumer implements Serializable {
 
   private String name;
 
-  @OneToMany(cascade = CascadeType.PERSIST)
+  @OneToMany
   private Collection<MySequence> sequences;
 
   private static final long serialVersionUID = 1L;

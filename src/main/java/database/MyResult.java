@@ -7,15 +7,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 /**
- * JPA Entity related to the element Result
+ * JPA Entity related to the element MyResult
  * 
  * @author martin
  */
 @Entity
-public class Result implements Serializable {
+@NamedQueries({
+    @NamedQuery(name="MyResult.findById",
+                query="SELECT r FROM MyResult r WHERE r.id = :id"),   
+    @NamedQuery(name="MyResult.deleteById",
+                query="DELETE FROM MyResult r WHERE  r.id = :id"),
+    @NamedQuery(name="MyResult.del",
+                query="DELETE FROM MyResult r")
+})
+public class MyResult implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
@@ -25,14 +35,14 @@ public class Result implements Serializable {
   private int msgLost;
 
   @ManyToOne
-  private Sequence sequence;
+  private MySequence sequence;
  
   @ManyToOne
   private Scenario scenario;
 
   private static final long serialVersionUID = 1L;
 
-  public Result() {
+  public MyResult() {
   }
 
   public long getId() {
@@ -67,7 +77,7 @@ public class Result implements Serializable {
     this.msgLost = msgLost;
   }
 
-    public Sequence getSequence() {
+    public MySequence getSequence() {
         return sequence;
     }
 
@@ -75,12 +85,29 @@ public class Result implements Serializable {
         return scenario;
     }
 
-    public void setSequence(Sequence sequence) {
+    public void setSequence(MySequence sequence) {
         this.sequence = sequence;
     }
 
     public void setScenario(Scenario scenario) {
         this.scenario = scenario;
+    }
+
+    
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MyResult other = (MyResult) obj;
+        if (this.id != other.getId()) {
+            return false;
+        }
+        return true;
     }
 
 }

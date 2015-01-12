@@ -8,6 +8,18 @@ and open the template in the editor.
     Author     : anais
 */
 
-h1 {
-    color: red;
+#page-title {
+    display: inline-block;
+} 
+
+#nav-bar {
+    display: inline-block; 
+    float: right; 
+    margin-top: 2%;
+}
+
+#piechart {
+    width: 900px; 
+    height: 500px; 
+    margin-top: 28%;
 }

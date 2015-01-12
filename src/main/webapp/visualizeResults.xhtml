@@ -1,15 +1,103 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Vizualisation</title>
+        <h:outputStylesheet library="css" name="style.css" />
+        <h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
+        <h:outputScript library="default" name="javascript/jquery-2.1.1.js" />
+        <h:outputScript library="bootstrap" name="js/bootstrap.js" />
+
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+            google.load("visualization", "1", {packages: ["corechart"]});
+            google.setOnLoadCallback(drawChart);
+            function drawChart() {
+
+                var data = google.visualization.arrayToDataTable([
+                    ['Msg', 'number'],
+                    ['MsgOk', #{backingBean.selectedResult.msgCount} -#{backingBean.selectedResult.msgLost}],
+                    ['MsgLost', #{backingBean.selectedResult.msgLost}]
+
+                ]);
+
+                var options = {
+                    title: 'Msg received / Msg Lost',
+                    is3D: true,
+                    pieHole: 0.5
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+                chart.draw(data, options);
+            }
+        </script>      
     </h:head>
     <h:body>
-        <h2>Visualize results</h2>
-        <h:selectOneListbox value="#{scenarioBean.name}">
-            
-        </h:selectOneListbox>
+        <div>
+            <h1 id="page-title">Results overview</h1>
+
+            <h:form id="nav-bar" styleClass="text-center">
+                <ul class="nav nav-pills">
+                    <li><h:commandLink action="index" value="Go Back" /></li>
+                </ul>
+            </h:form>
+        </div>
+
+        <h:form styleClass="form-horizontal well col-md-10 col-md-offset-1" id="inputForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <h:outputLabel styleClass="control-label col-md-3" value="Select a scenario" />
+                <div class="col-md-8">
+                    <h:selectOneMenu styleClass="form-control" value="#{backingBean.selectedScenario}" converter="#{scenarioConverter}">
+                        <f:selectItems value="#{visualizeBean.listScenario}" var="c"
+                                       itemLabel="#{c.name} - #{c.description}" itemValue="#{c}" />
+
+                    </h:selectOneMenu>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-3">
+                    <div class="col-md-2">
+                        <h:commandButton styleClass="btn btn-success" value="Submit"/>
+                    </div>
+                    <div class="col-md-2">
+                        <h:commandButton styleClass="btn btn-success" value="Add Result" action="#{backingBean.addResult()}"/>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+            <div class="form-group">
+                <h:outputLabel class="control-label col-md-3" value="Select one result" />
+                <div class="col-md-8">
+                    <h:selectOneMenu styleClass="form-control" id="som" value="#{backingBean.selectedResult}" converter="#{resultConverter}">
+                        <f:selectItems value="#{backingBean.selectedScenario.results}" var="c"
+                                       itemLabel="#{c.id}" itemValue="#{c}" /> 
+
+                    </h:selectOneMenu>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-3">
+                    <div class="col-md-2">
+                        <h:commandButton styleClass="btn btn-success" value="Submit"/>
+                    </div>
+                    <div class="col-md-2">
+                        <h:commandButton styleClass="btn btn-success" value="Delete Result" action="#{backingBean.deleteResult()}"/> 
+                    </div>
+                </div>
+            </div>
+        </h:form>
+        
+        <div id="piechart"></div>
     </h:body>
 </html>
-

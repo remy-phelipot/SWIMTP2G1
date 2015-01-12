@@ -1,57 +1,114 @@
 package controller;
 
 import database.Consumer;
+import database.MySequence;
 import database.Provider;
 import database.Scenario;
 import java.io.File;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.bind.JAXBException;
 import manager.Database;
+import org.xml.sax.SAXException;
+import xmlModel.XmlParameters;
+import xmlParsing.XmlParser;
+import xmlParsing.XmlToDatabase;
 
 /**
  *
  * @author Rémy
  */
 public class MainController {
-    private Database database;
-    //private MessageService messageService;
-    
-    public MainController(){
+    private final Database database;
+    private final MessageService messageService;
+
+    public MainController() {
         database = new Database();
-        //messageService = new MessageService();
+        messageService = new MessageService(this);
     }
-    
-    public String addScenario(File xmlFile){
-        if(this.verifyXML(xmlFile)){
-            // Get the saved providers and consumers
-            List<Provider> providers = database.getProviders();
-            List<Consumer> consumers = database.getConsumers();
-            
-            //Transform the XML file to an object 
-            
-            // Verify for each provider and consumer if they exist in the database
-            
-            // Create the scenario object //TODO add scenario parameters
-            Scenario scenario = new Scenario();
-            
-            // Persist the object in database 
-            // database.createScenario(scenario);
-        }
-        return null;
-    }
-    
-/*    public void addScenario(File xmlFile){
+
+    public void addScenario(File xmlFile, String name, String description) {
+        // Get the saved providers and consumers
+        database.open();
+        List<Provider> providers = database.getProviders();
+        List<Consumer> consumers = database.getConsumers();
+        database.close();
         
-    }*/
+        XmlParameters params = null;
+        try {
+            //Transform the XML file to an object 
+            params = XmlParser.parseConfiguration(xmlFile.toString());
+
+            // Create the scenario object //TODO add scenario parameters
+            Scenario scenario = XmlToDatabase.paramsToScenarioDb(params);
+
+            // Verify for each provider and consumer if they exist in the database
+            for (MySequence sequence : scenario.getSequences()) {
+                Provider provider = sequence.getProvider();
+                Consumer consumer = sequence.getConsumer();
+
+                if (!providers.contains(provider)) {
+                    /*throw new RuntimeException("Provider "
+                            + provider.getName()
+                            + " is not in the database");*/
+                    database.open();
+                    database.addProvider(provider);
+                    database.close();
+                }
+
+                if (!consumers.contains(consumer)) {
+                    /*throw new RuntimeException("Consumer "
+                            + consumer.getName()
+                            + " is not in the database");*/
+                    database.open();
+                    database.addConsumer(consumer);
+                    database.close();
+                }
+            }
+
+            // Persist the object in database 
+            database.open();
+            scenario.setName(name);
+            scenario.setDescription(description);
+            database.createScenario(scenario);
+            database.close();  System.out.println(scenario.getSequences().get(0).getConsumer().getName());
+        } catch (JAXBException | SAXException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException(ex.getMessage());
+        }
+       
+    }
+
+    public void onEndOfScenario() {
+
+    }
     
     public void launchScenario(Scenario scenario){
         
-    }
-    
-    public void onEndOfScenario(){
+        //ArrayList<ConsumerWs> consumersToStart = new ArrayList<ConsumerWs>();
         
-    }
-    
-    private boolean verifyXML(File xmlFile){
-        return false;
+        /* For each sequence of the scenario, we initialize the webs services */
+        for (MySequence currentSequence: scenario.getSequences()){
+            /* set the web service consumer */
+            currentSequence.getConsumer().getName(); 
+            currentSequence.getBegin(); // parameter
+            currentSequence.getEnd(); // parameter
+            currentSequence.getRequestPerSecond(); // parameter
+            currentSequence.getDataSize(); // parameter
+            
+            //consumersToStart.add(/*the current web service*/);
+            
+            /* set the web service provider */
+            currentSequence.getProvider().getName();
+            currentSequence.getDataSize(); // parameter
+            currentSequence.getProcessingTime(); // parameter
+            
+        }
+        
+      /*  for (ConsumerWs consumer: consumersToStart){
+            consumer.run();
+        }*/
+        
     }
 }

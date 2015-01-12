@@ -1,19 +1,39 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<html lang="en" 
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      >
     <h:head>
-        <title>Facelet Title</title>
+        <title>I&lt;3ESB</title>
         <h:outputStylesheet library="css" name="style.css" />
-        <h:outputStylesheet library="bootstrap" name="css/bootstrap.css"  />
+        <h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
         <h:outputScript library="default" name="javascript/jquery-2.1.1.js" />
         <h:outputScript library="bootstrap" name="js/bootstrap.js" />
     </h:head>
-    <h:body>
-        Hello from Facelets
-        <p></p>
+    <h:body> 
+        <div class="page-header text-center bg-primary">
+            <h1>#(Ceci est un hashtag, pas un dièse)I&lt;3ESB</h1>
+        </div>
 
-        
+        <h:form>
+            <div class="text-center">
+                <div class="btn-group">
+                    <h:commandButton styleClass="btn btn-success" value="Upload scenario" action="uploadScenario"  />
+                    <h:commandButton styleClass="btn btn-success" value="Create a scenario" action="create"/>
+                    <h:commandButton styleClass="btn btn-success" value="Visualize a scenario" action="visualizeScenario" />
+                    <h:commandButton styleClass="btn btn-success" value="Launch a scenario" action="launch"/>
+                    <h:commandButton styleClass="btn btn-success" value="Visualize results" action="visualizeResults"/>
+                    <h:commandButton styleClass="btn btn-success" value="Reset" action="#{visualizeBean.delete()}"/> 
+                </div>
+            </div>
+        </h:form>
+
+
+        <div class="navbar navbar-fixed-bottom text-right text-muted">
+            <p><em>This application has been tested and optimized for a use with Mozilla Firefox and Google Chrome.</em></p>
+        </div>
+
     </h:body>
 </html>
-

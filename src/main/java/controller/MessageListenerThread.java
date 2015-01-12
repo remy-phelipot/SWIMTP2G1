@@ -1,12 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSConsumer;
 import javax.jms.JMSContext;
@@ -14,11 +7,8 @@ import javax.jms.JMSRuntimeException;
 import javax.jms.Queue;
 import javax.annotation.Resource;
 
-/**
- *
- * @author ender
- */
 public class MessageListenerThread extends Thread {
+
     private boolean communicationEnded = false;
 
     @Resource(lookup = "jms/myFactory")
@@ -28,8 +18,18 @@ public class MessageListenerThread extends Thread {
 
     private JMSContext context;
     private JMSConsumer consumer;
+    private final MessageService service;
 
     public MessageListenerThread(MessageService service) {
+        this.service = service;
+    }
+
+    public void stopListening() {
+        communicationEnded = true;
+    }
+    
+    @Override
+    public void run() {
         try {
             context = connectionFactory.createContext();
             consumer = context.createConsumer(queue);
@@ -37,22 +37,11 @@ public class MessageListenerThread extends Thread {
             // set the message listener
             consumer.setMessageListener(service);
 
-        } catch (JMSRuntimeException e) {
-            throw new RuntimeException(e.getMessage());
-        }
-    }
-
-    public void stopListening() {
-        communicationEnded = true;
-    }
-
-    public void run() {
-        while (!communicationEnded) {
-            try {
+            while (!communicationEnded) {
                 Thread.sleep(250);
-            } catch (InterruptedException ex) {
-                throw new RuntimeException(ex.getMessage());
             }
+        } catch (JMSRuntimeException | InterruptedException e) {
+            throw new RuntimeException(e.getMessage());
         }
     }
 }

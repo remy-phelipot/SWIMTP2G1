@@ -16,8 +16,10 @@ public class MessageListenerThread extends Thread {
     @Resource(lookup = "jms/queue1")
     private static Queue queue;
 
+
     private JMSContext context;
     private JMSConsumer consumer;
+
     private final MessageService service;
 
     public MessageListenerThread(MessageService service) {
@@ -30,9 +32,10 @@ public class MessageListenerThread extends Thread {
     
     @Override
     public void run() {
-        try {
-            context = connectionFactory.createContext();
-            consumer = context.createConsumer(queue);
+
+        try (JMSContext context = connectionFactory.createContext();){
+            JMSConsumer consumer = context.createConsumer(queue);
+
 
             // set the message listener
             consumer.setMessageListener(service);

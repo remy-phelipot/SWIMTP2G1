@@ -25,7 +25,7 @@ public class MainController {
 
     public MainController() {
         database = new Database();
-        messageService = new MessageService();
+        messageService = new MessageService(this);
     }
 
     public void addScenario(File xmlFile, String name, String description) {

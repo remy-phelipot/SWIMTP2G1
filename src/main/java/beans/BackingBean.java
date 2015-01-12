@@ -6,19 +6,12 @@
 
 package beans;
 
-import database.Consumer;
-import database.Provider;
 import database.Scenario;
 import database.MySequence;
 import database.MyResult;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import manager.Database;
 

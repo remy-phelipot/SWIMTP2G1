@@ -141,16 +141,9 @@ public class Database {
         }
     }
 
-    public ArrayList<Scenario> getScenarios() {
-        em.getTransaction().begin();
+    public List<Scenario> getScenarios() {
         Query query = em.createNamedQuery("Scenario.getAll");
-        ArrayList<Scenario> res = new ArrayList<>();
-        for (int i = 0; i < query.getResultList().size(); i++) {
-            Scenario sce = (Scenario) query.getResultList().get(i);
-            res.add(sce);
-        }
-        em.getTransaction().commit();
-        return res;
+        return query.getResultList();
     }
 
     public void addConsumer(String name) {

@@ -3,3 +3,7 @@ test.db
 target
 /test/nbproject/private/
 /WebJpa/nbproject/private/
+/Consumer/nbproject/private/
+/Provider/nbproject/private/
+/Provider/build/
+/Provider/dist/

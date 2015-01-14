@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -91,17 +92,22 @@ public class Scenario implements Serializable {
     }
    @Override
     public boolean equals(Object other){
-        if(other.getClass() != this.getClass()){
+        if(other == null)
             return false;
-        }else if(other == null){
+        if(other.getClass() != this.getClass()){
             return false;
         }else{
             Scenario otherC = (Scenario)other;
-            if(otherC.getName().equalsIgnoreCase(this.getName()) && otherC.getDescription().equalsIgnoreCase(this.getDescription())){
-                return true;
-            }else{
-                return false;
-            }
+            return  Objects.equals(name, otherC.name) && 
+                    Objects.equals(description, otherC.description);
         }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 31 * hash + Objects.hashCode(this.name);
+        hash = 31 * hash + Objects.hashCode(this.description);
+        return hash;
     }
 }

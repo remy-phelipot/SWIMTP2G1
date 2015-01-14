@@ -9,11 +9,16 @@ package beans;
 import database.Scenario;
 import database.MySequence;
 import database.MyResult;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.xml.bind.JAXBException;
 import manager.Database;
+import xmlParsing.ResultsToXml;
 
 /**
  *
@@ -176,6 +181,21 @@ public class BackingBean {
    }
     public void setSce(Scenario sce){
         this.selectedScenario = sce;
+    }
+    
+    /**
+     * Called when user click on "Download as XML"
+     * 
+     * Launch the process of XML writing of the result on the specified file
+     */
+    public void downloadXML(){
+        try {
+            ResultsToXml.generateXml(selectedResult, "/home/martin/Bureau/result.xml" );
+        } catch (JAXBException ex) {
+            Logger.getLogger(BackingBean.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(BackingBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

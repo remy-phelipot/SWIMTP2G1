@@ -500,7 +500,7 @@ public class DatabaseTest {
     }
     
     
-    public boolean isExisting(Consumer c, String name ){
+    public boolean isExistingConsumer (String name ){
         
         boolean result = false;
         
@@ -520,7 +520,7 @@ public class DatabaseTest {
         return result;
     }
     
-    public boolean isExisting(Provider p, String name ){
+    public boolean isExistingProvider (String name ){
         
         boolean result = false;
         
@@ -540,7 +540,7 @@ public class DatabaseTest {
         return result;
     }
     
-    public boolean isExisting(Scenario s, String name ){
+    public boolean isExistingScenario (String name ){
         
         boolean result = false;
         

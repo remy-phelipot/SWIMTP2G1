@@ -6,6 +6,7 @@
 
 package beans;
 
+import controller.MainController;
 import database.Scenario;
 import database.MySequence;
 import database.MyResult;
@@ -198,4 +199,8 @@ public class BackingBean {
         }
     }
     
+    public void onLaunching(){
+        MainController controller = new MainController();
+        controller.launchScenario(selectedScenario);
+    }
 }

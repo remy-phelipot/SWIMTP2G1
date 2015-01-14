@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.bind.JAXBException;
 import manager.Database;
+import messaging.webCallsExample;
 import org.xml.sax.SAXException;
 import xmlModel.XmlParameters;
 import xmlParsing.XmlParser;
@@ -22,10 +23,12 @@ import xmlParsing.XmlToDatabase;
 public class MainController {
     private final Database database;
     private final MessageService messageService;
+    private final webCallsExample webCalls;
 
     public MainController() {
         database = new Database();
         messageService = new MessageService(this);
+        webCalls = new webCallsExample();
     }
 
     public void addScenario(File xmlFile, String name, String description) {
@@ -81,28 +84,28 @@ public class MainController {
     }
 
     public void onEndOfScenario() {
-
+        List<Float> scenarioResults=webCalls.getResult();
+        System.out.println("resultat scenrario");
+        System.out.println(scenarioResults.toString());
     }
     
     public void launchScenario(Scenario scenario){
         
+        System.out.println("parametrage des webservices");
         //ArrayList<ConsumerWs> consumersToStart = new ArrayList<ConsumerWs>();
-        
+        webCalls.resetSequence();
         /* For each sequence of the scenario, we initialize the webs services */
         for (MySequence currentSequence: scenario.getSequences()){
             /* set the web service consumer */
-            currentSequence.getConsumer().getName(); 
-            currentSequence.getBegin(); // parameter
-            currentSequence.getEnd(); // parameter
-            currentSequence.getRequestPerSecond(); // parameter
-            currentSequence.getDataSize(); // parameter
+            //currentSequence.getConsumer().getName(); 
+            webCalls.addSequence(currentSequence.getBegin(), currentSequence.getEnd(), currentSequence.getDataSize(), currentSequence.getRequestPerSecond());; // parameter
             
             //consumersToStart.add(/*the current web service*/);
             
             /* set the web service provider */
-            currentSequence.getProvider().getName();
-            currentSequence.getDataSize(); // parameter
-            currentSequence.getProcessingTime(); // parameter
+            //currentSequence.getProvider().getName();
+            webCalls.setProducerProcessTime(currentSequence.getProcessingTime());
+            //currentSequence.getDataSize(); // parameter
             
         }
         
@@ -110,5 +113,8 @@ public class MainController {
             consumer.run();
         }*/
         
+        System.out.println("Consumer en train de run ...");
+        webCalls.runConsumer();
+        onEndOfScenario();
     }
 }

@@ -12,8 +12,14 @@ import database.MyResult;
 import database.MySequence;
 import database.Provider;
 import database.Scenario;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -41,6 +47,10 @@ public class DatabaseTest {
     
     @Before
     public void setUp() {
+         File f = new File("test.db");
+         
+         if(f.exists())
+             f.delete();
     }
     
     @After
@@ -88,11 +98,16 @@ public class DatabaseTest {
     @Test
     public void testCreateScenario_ScenarioBean() {
         System.out.println("createScenario");
-        ScenarioBean scenarioBean = null;
+        ScenarioBean scenarioBean = new ScenarioBean();
         Database instance = new Database();
         instance.createScenario(scenarioBean);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
+        
+        this.open();
+        
+        
+        this.close();
     }
 
     /**
@@ -101,11 +116,23 @@ public class DatabaseTest {
     @Test
     public void testCreateScenario_Scenario() {
         System.out.println("createScenario");
-        Scenario scenario = null;
+        Scenario scenario = new Scenario();
+        scenario.setName("test");
+        scenario.setDescription("description");
+        
         Database instance = new Database();
+        
+        instance.open();
         instance.createScenario(scenario);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.close();
+        
+        this.open();
+        
+        Scenario sc2 = em.find(Scenario.class, scenario.getId());
+        
+        this.close();
+        
+        assertEquals(scenario, sc2);
     }
 
     /**
@@ -184,11 +211,21 @@ public class DatabaseTest {
     @Test
     public void testAddConsumer_String() {
         System.out.println("addConsumer");
-        String name = "";
+        String name = "testConsumer";
         Database instance = new Database();
+        
+        instance.open();
         instance.addConsumer(name);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.close();
+        
+        this.open();
+        
+        Query q = em.createQuery("SELECT c FROM Consumer c WHERE c.name=?1");
+        q.setParameter(1, name);
+        
+        assertNotNull(q.getSingleResult());
+        
+        this.close();
     }
 
     /**
@@ -197,11 +234,19 @@ public class DatabaseTest {
     @Test
     public void testAddConsumer_Consumer() {
         System.out.println("addConsumer");
-        Consumer c = null;
+        Consumer c = new Consumer();
+        c.setName("testCons");
+        
         Database instance = new Database();
+        instance.open();
         instance.addConsumer(c);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.close();
+        
+        this.open();
+
+        assertEquals(c, em.find(Consumer.class, c.getId()));
+        
+        this.close();
     }
 
     /**
@@ -210,11 +255,21 @@ public class DatabaseTest {
     @Test
     public void testAddProvider_String() {
         System.out.println("addProvider");
-        String name = "";
+        String name = "testProvider";
         Database instance = new Database();
+        
+        instance.open();
         instance.addProvider(name);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.close();
+        
+        this.open();
+        
+        Query q = em.createQuery("SELECT c FROM Provider c WHERE c.name=?1");
+        q.setParameter(1, name);
+        
+        assertNotNull(q.getSingleResult());
+        
+        this.close();
     }
 
     /**
@@ -223,11 +278,20 @@ public class DatabaseTest {
     @Test
     public void testAddProvider_Provider() {
         System.out.println("addProvider");
-        Provider p = null;
+        Provider p = new Provider();
+        p.setName("ProviderName");
+        
         Database instance = new Database();
+        
+        instance.open();
         instance.addProvider(p);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.close();
+        
+        this.open();
+
+        assertEquals(p, em.find(Consumer.class, p.getId()));
+        
+        this.close();
     }
 
     /**
@@ -415,11 +479,30 @@ public class DatabaseTest {
     public void testGetProviders() {
         System.out.println("getProviders");
         Database instance = new Database();
-        ArrayList<Provider> expResult = null;
-        ArrayList<Provider> result = instance.getProviders();
+        List<Provider> expResult = new ArrayList();
+        ArrayList<Provider> result;
+        
+        Provider p = new Provider();
+        p.setName("p1");
+        
+        instance.open();
+        instance.addProvider(p);
+        expResult.add(p);
+        instance.close();
+        
+        p = new Provider();
+        p.setName("p2");
+        
+        instance.open();
+        instance.addProvider(p);
+        expResult.add(p);
+        instance.close();
+        
+        instance.open();
+        result = instance.getProviders();
+        instance.close();
+        
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -538,26 +621,28 @@ public class DatabaseTest {
         db.close();
         
         return result;
-    }
+    } 
     
-    public boolean isExisting(Scenario s, String name ){
-        
-        boolean result = false;
-        
-        Database db = new Database();
-        db.open();
-        db.getEm().getTransaction().begin();
+    private static final String persistenceUnitName = "persistanceunit";
 
-        Query query =  db.getEm().createNamedQuery("Scenario.findByName");
-        query.setParameter("name", name);
+    private EntityManagerFactory emf = null;
+    private EntityManager em = null;
 
-        if (!query.getResultList().isEmpty())
-           result = true;    
-
-        db.getEm().getTransaction().commit();
-        db.close();
+    public void open() {
+        if(this.emf != null || this.em != null)
+            throw new RuntimeException("Database already opened");
         
-        return result;
+        this.emf = Persistence.createEntityManagerFactory(persistenceUnitName);
+        this.em = emf.createEntityManager();
     }
-    
+
+    public void close() {
+        if(this.emf == null || this.em == null)
+            throw new RuntimeException("Database is not opened");
+        
+        em.close();
+        emf.close();
+        this.emf = null;
+        this.em = null;
+    }
 }

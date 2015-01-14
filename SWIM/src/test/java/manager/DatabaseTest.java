@@ -289,7 +289,7 @@ public class DatabaseTest {
         
         this.open();
 
-        assertEquals(p, em.find(Consumer.class, p.getId()));
+        assertEquals(p, em.find(Provider.class, p.getId()));
         
         this.close();
     }

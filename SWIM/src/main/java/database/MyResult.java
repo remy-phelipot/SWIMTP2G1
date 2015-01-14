@@ -2,7 +2,9 @@ package database;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,11 +45,11 @@ public class MyResult implements Serializable {
   @XmlElement(name="msgLost")
   private int msgLost;
 
-  @ManyToOne
+ /* @ManyToOne
   private MySequence sequence;
  
   @ManyToOne
-  private Scenario scenario;
+  private Scenario scenario;*/
 
   private static final long serialVersionUID = 1L;
 
@@ -86,7 +88,7 @@ public class MyResult implements Serializable {
     this.msgLost = msgLost;
   }
 
-    public MySequence getSequence() {
+    /*public MySequence getSequence() {
         return sequence;
     }
 
@@ -100,7 +102,7 @@ public class MyResult implements Serializable {
 
     public void setScenario(Scenario scenario) {
         this.scenario = scenario;
-    }
+    }*/
 
     
 

@@ -92,7 +92,7 @@ public class Database {
         sequence.setEnd(sequenceBean.getEnd());
         sequence.setProcessingTime(sequenceBean.getProcessingTime());
         sequence.setRequestPerSecond(sequenceBean.getRequestPerSecond());
-        sequence.setScenarios(sequenceBean.getScenarios());
+      //  sequence.setScenarios(sequenceBean.getScenarios());
         sequence.setConsumer(sequenceBean.getConsumer());
         sequence.setProvider(sequenceBean.getProvider());
 
@@ -157,7 +157,7 @@ public class Database {
         if (!name.equals("") && getConsumerByName(name) == null) {
             Consumer toAdd = new Consumer();
             toAdd.setName(name);
-            toAdd.setSequences(null);
+          
             System.out.println("Creating Consumer " + toAdd.getId());
 
             em.getTransaction().begin();
@@ -172,12 +172,18 @@ public class Database {
          em.persist(c);
          em.getTransaction().commit();
     }
+    
+    public void addSequence(MySequence s){
+         em.getTransaction().begin();
+         em.persist(s);
+         em.getTransaction().commit();
+    }
 
     public void addProvider(String name) {
         if (!name.equals("") && getProviderByName(name) == null) {
             Provider toAdd = new Provider();
             toAdd.setName(name);
-            toAdd.setSequences(null);
+      
             System.out.println("Creating Provider " + toAdd.getId());
             em.getTransaction().begin();
             em.persist(toAdd);

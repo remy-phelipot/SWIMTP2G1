@@ -40,8 +40,8 @@ public class Consumer implements Serializable {
 
   private String name;
 
-  @OneToMany
-  private Collection<MySequence> sequences;
+/*  @OneToMany
+  private Collection<MySequence> sequences;*/
 
   private static final long serialVersionUID = 1L;
 
@@ -64,13 +64,13 @@ public class Consumer implements Serializable {
     this.name = name;
   }
 
-    public Collection<MySequence> getSequences() {
+  /*  public Collection<MySequence> getSequences() {
         return sequences;
-    }
+    }*/
 
-    public void setSequences(ArrayList<MySequence> sequences) {
+    /*public void setSequences(ArrayList<MySequence> sequences) {
         this.sequences = sequences;
-    }
+    }*/
     @Override
     public boolean equals(Object other){
         if(other.getClass() != this.getClass()){

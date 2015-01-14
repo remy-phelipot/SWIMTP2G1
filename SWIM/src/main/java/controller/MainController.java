@@ -48,6 +48,8 @@ public class MainController {
 
             // Verify for each provider and consumer if they exist in the database
             for (MySequence sequence : scenario.getSequences()) {
+                
+                
                 Provider provider = sequence.getProvider();
                 Consumer consumer = sequence.getConsumer();
 
@@ -68,6 +70,10 @@ public class MainController {
                     database.addConsumer(consumer);
                     database.close();
                 }
+                
+                database.open();
+                database.addSequence(sequence);
+                database.close();
             }
 
             // Persist the object in database 

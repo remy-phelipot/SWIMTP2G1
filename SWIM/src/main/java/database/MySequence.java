@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -53,8 +54,8 @@ public class MySequence implements Serializable {
   @ManyToOne
   private Provider provider;
 
-  @ManyToMany
-  private Collection<Scenario> scenarios;
+/*  @ManyToMany
+  private Collection<Scenario> scenarios;*/
 
   @OneToMany
   private Collection<MyResult> results;
@@ -120,9 +121,9 @@ public class MySequence implements Serializable {
         return provider;
     }
 
-    public Collection<Scenario> getScenarios() {
+  /*  public Collection<Scenario> getScenarios() {
         return scenarios;
-    }
+    }*/
 
     public Collection<MyResult> getResults() {
         return results;
@@ -136,9 +137,9 @@ public class MySequence implements Serializable {
         this.provider = provider;
     }
 
-    public void setScenarios(ArrayList<Scenario> scenarios) {
+ /*   public void setScenarios(ArrayList<Scenario> scenarios) {
         this.scenarios = scenarios;
-    }
+    }*/
 
     public void setResults(ArrayList<MyResult> results) {
         this.results = results;

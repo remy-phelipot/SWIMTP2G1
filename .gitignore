@@ -1,9 +1,11 @@
 nb-configuration.xml
 test.db
 target
-/test/nbproject/private/
-/WebJpa/nbproject/private/
-/Consumer/nbproject/private/
-/Provider/nbproject/private/
-/Provider/build/
-/Provider/dist/
+test/nbproject
+WebJpa/nbproject
+Provider/nbproject
+Provider/build
+Provider/dist
+Consumer/nbproject
+Consumer/build
+Consumer/dist

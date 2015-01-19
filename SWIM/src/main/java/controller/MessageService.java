@@ -40,7 +40,7 @@ public class MessageService implements MessageListener {
         thread.stopListening();
         thread = null;
         
-        controller.onEndOfScenario();
+        // controller.onEndOfScenario();
     }
 
     @Override

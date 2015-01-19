@@ -154,12 +154,51 @@ public class DatabaseTest {
     @Test
     public void testUpdateScenario() {
         System.out.println("updateScenario");
-        String name = "";
-        ArrayList<MySequence> seqs = null;
+        String name = "test";
         Database instance = new Database();
+        
+        instance.open();
+        Scenario scenario = new Scenario();
+        scenario.setName(name);
+        scenario.setDescription("description");
+        Consumer c = new Consumer();
+        c.setName("toto");
+        Provider p = new Provider();
+        p.setName("tata");
+        instance.addConsumer(c);
+        instance.addProvider(p); 
+        MySequence s = new MySequence();
+        s.setDataSize(1802);
+        s.setBegin(2);
+        s.setEnd(66);
+        s.setProvider(p);
+        s.setConsumer(c);
+        s.setProcessingTime(566);
+        s.setRequestPerSecond(9);
+        instance.addSequence(s);
+        instance.createScenario(scenario);
+        instance.close();
+
+        this.open();
+
+        Scenario sc2 = em.find(Scenario.class, scenario.getId());
+        assertTrue(sc2.getSequences().isEmpty());
+
+        this.close();
+        
+        ArrayList<MySequence> seqs = new ArrayList<MySequence>();
+        seqs.add(s);
+        
+        instance.open();
         instance.updateScenario(name, seqs);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.close();
+        
+        this.open();
+
+        Scenario sc3 = em.find(Scenario.class, scenario.getId());
+        assertEquals(sc3.getSequences(),seqs);
+
+        this.close();
     }
 
     /**
@@ -347,11 +386,19 @@ public class DatabaseTest {
     @Test
     public void testDeleteConsumer() {
         System.out.println("deleteConsumer");
-        Consumer toDelete = null;
+        Consumer toDelete = new Consumer();
         Database instance = new Database();
+        
+        toDelete.setName("toto");
+        
+        instance.open();
+        instance.addConsumer(toDelete);
         instance.deleteConsumer(toDelete);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.close();
+        
+        this.open();
+        assertFalse(this.em.contains(toDelete));
+        this.close();
     }
 
     /**
@@ -362,9 +409,29 @@ public class DatabaseTest {
         System.out.println("deleteResult");
         long id = 0L;
         Database instance = new Database();
-        instance.deleteResult(id);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+                
+        instance.open();
+        
+        MyResult r = new MyResult();
+        r.setMsgCount(865);
+        r.setMsgLost(85);
+        r.setAverageresponseTime(5);
+        
+        instance.addResult(r);
+        
+        instance.close();
+        
+        this.open();
+        assertNotNull(this.em.find(MyResult.class, r.getId()));
+        this.close();
+        
+        instance.open();
+        instance.deleteResult(r.getId());
+        instance.close();
+        
+        this.open();
+        assertNull(this.em.find(MyResult.class, r.getId()));
+        this.close();
     }
 
     /**
@@ -373,11 +440,21 @@ public class DatabaseTest {
     @Test
     public void testDeleteProvider() {
         System.out.println("deleteProvider");
-        Provider toDelete = null;
+        Provider toDelete = new Provider();
         Database instance = new Database();
+        
+        toDelete.setName("toto");
+        
+        instance.open();
+        instance.addProvider(toDelete);
+        
         instance.deleteProvider(toDelete);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        instance.close();
+        
+        this.open();
+        assertFalse(this.em.contains(toDelete));
+        this.close();
     }
 
     /**
@@ -412,9 +489,42 @@ public class DatabaseTest {
     public void testDeleteAllSequence() {
         System.out.println("deleteAllSequence");
         Database instance = new Database();
+        
+        instance.open();
+        
+        Consumer c = new Consumer();
+        c.setName("toto");
+        
+        Provider p = new Provider();
+        p.setName("tata");
+        
+        instance.addConsumer(c);
+        instance.addProvider(p); 
+        
+        MySequence s = new MySequence();
+        s.setDataSize(1802);
+        s.setBegin(2);
+        s.setEnd(66);
+        s.setProvider(p);
+        s.setConsumer(c);
+        s.setProcessingTime(566);
+        s.setRequestPerSecond(9);     
+        
+        instance.addSequence(s);
+        instance.close();
+        
+        this.open();
+        assertNotNull(this.em.find(MySequence.class, s.getId()));
+        this.close();
+        
+        instance.open();
         instance.deleteAllSequence();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.close();
+        
+        this.open();
+        Query q = this.em.createQuery("SELECT s FROM MySequence s");
+        assertTrue(q.getResultList().isEmpty());
+        this.close();
     }
 
     /**
@@ -423,11 +533,42 @@ public class DatabaseTest {
     @Test
     public void testDeleteSequence() {
         System.out.println("deleteSequence");
-        MySequence toDelete = null;
         Database instance = new Database();
-        instance.deleteSequence(toDelete);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        instance.open();
+        
+        Consumer c = new Consumer();
+        c.setName("toto");
+        
+        Provider p = new Provider();
+        p.setName("tata");
+        
+        instance.addConsumer(c);
+        instance.addProvider(p); 
+        
+        MySequence s = new MySequence();
+        s.setDataSize(1802);
+        s.setBegin(2);
+        s.setEnd(66);
+        s.setProvider(p);
+        s.setConsumer(c);
+        s.setProcessingTime(566);
+        s.setRequestPerSecond(9);     
+        
+        instance.addSequence(s);
+        instance.close();
+        
+        this.open();
+        assertNotNull(this.em.find(MySequence.class, s.getId()));
+        this.close();
+        
+        instance.open();
+        instance.deleteSequence(s);
+        instance.close();
+        
+        this.open();
+        assertNull(this.em.find(MySequence.class, s.getId()));
+        this.close();   
     }
 
     /**
@@ -511,14 +652,15 @@ public class DatabaseTest {
      */
     @Test
     public void testGetResultById() {
-        System.out.println("getResultById");
-        long id = 0L;
+        System.out.println("getResultById");       
+        MyResult rt = new MyResult();
+        
         Database instance = new Database();
-        MyResult expResult = null;
-        MyResult result = instance.getResultById(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.open();
+        
+        instance.addResult(rt);
+        assertEquals(instance.getResultById(rt.getId()), rt);
+        instance.close();
     }
 
     /**
@@ -594,11 +736,36 @@ public class DatabaseTest {
     public void testGetSequences() {
         System.out.println("getSequences");
         Database instance = new Database();
-        ArrayList<MySequence> expResult = null;
-        ArrayList<MySequence> result = instance.getSequences();
+        ArrayList<MySequence> expResult = new ArrayList<MySequence>();
+        ArrayList<MySequence> result = null;        
+        
+        instance.open();
+        
+        Consumer c = new Consumer();
+        c.setName("toto");
+        
+        Provider p = new Provider();
+        p.setName("tata");
+        
+        instance.addConsumer(c);
+        instance.addProvider(p); 
+        
+        MySequence s = new MySequence();
+        s.setDataSize(1802);
+        s.setBegin(2);
+        s.setEnd(66);
+        s.setProvider(p);
+        s.setConsumer(c);
+        s.setProcessingTime(566);
+        s.setRequestPerSecond(9);     
+        
+        instance.addSequence(s);
+        expResult.add(s);
+             
+        result = instance.getSequences();
+        instance.close();
+
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**

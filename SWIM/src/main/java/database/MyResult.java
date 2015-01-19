@@ -39,17 +39,12 @@ public class MyResult implements Serializable {
   private long id;
 
   @XmlElement(name="averageresponseTime")
-  private int averageresponseTime;
+  private float averageresponseTime;
   @XmlElement(name="msgCount")
   private int msgCount;
   @XmlElement(name="msgLost")
   private int msgLost;
 
- /* @ManyToOne
-  private MySequence sequence;
- 
-  @ManyToOne
-  private Scenario scenario;*/
 
   private static final long serialVersionUID = 1L;
 
@@ -64,11 +59,11 @@ public class MyResult implements Serializable {
     this.id = id;
   }
 
-  public int getAverageresponseTime() {
+  public float getAverageresponseTime() {
     return this.averageresponseTime;
   }
 
-  public void setAverageresponseTime(int averageresponseTime) {
+  public void setAverageresponseTime(float averageresponseTime) {
     this.averageresponseTime = averageresponseTime;
   }
 
@@ -87,24 +82,6 @@ public class MyResult implements Serializable {
   public void setMsgLost(int msgLost) {
     this.msgLost = msgLost;
   }
-
-    /*public MySequence getSequence() {
-        return sequence;
-    }
-
-    public Scenario getScenario() {
-        return scenario;
-    }
-
-    public void setSequence(MySequence sequence) {
-        this.sequence = sequence;
-    }
-
-    public void setScenario(Scenario scenario) {
-        this.scenario = scenario;
-    }*/
-
-    
 
     @Override
     public boolean equals(Object obj) {

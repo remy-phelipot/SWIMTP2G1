@@ -1,10 +1,12 @@
 package controller;
 
 import database.Consumer;
+import database.MyResult;
 import database.MySequence;
 import database.Provider;
 import database.Scenario;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -89,10 +91,21 @@ public class MainController {
        
     }
 
-    public void onEndOfScenario() {
+    public void onEndOfScenario(Scenario scenario) {
         List<Float> scenarioResults=webCalls.getResult();
-        System.out.println("resultat scenrario");
-        System.out.println(scenarioResults.toString());
+        ArrayList<MyResult> results = new ArrayList<MyResult>();
+        
+        for (Float currentResult: scenarioResults){
+            MyResult toAdd = new MyResult();
+            toAdd.setAverageresponseTime(currentResult);
+            database.open();
+            database.addResult(toAdd);
+            database.close();
+            results.add(toAdd);
+        }
+        database.open();
+        database.updateScenarioResult(scenario.getName(), results);
+        database.close();
     }
     
     public void launchScenario(Scenario scenario){
@@ -121,6 +134,6 @@ public class MainController {
         
         System.out.println("Consumer en train de run ...");
         webCalls.runConsumer();
-        onEndOfScenario();
+        onEndOfScenario(scenario);
     }
 }

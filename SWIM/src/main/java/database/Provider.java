@@ -40,9 +40,6 @@ public class Provider implements Serializable {
 
   private String name;
 
-  /*@OneToMany
-  private Collection<MySequence> sequences;*/
-
   private static final long serialVersionUID = 1L;
 
   public Provider() {
@@ -64,13 +61,6 @@ public class Provider implements Serializable {
     this.name = name;
   }
 
-  /*  public Collection<MySequence> getSequences() {
-        return sequences;
-    }*/
-
-    /*public void setSequences(ArrayList<MySequence> sequences) {
-      * this.sequences = sequences;
-    }*/
     @Override
     public boolean equals(Object other){
         if(other.getClass() != this.getClass()){

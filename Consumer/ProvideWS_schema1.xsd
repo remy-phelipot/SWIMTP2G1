@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://src/" xmlns:tns="http://src/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="InterruptedException" nillable="true" type="tns:interruptedExceptionBean"/>
+
+  <xs:element name="getProcessTime" nillable="true" type="tns:getProcessTime"/>
+
+  <xs:element name="getProcessTimeResponse" nillable="true" type="tns:getProcessTimeResponse"/>
+
+  <xs:element name="hello" nillable="true" type="tns:hello"/>
+
+  <xs:element name="helloResponse" nillable="true" type="tns:helloResponse"/>
+
+  <xs:element name="sayYo" nillable="true" type="tns:sayYo"/>
+
+  <xs:element name="sayYoResponse" nillable="true" type="tns:sayYoResponse"/>
+
+  <xs:element name="setProcessTime" nillable="true" type="tns:setProcessTime"/>
+
+  <xs:element name="setProcessTimeResponse" nillable="true" type="tns:setProcessTimeResponse"/>
+
+  <xs:complexType name="hello">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="helloResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="interruptedExceptionBean">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getProcessTime">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getProcessTimeResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="sayYo">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="sayYoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="setProcessTime">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="setProcessTimeResponse">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>
+

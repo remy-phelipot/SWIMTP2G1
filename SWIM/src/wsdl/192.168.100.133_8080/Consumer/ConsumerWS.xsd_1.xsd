@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><xs:schema xmlns:tns="http://src/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://src/">
+
+<xs:element name="addSequence" type="tns:addSequence"/>
+
+<xs:element name="addSequenceResponse" type="tns:addSequenceResponse"/>
+
+<xs:element name="callProvider" type="tns:callProvider"/>
+
+<xs:element name="callProviderResponse" type="tns:callProviderResponse"/>
+
+<xs:element name="callProviderViaESB" type="tns:callProviderViaESB"/>
+
+<xs:element name="callProviderViaESBResponse" type="tns:callProviderViaESBResponse"/>
+
+<xs:element name="createString" type="tns:createString"/>
+
+<xs:element name="createStringResponse" type="tns:createStringResponse"/>
+
+<xs:element name="getresults" type="tns:getresults"/>
+
+<xs:element name="getresultsResponse" type="tns:getresultsResponse"/>
+
+<xs:element name="hello" type="tns:hello"/>
+
+<xs:element name="helloResponse" type="tns:helloResponse"/>
+
+<xs:element name="resetSequence" type="tns:resetSequence"/>
+
+<xs:element name="resetSequenceResponse" type="tns:resetSequenceResponse"/>
+
+<xs:element name="run" type="tns:run"/>
+
+<xs:element name="runConsumer" type="tns:runConsumer"/>
+
+<xs:element name="runConsumerResponse" type="tns:runConsumerResponse"/>
+
+<xs:element name="runResponse" type="tns:runResponse"/>
+
+<xs:element name="sendRequestToProvider" type="tns:sendRequestToProvider"/>
+
+<xs:element name="sendRequestToProviderResponse" type="tns:sendRequestToProviderResponse"/>
+
+<xs:complexType name="runConsumer">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="runConsumerResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sendRequestToProvider">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sendRequestToProviderResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="resetSequence">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="resetSequenceResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="createString">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="createStringResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="run">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="runResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="hello">
+<xs:sequence>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="helloResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getresults">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getresultsResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:float" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="callProvider">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="callProviderResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addSequence">
+<xs:sequence>
+<xs:element name="begin" type="xs:int"/>
+<xs:element name="end" type="xs:int"/>
+<xs:element name="dataSize" type="xs:int"/>
+<xs:element name="requestPerSecond" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addSequenceResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="callProviderViaESB">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="callProviderViaESBResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

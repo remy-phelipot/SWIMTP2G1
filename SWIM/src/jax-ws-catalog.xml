@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://192.168.100.133:8080/Consumer/ConsumerWS?wsdl" uri="wsdl/192.168.100.133_8080/Consumer/ConsumerWS.wsdl"/>
+    <system systemId="http://192.168.100.133:8080/Consumer/ConsumerWS?xsd=1" uri="wsdl/192.168.100.133_8080/Consumer/ConsumerWS.xsd_1.xsd"/>
+    <system systemId="http://192.168.100.132:8080/Provider/ProvideWS?wsdl" uri="wsdl/192.168.100.132_8080/Provider/ProvideWS.wsdl"/>
+    <system systemId="http://192.168.100.132:8080/Provider/ProvideWS?xsd=1" uri="wsdl/192.168.100.132_8080/Provider/ProvideWS.xsd_1.xsd"/>
+</catalog>

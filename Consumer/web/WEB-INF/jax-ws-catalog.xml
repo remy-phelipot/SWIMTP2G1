@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://146.148.3.61:8080/Provider/ProvideWS?WSDL" uri="src/conf/xml-resources/web-services/ProviderFromWSDL/wsdl/146.148.3.61_8080/Provider/ProvideWS.wsdl"/>
+    <system systemId="http://146.148.3.61:8080/Provider/ProvideWS?xsd=1" uri="src/conf/xml-resources/web-services/ProviderFromWSDL/wsdl/146.148.3.61_8080/Provider/ProvideWS.xsd_1.xsd"/>
+    <system systemId="http://192.168.100.132:8080/Provider/ProvideWS?wsdl" uri="wsdl/192.168.100.132_8080/Provider/ProvideWS.wsdl"/>
+    <system systemId="http://192.168.100.132:8080/Provider/ProvideWS?xsd=1" uri="wsdl/192.168.100.132_8080/Provider/ProvideWS.xsd_1.xsd"/>
+    <system systemId="http://192.168.100.134:9080/LinkConsumerProviderService1/casaPort1?wsdl" uri="wsdl/192.168.100.134_9080/LinkConsumerProviderService1/casaPort1.wsdl"/>
+    <system systemId="http://PDLIL4.ip-37-187-166.eu:9080/LinkConsumerProvider-sun-http-binding/192.168.100.132_8080/Provider/ProvideWS.wsdl" uri="wsdl/PDLIL4.ip-37-187-166.eu_9080/LinkConsumerProvider-sun-http-binding/192.168.100.132_8080/Provider/ProvideWS.wsdl"/>
+</catalog>

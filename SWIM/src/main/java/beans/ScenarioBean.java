@@ -57,24 +57,6 @@ public class ScenarioBean {
     }
 
     /**
-     * Getter on field part
-     *
-     * @return
-     */
-    public Part getPart() {
-        return part;
-    }
-
-    /**
-     * Getter on field statusMessage
-     *
-     * @return
-     */
-    public String getStatusMessage() {
-        return statusMessage;
-    }
-
-    /**
      * Setter on field name
      *
      * @param name

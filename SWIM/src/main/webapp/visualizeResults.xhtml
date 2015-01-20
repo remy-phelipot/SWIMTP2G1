@@ -98,7 +98,9 @@ and open the template in the editor.
             </div>
             
             <h:commandButton styleClass="btn btn-warning" value="Download as XML" action="#{backingBean.downloadXML()}"/> 
-        
+            <h:inputFile value="#{fileUploadBean.part}"
+                         validator="#{fileUploadBean.validateFile}"
+                         required="true"></h:inputFile>
         </h:form>
         
         <div id="piechart"></div>

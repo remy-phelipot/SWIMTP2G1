@@ -18,26 +18,6 @@ import static org.junit.Assert.*;
  * @author ender
  */
 public class MyResultTest {
-
-    public MyResultTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
-
     /**
      * Test of getId method, of class MyResult.
      */

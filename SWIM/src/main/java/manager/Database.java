@@ -91,7 +91,6 @@ public class Database {
         sequence.setEnd(sequenceBean.getEnd());
         sequence.setProcessingTime(sequenceBean.getProcessingTime());
         sequence.setRequestPerSecond(sequenceBean.getRequestPerSecond());
-        //  sequence.setScenarios(sequenceBean.getScenarios());
         sequence.setConsumer(sequenceBean.getConsumer());
         sequence.setProvider(sequenceBean.getProvider());
 

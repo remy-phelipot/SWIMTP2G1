@@ -35,7 +35,7 @@ public class BackingBean {
     private Scenario selectedScenario;
     private MyResult selectedResult;
     private List<MyResult> results;
-    private ArrayList<MySequence> listSelectedSequence;
+    private List<MySequence> listSelectedSequence;
     private List<Scenario> listScenario;
     
     public List<Scenario> getListScenario() {
@@ -111,11 +111,11 @@ public class BackingBean {
         this.toRemoveSequence = toRemoveSequence;
     }
     
-    public ArrayList<MySequence> getListSelectedSequence() {
+    public List<MySequence> getListSelectedSequence() {
         return listSelectedSequence;
     }
     
-    public void setListSelectedSequence(ArrayList<MySequence> listSelectedSequence) {
+    public void setListSelectedSequence(List<MySequence> listSelectedSequence) {
         this.listSelectedSequence = listSelectedSequence;
     }
     

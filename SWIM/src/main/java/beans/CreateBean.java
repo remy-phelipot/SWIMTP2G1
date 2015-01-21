@@ -36,7 +36,7 @@ public class CreateBean {
     private String providerName;
     private String consumerName;
     private Scenario created = new Scenario();
-    private ArrayList<MySequence> listSelectedSequence;
+    private List<MySequence> listSelectedSequence;
     private List<MySequence> listSequence;
     private List<Consumer> listConsumer;
     private List<Provider> listProvider;
@@ -50,11 +50,11 @@ public class CreateBean {
         this.scenario = scenario;
     }
 
-    public ArrayList<MySequence> getListSelectedSequence() {
+    public List<MySequence> getListSelectedSequence() {
         return listSelectedSequence;
     }
 
-    public void setListSelectedSequence(ArrayList<MySequence> listSelectedSequence) {
+    public void setListSelectedSequence(List<MySequence> listSelectedSequence) {
         this.listSelectedSequence = listSelectedSequence;
     }
 

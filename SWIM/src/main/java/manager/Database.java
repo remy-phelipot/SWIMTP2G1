@@ -101,14 +101,14 @@ public class Database {
         em.getTransaction().commit();
     }
 
-    public void updateScenario(String name, ArrayList<MySequence> seqs) {
+    public void updateScenario(String name, List<MySequence> seqs) {
         em.getTransaction().begin();
 
         Query query = em.createNamedQuery("Scenario.findByName");
         query.setParameter("name", name);
         if (!query.getResultList().isEmpty()) {
             Scenario sce = (Scenario) query.getResultList().get(0);
-            sce.setSequences(seqs);
+            sce.setSequences((ArrayList<MySequence>) seqs);
         }
         em.getTransaction().commit();
     }
@@ -342,10 +342,10 @@ public class Database {
         }
     }
 
-    public ArrayList<Consumer> getConsumers() {
+    public List<Consumer> getConsumers() {
         em.getTransaction().begin();
         Query query = em.createNamedQuery("Consumer.getAll");
-        ArrayList<Consumer> res = new ArrayList<>();
+        List<Consumer> res = new ArrayList<>();
         for (int i = 0; i < query.getResultList().size(); i++) {
             Consumer consumer = (Consumer) query.getResultList().get(i);
             res.add(consumer);
@@ -354,10 +354,10 @@ public class Database {
         return res;
     }
 
-    public ArrayList<Provider> getProviders() {
+    public List<Provider> getProviders() {
         em.getTransaction().begin();
         Query query = em.createNamedQuery("Provider.getAll");
-        ArrayList<Provider> res = new ArrayList<>();
+        List<Provider> res = new ArrayList<>();
         for (int i = 0; i < query.getResultList().size(); i++) {
             Provider provider = (Provider) query.getResultList().get(i);
             res.add(provider);
@@ -366,10 +366,10 @@ public class Database {
         return res;
     }
 
-    public ArrayList<MySequence> getSequences() {
+    public List<MySequence> getSequences() {
         em.getTransaction().begin();
         Query query = em.createNamedQuery("MySequence.getAll");
-        ArrayList<MySequence> res = new ArrayList<>();
+        List<MySequence> res = new ArrayList<>();
         for (int i = 0; i < query.getResultList().size(); i++) {
             MySequence seq = (MySequence) query.getResultList().get(i);
             res.add(seq);
@@ -378,12 +378,12 @@ public class Database {
         return res;
     }
 
-    public ArrayList<MySequence> getSequenceByConsumer(Consumer c) {
+    public List<MySequence> getSequenceByConsumer(Consumer c) {
         em.getTransaction().begin();
         Query query = em.createNamedQuery("MySequence.getByConsumer");
         query.setParameter("consumer", c);
 
-        ArrayList<MySequence> res = new ArrayList<>();
+        List<MySequence> res = new ArrayList<>();
         for (int i = 0; i < query.getResultList().size(); i++) {
             MySequence seq = (MySequence) query.getResultList().get(i);
             res.add(seq);
@@ -392,11 +392,11 @@ public class Database {
         return res;
     }
 
-    public ArrayList<MySequence> getSequenceByProvider(Provider p) {
+    public List<MySequence> getSequenceByProvider(Provider p) {
         em.getTransaction().begin();
         Query query = em.createNamedQuery("MySequence.getByProvider");
         query.setParameter("provider", p);
-        ArrayList<MySequence> res = new ArrayList<>();
+        List<MySequence> res = new ArrayList<>();
         for (int i = 0; i < query.getResultList().size(); i++) {
             MySequence seq = (MySequence) query.getResultList().get(i);
             res.add(seq);

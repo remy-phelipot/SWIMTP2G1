@@ -72,7 +72,7 @@ public class Scenario implements Serializable {
   }
 
 
-    public void setSequences(ArrayList<MySequence> sequences) {
+    public void setSequences(List<MySequence> sequences) {
         this.sequences = sequences;
     }
 

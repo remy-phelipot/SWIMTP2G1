@@ -94,7 +94,7 @@ public class MainController {
     public void onEndOfScenario(Scenario scenario) {
         Logger.getLogger("MainController").info("onEndOfScenario");
         List<Float> scenarioResults = webCalls.getResult();
-        ArrayList<MyResult> results = new ArrayList<MyResult>();
+        List<MyResult> results = new ArrayList<>();
 
         for (Float currentResult : scenarioResults) {
             MyResult toAdd = new MyResult();

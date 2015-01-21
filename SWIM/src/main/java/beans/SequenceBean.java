@@ -8,7 +8,7 @@ package beans;
 import database.Consumer;
 import database.Provider;
 import database.Scenario;
-import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
@@ -50,7 +50,7 @@ public class SequenceBean {
     /**
      * Field describing the list of scenarios related to the sequence
      */
-    private ArrayList<Scenario> scenarios;
+    private List<Scenario> scenarios;
 
     /**
      * Field describing the consumer related to the sequence
@@ -112,7 +112,7 @@ public class SequenceBean {
      *
      * @return
      */
-    public ArrayList<Scenario> getScenarios() {
+    public List<Scenario> getScenarios() {
         return null;//scenarios;
     }
 
@@ -184,7 +184,7 @@ public class SequenceBean {
      *
      * @param scenarios
      */
-    public void setScenarios(ArrayList<Scenario> scenarios) {
+    public void setScenarios(List<Scenario> scenarios) {
         this.scenarios = scenarios;
     }
 

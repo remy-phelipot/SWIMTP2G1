@@ -215,7 +215,7 @@ public class DatabaseTest {
 
         this.close();
 
-        ArrayList<MySequence> seqs = new ArrayList<>();
+        List<MySequence> seqs = new ArrayList<>();
         seqs.add(s);
 
         instance.open();
@@ -725,7 +725,7 @@ public class DatabaseTest {
         Logger.getLogger(DatabaseTest.class).info("getConsumers");
         Database instance = new Database();
         List<Consumer> expResult = new ArrayList();
-        ArrayList<Consumer> result;
+        List<Consumer> result;
 
         Consumer p = new Consumer();
         p.setName("p1");
@@ -758,7 +758,7 @@ public class DatabaseTest {
         Logger.getLogger(DatabaseTest.class).info("getProviders");
         Database instance = new Database();
         List<Provider> expResult = new ArrayList();
-        ArrayList<Provider> result;
+        List<Provider> result;
 
         Provider p = new Provider();
         p.setName("p1");
@@ -790,8 +790,8 @@ public class DatabaseTest {
     public void testGetSequences() {
         Logger.getLogger(DatabaseTest.class).info("getSequences");
         Database instance = new Database();
-        ArrayList<MySequence> expResult = new ArrayList<MySequence>();
-        ArrayList<MySequence> result = null;
+        List<MySequence> expResult = new ArrayList<>();
+        List<MySequence> result;
 
         instance.open();
 
@@ -829,8 +829,8 @@ public class DatabaseTest {
     public void testGetSequenceByConsumer() {
         Logger.getLogger(DatabaseTest.class).info("getSequenceByConsumer");
         Database instance = new Database();
-        ArrayList<MySequence> expResult = new ArrayList<>();
-        ArrayList<MySequence> result = null;
+        List<MySequence> expResult = new ArrayList<>();
+        List<MySequence> result;
 
         instance.open();
 
@@ -868,8 +868,8 @@ public class DatabaseTest {
     public void testGetSequenceByProvider() {
         Logger.getLogger(DatabaseTest.class).info("getSequenceByProvider");
         Database instance = new Database();
-        ArrayList<MySequence> expResult = new ArrayList<>();
-        ArrayList<MySequence> result = null;
+        List<MySequence> expResult = new ArrayList<>();
+        List<MySequence> result;
 
         instance.open();
 

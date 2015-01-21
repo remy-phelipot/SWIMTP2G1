@@ -59,5 +59,4 @@ public class SequenceConverter implements Converter {
         MySequence sb = (MySequence) value;
         return sb.getBegin() + " " + sb.getDataSize() + " " + sb.getEnd() + " " + sb.getProcessingTime() + " " + sb.getRequestPerSecond() + " " + sb.getConsumer().getName() + " " + sb.getProvider().getName();
     }
-
 }

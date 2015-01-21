@@ -6,7 +6,7 @@
 //
 
 
-package xmlModel;
+package xmlmodel;
 
 import java.util.ArrayList;
 import java.util.List;

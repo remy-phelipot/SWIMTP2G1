@@ -6,27 +6,26 @@
 //
 
 
-package xmlModel;
+package xmlmodel;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour xmlLinks complex type.
+ * <p>Classe Java pour xmlSequences complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="xmlLinks">
+ * &lt;complexType name="xmlSequences">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="link" type="{}xmlLink" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="sequence" type="{}xmlSequence" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,41 +35,40 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "xmlLinks", propOrder = {
-    "link"
+@XmlType(name = "xmlSequences", propOrder = {
+    "sequence"
 })
-public class XmlLinks {
+public class XmlSequences {
 
-    @XmlElement(nillable = true)
-    protected List<XmlLink> link;
+    protected List<XmlSequence> sequence;
 
     /**
-     * Gets the value of the link property.
+     * Gets the value of the sequence property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the link property.
+     * This is why there is not a <CODE>set</CODE> method for the sequence property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getLink().add(newItem);
+     *    getSequence().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link XmlLink }
+     * {@link XmlSequence }
      * 
      * 
      */
-    public List<XmlLink> getLink() {
-        if (link == null) {
-            link = new ArrayList<XmlLink>();
+    public List<XmlSequence> getSequence() {
+        if (sequence == null) {
+            sequence = new ArrayList<XmlSequence>();
         }
-        return this.link;
+        return this.sequence;
     }
 
 }

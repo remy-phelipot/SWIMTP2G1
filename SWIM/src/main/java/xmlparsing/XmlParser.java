@@ -3,7 +3,7 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
-package xmlParsing;
+package xmlparsing;
 
 import java.io.File;
 import javax.xml.XMLConstants;
@@ -14,7 +14,7 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import org.xml.sax.SAXException;
-import xmlModel.XmlParameters;
+import xmlmodel.XmlParameters;
 
 /**
  *

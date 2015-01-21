@@ -14,9 +14,9 @@ import javax.xml.bind.JAXBException;
 import manager.Database;
 import messaging.WebCallsExample;
 import org.xml.sax.SAXException;
-import xmlModel.XmlParameters;
-import xmlParsing.XmlParser;
-import xmlParsing.XmlToDatabase;
+import xmlmodel.XmlParameters;
+import xmlparsing.XmlParser;
+import xmlparsing.XmlToDatabase;
 
 /**
  *

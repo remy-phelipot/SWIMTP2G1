@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package xmlParsing;
+package xmlparsing;
 
 import database.Consumer;
 import database.Provider;
@@ -11,10 +11,10 @@ import database.Scenario;
 import database.MySequence;
 import java.util.ArrayList;
 import manager.Database;
-import xmlModel.XmlLink;
-import xmlModel.XmlParameters;
-import xmlModel.XmlSequence;
-import xmlModel.XmlSequences;
+import xmlmodel.XmlLink;
+import xmlmodel.XmlParameters;
+import xmlmodel.XmlSequence;
+import xmlmodel.XmlSequences;
 
 /**
  *

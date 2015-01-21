@@ -6,7 +6,7 @@
 //
 
 
-package xmlModel;
+package xmlmodel;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -14,12 +14,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour xmlConsumer complex type.
+ * <p>Classe Java pour xmlProvider complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="xmlConsumer">
+ * &lt;complexType name="xmlProvider">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -33,10 +33,10 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "xmlConsumer", propOrder = {
+@XmlType(name = "xmlProvider", propOrder = {
     "name"
 })
-public class XmlConsumer {
+public class XmlProvider {
 
     protected String name;
 

@@ -18,7 +18,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.xml.bind.JAXBException;
 import manager.Database;
-import xmlParsing.ResultsToXml;
+import xmlparsing.ResultsToXml;
 
 /**
  *

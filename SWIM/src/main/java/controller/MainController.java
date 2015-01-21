@@ -58,7 +58,7 @@ public class MainController {
             //Transform the XML file to an object 
             params = XmlParser.parseConfiguration(xmlFile.toString());
 
-            // Create the scenario object //TODO add scenario parameters
+            // Create the scenario object 
             Scenario scenario = XmlToDatabase.paramsToScenarioDb(params);
 
             // Verify for each provider and consumer if they exist in the database

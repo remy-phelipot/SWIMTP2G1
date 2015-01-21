@@ -24,6 +24,19 @@ import static org.junit.Assert.*;
  * @author ender
  */
 public class DatabaseTest {
+     /**
+     * field persistence
+     */
+    private static final String PERSISTENCE_UNIT_NAME = "persistanceunit";
+    /**
+     * field emf
+     */
+    private EntityManagerFactory emf = null;
+    /**
+     * field em
+     */
+    private EntityManager em = null;
+    
     /**
      * test
      */
@@ -1001,19 +1014,6 @@ public class DatabaseTest {
     }
 
     /**
-     * field persistence
-     */
-    private static final String PersistenceUnitName = "persistanceunit";
-    /**
-     * field emf
-     */
-    private EntityManagerFactory emf = null;
-    /**
-     * field em
-     */
-    private EntityManager em = null;
-
-    /**
      * open
      */
     public void open() {
@@ -1021,7 +1021,7 @@ public class DatabaseTest {
             throw new RuntimeException("Database already opened");
         }
 
-        this.emf = Persistence.createEntityManagerFactory(PersistenceUnitName);
+        this.emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         this.em = emf.createEntityManager();
     }
 

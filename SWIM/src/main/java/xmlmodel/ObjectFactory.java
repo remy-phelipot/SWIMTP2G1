@@ -34,7 +34,7 @@ public class ObjectFactory {
     /**
      * field qname
      */
-    private final static QName Params_QNAME = new QName("", "params");
+    private final static QName PARAMS_QNAME = new QName("", "params");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: xmlModel
@@ -132,7 +132,7 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "", name = "params")
     public JAXBElement<XmlParameters> createParams(XmlParameters value) {
-        return new JAXBElement<>(Params_QNAME, XmlParameters.class, null, value);
+        return new JAXBElement<>(PARAMS_QNAME, XmlParameters.class, null, value);
     }
 
 }

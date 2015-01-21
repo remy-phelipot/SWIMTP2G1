@@ -27,7 +27,7 @@ public class Database {
     /**
      * field persistence
      */
-    private static final String PersistenceUnitName = "persistanceunit";
+    private static final String PERSISTENCE_UNIT_NAME = "persistanceunit";
 
     /**
      * field entitymanager factory
@@ -63,7 +63,7 @@ public class Database {
             throw new RuntimeException("Database already opened");
         }
 
-        this.emf = Persistence.createEntityManagerFactory(PersistenceUnitName);
+        this.emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         this.em = emf.createEntityManager();
     }
 

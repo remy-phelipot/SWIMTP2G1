@@ -41,6 +41,13 @@ public class VisualizeBean {
     private MySequence selectedSequence;
 
     /**
+     * constructor
+     */
+    public VisualizeBean() {
+
+    }
+
+    /**
      * get the results
      *
      * @return
@@ -136,15 +143,7 @@ public class VisualizeBean {
     }
 
     /**
-     * constructor
-     */
-    public VisualizeBean() {
-
-    }
-
- /**
-     * add a result
-     * deprecated
+     * add a result deprecated
      */
     public void addResult() {
         // THIS FONCTION IS NOT TO BE  USED ANYMORE
@@ -153,7 +152,7 @@ public class VisualizeBean {
         if (this.selectedScenario.getResults() == null) {
             //we create the list
             this.selectedScenario.setResults(new ArrayList<MyResult>());
-            
+
         }
         //we create a new list of result
         List<MyResult> alr;
@@ -179,8 +178,8 @@ public class VisualizeBean {
         //we save the list in the bean's scenario
         this.selectedScenario.setResults(alr);
     }
-    
-     /**
+
+    /**
      * delete a result
      */
     public void deleteResult() {
@@ -202,6 +201,5 @@ public class VisualizeBean {
         //we cloe the access
         db.close();
     }
-    
-}
 
+}

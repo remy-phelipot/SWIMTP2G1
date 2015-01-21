@@ -43,8 +43,15 @@ public class FileUploadBean {
     private String desc;
 
     /**
+     * Creates a new instance of FileUploadBean
+     */
+    public FileUploadBean() {
+    }
+
+    /**
      * get the name
-     * @return 
+     *
+     * @return
      */
     public String getName() {
         return name;
@@ -52,7 +59,8 @@ public class FileUploadBean {
 
     /**
      * set the name
-     * @param name 
+     *
+     * @param name
      */
     public void setName(String name) {
         this.name = name;
@@ -60,7 +68,8 @@ public class FileUploadBean {
 
     /**
      * get the desc
-     * @return 
+     *
+     * @return
      */
     public String getDesc() {
         return desc;
@@ -68,21 +77,17 @@ public class FileUploadBean {
 
     /**
      * set the desc
-     * @param desc 
+     *
+     * @param desc
      */
     public void setDesc(String desc) {
         this.desc = desc;
     }
 
     /**
-     * Creates a new instance of FileUploadBean
-     */
-    public FileUploadBean() {
-    }
-
-    /**
      * get the part
-     * @return 
+     *
+     * @return
      */
     public Part getPart() {
         return part;
@@ -90,7 +95,8 @@ public class FileUploadBean {
 
     /**
      * set the part
-     * @param part 
+     *
+     * @param part
      */
     public void setPart(Part part) {
         this.part = part;
@@ -98,7 +104,8 @@ public class FileUploadBean {
 
     /**
      * get status message
-     * @return 
+     *
+     * @return
      */
     public String getStatusMessage() {
         return this.statusMessage;
@@ -106,7 +113,8 @@ public class FileUploadBean {
 
     /**
      * set the status message
-     * @param msg 
+     *
+     * @param msg
      */
     public void setStatusMessage(String msg) {
         this.statusMessage = msg;
@@ -114,7 +122,8 @@ public class FileUploadBean {
 
     /**
      * upload a file
-     * @throws IOException 
+     *
+     * @throws IOException
      */
     public void uploadFile() throws IOException {
         String fileName = getFileName(part);
@@ -138,7 +147,7 @@ public class FileUploadBean {
             }
             statusMessage = "File upload successful!";
 
-            addDataToDatabase(outputFilePath);          
+            addDataToDatabase(outputFilePath);
         } catch (IOException ex) {
             statusMessage = "File upload failed!" + ex.toString();
         } finally {
@@ -150,20 +159,21 @@ public class FileUploadBean {
             }
         }
     }
-    
+
     private void addDataToDatabase(File outputFilePath) {
         MainController mainController = new MainController();
-            try {
-                mainController.addScenario(outputFilePath, name, desc);
-            } catch (Exception e) {
-                statusMessage = e.getMessage();
-            }
+        try {
+            mainController.addScenario(outputFilePath, name, desc);
+        } catch (Exception e) {
+            statusMessage = e.getMessage();
+        }
     }
 
     /**
      * get the file name
+     *
      * @param part
-     * @return 
+     * @return
      */
     private String getFileName(Part part) {
         for (String content : part.getHeader("content-disposition").split(";")) {
@@ -176,9 +186,8 @@ public class FileUploadBean {
 
     /**
      * validate a file
-     * @param context
-     * @param comp
-     * @param value 
+     *
+     * @param value
      */
     public void validateFile(Object value) {
         Part file = (Part) value;

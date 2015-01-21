@@ -262,46 +262,45 @@ public class MySequence implements Serializable {
      */
     @Override
     public boolean equals(Object other) {
-        if (other == null) {
-            return false;
-        }
-        if (other.getClass() != this.getClass()) {
-            return false;
-        }
-        MySequence otherC = (MySequence) other;
-        boolean cnameEqual;
-        if (otherC.getConsumer() != null && this.consumer != null) {
-            if ((otherC.getConsumer().getName() != null) && (this.consumer.getName() != null)) {
-                cnameEqual = otherC.getConsumer().getName().equalsIgnoreCase(this.consumer.getName());
-            }
-            else {
-                cnameEqual = otherC.getConsumer().getName() == null && this.consumer.getName() == null;
-            }
+        boolean res;
+        if ((other == null) || (other.getClass() != this.getClass())) {
+            res = false;
         }
         else {
-            cnameEqual = otherC.getConsumer() == this.consumer;
-        }
-
-        boolean pnameEqual;
-        if (otherC.getProvider() != null && this.provider != null) {
-            if ((otherC.getProvider().getName() != null) && (this.provider.getName() != null)) {
-                pnameEqual = otherC.getProvider().getName().equalsIgnoreCase(this.provider.getName());
+            MySequence otherC = (MySequence) other;
+            boolean cnameEqual;
+            if (otherC.getConsumer() != null && this.consumer != null) {
+                if ((otherC.getConsumer().getName() != null) && (this.consumer.getName() != null)) {
+                    cnameEqual = otherC.getConsumer().getName().equalsIgnoreCase(this.consumer.getName());
+                }
+                else {
+                    cnameEqual = otherC.getConsumer().getName() == null && this.consumer.getName() == null;
+                }
             }
             else {
-                pnameEqual = otherC.getProvider().getName() == null && this.provider.getName() == null;
+                cnameEqual = otherC.getConsumer() == this.consumer;
             }
-        }
-        else {
-            pnameEqual = otherC.getProvider() == this.provider;
-        }
-        boolean res = this.begin == otherC.getBegin()
-                && cnameEqual
-                && otherC.getDataSize() == this.dataSize
-                && otherC.getEnd() == this.end
-                && otherC.getProcessingTime() == this.processingTime
-                && pnameEqual
-                && otherC.getRequestPerSecond() == this.requestPerSecond;
 
+            boolean pnameEqual;
+            if (otherC.getProvider() != null && this.provider != null) {
+                if ((otherC.getProvider().getName() != null) && (this.provider.getName() != null)) {
+                    pnameEqual = otherC.getProvider().getName().equalsIgnoreCase(this.provider.getName());
+                }
+                else {
+                    pnameEqual = otherC.getProvider().getName() == null && this.provider.getName() == null;
+                }
+            }
+            else {
+                pnameEqual = otherC.getProvider() == this.provider;
+            }
+            res = ((this.begin == otherC.getBegin())
+                    && (cnameEqual)
+                    && (otherC.getDataSize() == this.dataSize)
+                    && (otherC.getEnd() == this.end)
+                    && (otherC.getProcessingTime() == this.processingTime)
+                    && (pnameEqual)
+                    && (otherC.getRequestPerSecond() == this.requestPerSecond));
+        }
         return res;
     }
 

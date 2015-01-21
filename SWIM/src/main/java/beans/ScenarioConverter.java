@@ -28,6 +28,13 @@ public class ScenarioConverter implements Converter {
     public ScenarioConverter() {
     }
 
+    /**
+     * get as object
+     * @param context
+     * @param component
+     * @param value
+     * @return 
+     */
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         
@@ -39,6 +46,13 @@ public class ScenarioConverter implements Converter {
         return (Object)sb;
     }
 
+    /**
+     * get as string
+     * @param context
+     * @param component
+     * @param value
+     * @return 
+     */
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
         Scenario sb = (Scenario)value;

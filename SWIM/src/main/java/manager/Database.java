@@ -32,7 +32,7 @@ public class Database {
     /**
      * field persistence
      */
-    private static final String persistenceUnitName = "persistanceunit";
+    private static final String PersistenceUnitName = "persistanceunit";
 
     /**
      * field entitymanager factory
@@ -45,7 +45,8 @@ public class Database {
 
     /**
      * constructor
-     * @throws RuntimeException 
+     *
+     * @throws RuntimeException
      */
     public Database() throws RuntimeException {
         String driver = "org.sqlite.JDBC";
@@ -67,7 +68,7 @@ public class Database {
             throw new RuntimeException("Database already opened");
         }
 
-        this.emf = Persistence.createEntityManagerFactory(persistenceUnitName);
+        this.emf = Persistence.createEntityManagerFactory(PersistenceUnitName);
         this.em = emf.createEntityManager();
     }
 
@@ -87,7 +88,8 @@ public class Database {
 
     /**
      * create a scenario
-     * @param scenarioBean 
+     *
+     * @param scenarioBean
      */
     public void createScenario(ScenarioBean scenarioBean) {
         Scenario scenario = new Scenario();
@@ -102,7 +104,8 @@ public class Database {
 
     /**
      * create a scenario
-     * @param scenario 
+     *
+     * @param scenario
      */
     public void createScenario(Scenario scenario) {
         Logger.getLogger(Database.class.getName()).log(Level.INFO, null, "Creating scenario " + scenario.getName());
@@ -113,7 +116,8 @@ public class Database {
 
     /**
      * create a sequence
-     * @param sequenceBean 
+     *
+     * @param sequenceBean
      */
     public void createSequence(SequenceBean sequenceBean) {
         MySequence sequence = new MySequence();
@@ -133,8 +137,9 @@ public class Database {
 
     /**
      * update a scenario
+     *
      * @param name
-     * @param seqs 
+     * @param seqs
      */
     public void updateScenario(String name, List<MySequence> seqs) {
         em.getTransaction().begin();
@@ -150,8 +155,9 @@ public class Database {
 
     /**
      * update a result
+     *
      * @param name
-     * @param res 
+     * @param res
      */
     public void updateScenarioResult(String name, List<MyResult> res) {
 
@@ -168,8 +174,9 @@ public class Database {
 
     /**
      * get the scenario
+     *
      * @param name
-     * @return 
+     * @return
      */
     public Scenario getScenarioByName(String name) {
         em.getTransaction().begin();
@@ -188,7 +195,8 @@ public class Database {
 
     /**
      * get the scenarios
-     * @return 
+     *
+     * @return
      */
     public List<Scenario> getScenarios() {
         Query query = em.createNamedQuery("Scenario.getAll");
@@ -197,7 +205,8 @@ public class Database {
 
     /**
      * add a consumer
-     * @param name 
+     *
+     * @param name
      */
     public void addConsumer(String name) {
         if (!name.equals("") && getConsumerByName(name) == null) {
@@ -215,7 +224,8 @@ public class Database {
 
     /**
      * add a consumer
-     * @param c 
+     *
+     * @param c
      */
     public void addConsumer(Consumer c) {
         em.getTransaction().begin();
@@ -225,7 +235,8 @@ public class Database {
 
     /**
      * add a sequence
-     * @param s 
+     *
+     * @param s
      */
     public void addSequence(MySequence s) {
         em.getTransaction().begin();
@@ -235,7 +246,8 @@ public class Database {
 
     /**
      * add a provider
-     * @param name 
+     *
+     * @param name
      */
     public void addProvider(String name) {
         if (!name.equals("") && getProviderByName(name) == null) {
@@ -251,7 +263,8 @@ public class Database {
 
     /**
      * add a provider
-     * @param p 
+     *
+     * @param p
      */
     public void addProvider(Provider p) {
         em.getTransaction().begin();
@@ -261,7 +274,8 @@ public class Database {
 
     /**
      * add a result
-     * @param rt 
+     *
+     * @param rt
      */
     public void addResult(MyResult rt) {
         if (getResultById(rt.getId()) == null) {
@@ -274,7 +288,8 @@ public class Database {
 
     /**
      * delete a consumer
-     * @param toDelete 
+     *
+     * @param toDelete
      */
     public void deleteConsumer(Consumer toDelete) {
 
@@ -288,7 +303,8 @@ public class Database {
 
     /**
      * delete a result
-     * @param id 
+     *
+     * @param id
      */
     public void deleteResult(long id) {
         em.getTransaction().begin();
@@ -301,7 +317,8 @@ public class Database {
 
     /**
      * delete a provider
-     * @param toDelete 
+     *
+     * @param toDelete
      */
     public void deleteProvider(Provider toDelete) {
         em.getTransaction().begin();
@@ -341,7 +358,8 @@ public class Database {
 
     /**
      * delete sequence
-     * @param toDelete 
+     *
+     * @param toDelete
      */
     public void deleteSequence(MySequence toDelete) {
         em.getTransaction().begin();
@@ -361,8 +379,9 @@ public class Database {
 
     /**
      * get a consumer
+     *
      * @param id
-     * @return 
+     * @return
      */
     public Consumer getConsumerById(long id) {
         em.getTransaction().begin();
@@ -382,8 +401,9 @@ public class Database {
 
     /**
      * get a consumer
+     *
      * @param name
-     * @return 
+     * @return
      */
     public Consumer getConsumerByName(String name) {
         em.getTransaction().begin();
@@ -402,8 +422,9 @@ public class Database {
 
     /**
      * get a provider
+     *
      * @param id
-     * @return 
+     * @return
      */
     public Provider getProviderById(long id) {
         em.getTransaction().begin();
@@ -422,8 +443,9 @@ public class Database {
 
     /**
      * get a provider by name
+     *
      * @param name
-     * @return 
+     * @return
      */
     public Provider getProviderByName(String name) {
         em.getTransaction().begin();
@@ -443,8 +465,9 @@ public class Database {
 
     /**
      * get the result
+     *
      * @param id
-     * @return 
+     * @return
      */
     public MyResult getResultById(long id) {
         em.getTransaction().begin();
@@ -464,7 +487,8 @@ public class Database {
 
     /**
      * get consumers
-     * @return 
+     *
+     * @return
      */
     public List<Consumer> getConsumers() {
         em.getTransaction().begin();
@@ -480,7 +504,8 @@ public class Database {
 
     /**
      * get providers
-     * @return 
+     *
+     * @return
      */
     public List<Provider> getProviders() {
         em.getTransaction().begin();
@@ -496,7 +521,8 @@ public class Database {
 
     /**
      * get sequences
-     * @return 
+     *
+     * @return
      */
     public List<MySequence> getSequences() {
         em.getTransaction().begin();
@@ -512,8 +538,9 @@ public class Database {
 
     /**
      * get sequence
+     *
      * @param c
-     * @return 
+     * @return
      */
     public List<MySequence> getSequenceByConsumer(Consumer c) {
         em.getTransaction().begin();
@@ -531,8 +558,9 @@ public class Database {
 
     /**
      * get sequence
+     *
      * @param p
-     * @return 
+     * @return
      */
     public List<MySequence> getSequenceByProvider(Provider p) {
         em.getTransaction().begin();
@@ -549,6 +577,7 @@ public class Database {
 
     /**
      * get sequence
+     *
      * @param begin
      * @param dataSize
      * @param end
@@ -556,7 +585,7 @@ public class Database {
      * @param requestPerSecond
      * @param p
      * @param c
-     * @return 
+     * @return
      */
     public MySequence getSequenceByParam(int begin, int dataSize, int end, int processTime, int requestPerSecond, Provider p, Consumer c) {
         em.getTransaction().begin();

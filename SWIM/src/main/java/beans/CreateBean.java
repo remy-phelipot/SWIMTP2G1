@@ -26,7 +26,7 @@ public class CreateBean {
     /**
      * field scenario bean
      */
-    private ScenarioBean Sb = new ScenarioBean();
+    private ScenarioBean scenarioBean = new ScenarioBean();
     /**
      * field scenario
      */
@@ -87,10 +87,11 @@ public class CreateBean {
      * field list of provider
      */
     private List<Provider> listProvider;
-    /**
+        /**
      * fields data of a sequence
      */
-    private int begin, end, RpS, processTime, DataS;
+    private int begin, end, requestPerSecond, processTime, dataSize;
+
 
     /**
      * get a scenario
@@ -353,7 +354,7 @@ public class CreateBean {
      * @return 
      */
     public int getRpS() {
-        return RpS;
+        return requestPerSecond;
     }
 
     /**
@@ -361,7 +362,7 @@ public class CreateBean {
      * @param rpS 
      */
     public void setRpS(int rpS) {
-        this.RpS = rpS;
+        this.requestPerSecond = rpS;
     }
 
     /**
@@ -385,7 +386,7 @@ public class CreateBean {
      * @return 
      */
     public int getDataS() {
-        return DataS;
+        return dataSize;
     }
 
     /**
@@ -393,7 +394,7 @@ public class CreateBean {
      * @param dataS 
      */
     public void setDataS(int dataS) {
-        this.DataS = dataS;
+        this.dataSize = dataS;
     }
 
     /**
@@ -402,7 +403,7 @@ public class CreateBean {
      */
     public ScenarioBean getSb() {
 
-        return Sb;
+        return scenarioBean;
     }
 
     /**
@@ -410,7 +411,7 @@ public class CreateBean {
      * @param sb 
      */
     public void setSb(ScenarioBean sb) {
-        this.Sb = sb;
+        this.scenarioBean = sb;
     }
 
     /**
@@ -458,8 +459,8 @@ public class CreateBean {
      * print
      */
     public void print() {
-        Logger.getLogger(CreateBean.class.getName()).info(Sb.getName());
-        Logger.getLogger(CreateBean.class.getName()).info(Sb.getDescription());
+        Logger.getLogger(CreateBean.class.getName()).info(scenarioBean.getName());
+        Logger.getLogger(CreateBean.class.getName()).info(scenarioBean.getDescription());
     }
 
     /**
@@ -491,11 +492,11 @@ public class CreateBean {
         SequenceBean seq = new SequenceBean();
         seq.setBegin(begin);
         seq.setConsumer(selectedConsumer);
-        seq.setDataSize(DataS);
+        seq.setDataSize(dataSize);
         seq.setEnd(end);
         seq.setProcessingTime(processTime);
         seq.setProvider(selectedProvider);
-        seq.setRequestPerSecond(RpS);
+        seq.setRequestPerSecond(requestPerSecond);
         db.createSequence(seq);
         db.close();
     }

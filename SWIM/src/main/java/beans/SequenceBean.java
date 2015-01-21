@@ -8,6 +8,7 @@ package beans;
 import database.Consumer;
 import database.Provider;
 import database.Scenario;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -112,8 +113,8 @@ public class SequenceBean {
      *
      * @return
      */
-    public List<Scenario> getScenarios() {
-        return null;//scenarios;
+    public ArrayList<Scenario> getScenarios() {
+        return null;
     }
 
     /**

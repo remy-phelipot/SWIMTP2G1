@@ -5,12 +5,11 @@
  */
 package beans;
 
-import com.sun.istack.internal.logging.Logger;
+import java.util.logging.Logger;
 import database.Consumer;
 import database.Provider;
 import database.Scenario;
 import database.MySequence;
-import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -243,8 +242,8 @@ public class CreateBean {
     }
 
     public void print() {
-        Logger.getLogger(CreateBean.class).info(Sb.getName());
-        Logger.getLogger(CreateBean.class).info(Sb.getDescription());
+        Logger.getLogger(CreateBean.class.getName()).info(Sb.getName());
+        Logger.getLogger(CreateBean.class.getName()).info(Sb.getDescription());
     }
 
     public void addConsumer() {

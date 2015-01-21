@@ -5,7 +5,7 @@ package beans;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import com.sun.istack.internal.logging.Logger;
+import java.util.logging.Logger;
 import controller.MainController;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -16,6 +16,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.logging.Level;
 import javax.faces.component.UIComponent;
 
 /**
@@ -71,10 +72,10 @@ public class FileUploadBean {
 
     public void uploadFile() throws IOException {
         String fileName = getFileName(part);
-        Logger.getLogger(FileUploadBean.class).info("filename: " + fileName);
+        Logger.getLogger(FileUploadBean.class.getName()).log(Level.INFO, "filename: {0}", fileName);
         // Download the file into the tmp folder of your computer
         String basePath = System.getProperty("java.io.tmpdir") + File.separator;
-        Logger.getLogger(FileUploadBean.class).info("base path: " + basePath);
+        Logger.getLogger(FileUploadBean.class.getName()).log(Level.INFO, "base path: {0}", basePath);
         File outputFilePath = new File(basePath + fileName);
 
         InputStream inputStream = null;
@@ -123,8 +124,8 @@ public class FileUploadBean {
         //ArrayList<FacesMessage> msgs = new ArrayList<>();
         Part file = (Part) value;
         String contentType = "text/xml";
-        Logger.getLogger(FileUploadBean.class).info("content type: " + file.getContentType());
-        Logger.getLogger(FileUploadBean.class).info("size: " + file.getSize());
+        Logger.getLogger(FileUploadBean.class.getName()).log(Level.INFO, "content type: {0}", file.getContentType());
+        Logger.getLogger(FileUploadBean.class.getName()).log(Level.INFO, "size: {0}", file.getSize());
 
         // Pour l'instant, pas de contrainte de taille
         /*if (file.getSize() > 1024) {

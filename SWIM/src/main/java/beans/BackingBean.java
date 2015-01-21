@@ -5,7 +5,7 @@
  */
 package beans;
 
-import com.sun.istack.internal.logging.Logger;
+import java.util.logging.Logger;
 import controller.MainController;
 import database.Scenario;
 import database.MySequence;
@@ -203,13 +203,13 @@ public class BackingBean {
     public void downloadXML() {
         try {
             String basePath = System.getProperty("java.io.tmpdir") + File.separator;
-            Logger.getLogger(BackingBean.class).info("base path: " + basePath);
+            Logger.getLogger(BackingBean.class.getName()).info("base path: " + basePath);
             String outputFilePath = basePath + "results.xml";
             ResultsToXml.generateXml(selectedResult, outputFilePath);
         } catch (JAXBException ex) {
-            Logger.getLogger(BackingBean.class).severe(ex.toString());
+            Logger.getLogger(BackingBean.class.getName()).severe(ex.toString());
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(BackingBean.class).severe(ex.toString());
+            Logger.getLogger(BackingBean.class.getName()).severe(ex.toString());
         }
     }
     

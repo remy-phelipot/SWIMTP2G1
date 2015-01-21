@@ -5,7 +5,7 @@
  */
 package database;
 
-import com.sun.istack.internal.logging.Logger;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -43,7 +43,7 @@ public class ProviderTest {
      */
     @Test
     public void testGetId() {
-        Logger.getLogger(ProviderTest.class).info("getId");
+        Logger.getLogger(ProviderTest.class.getName()).info("getId");
         Provider instance = new Provider();
         long expResult = 0L;
         long result = instance.getId();
@@ -55,7 +55,7 @@ public class ProviderTest {
      */
     @Test
     public void testSetId() {
-        Logger.getLogger(ProviderTest.class).info("setId");
+        Logger.getLogger(ProviderTest.class.getName()).info("setId");
         long id = 42L;
         Provider instance = new Provider();
         instance.setId(id);
@@ -67,7 +67,7 @@ public class ProviderTest {
      */
     @Test
     public void testGetName() {
-        Logger.getLogger(ProviderTest.class).info("getName");
+        Logger.getLogger(ProviderTest.class.getName()).info("getName");
         Provider instance = new Provider();
         String expResult = null;
         String result = instance.getName();
@@ -79,7 +79,7 @@ public class ProviderTest {
      */
     @Test
     public void testSetName() {
-        Logger.getLogger(ProviderTest.class).info("setName");
+        Logger.getLogger(ProviderTest.class.getName()).info("setName");
         String name = "dsqdqs";
         Provider instance = new Provider();
         instance.setName(name);
@@ -91,7 +91,7 @@ public class ProviderTest {
      */
     @Test
     public void testEquals() {
-        Logger.getLogger(ProviderTest.class).info("equals");
+        Logger.getLogger(ProviderTest.class.getName()).info("equals");
         Provider other = new Provider();
         other.setName("sjhgjhdq");
         Provider instance = new Provider();

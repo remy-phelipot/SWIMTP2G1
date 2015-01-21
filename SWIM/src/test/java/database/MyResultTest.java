@@ -5,7 +5,7 @@
  */
 package database;
 
-import com.sun.istack.internal.logging.Logger;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -43,7 +43,7 @@ public class MyResultTest {
      */
     @Test
     public void testGetId() {
-        Logger.getLogger(MyResultTest.class).info("getId");
+        Logger.getLogger(MyResultTest.class.getName()).info("getId");
         MyResult instance = new MyResult();
         long expResult = 0L;
         long result = instance.getId();
@@ -55,7 +55,7 @@ public class MyResultTest {
      */
     @Test
     public void testSetId() {
-        Logger.getLogger(MyResultTest.class).info("setId");
+        Logger.getLogger(MyResultTest.class.getName()).info("setId");
         long id = 0L;
         MyResult instance = new MyResult();
         instance.setId(id);
@@ -68,7 +68,7 @@ public class MyResultTest {
      */
     @Test
     public void testGetAverageresponseTime() {
-        Logger.getLogger(MyResultTest.class).info("getAverageresponseTime");
+        Logger.getLogger(MyResultTest.class.getName()).info("getAverageresponseTime");
         MyResult instance = new MyResult();
         float expResult = 0.0F;
         float result = instance.getAverageresponseTime();
@@ -80,7 +80,7 @@ public class MyResultTest {
      */
     @Test
     public void testSetAverageresponseTime() {
-        Logger.getLogger(MyResultTest.class).info("setAverageresponseTime");
+        Logger.getLogger(MyResultTest.class.getName()).info("setAverageresponseTime");
         float averageresponseTime = 1.0F;
         MyResult instance = new MyResult();
         instance.setAverageresponseTime(averageresponseTime);
@@ -92,7 +92,7 @@ public class MyResultTest {
      */
     @Test
     public void testGetMsgCount() {
-        Logger.getLogger(MyResultTest.class).info("getMsgCount");
+        Logger.getLogger(MyResultTest.class.getName()).info("getMsgCount");
         MyResult instance = new MyResult();
         int expResult = 0;
         int result = instance.getMsgCount();
@@ -104,7 +104,7 @@ public class MyResultTest {
      */
     @Test
     public void testSetMsgCount() {
-        Logger.getLogger(MyResultTest.class).info("setMsgCount");
+        Logger.getLogger(MyResultTest.class.getName()).info("setMsgCount");
         int msgCount = 42;
         MyResult instance = new MyResult();
         instance.setMsgCount(msgCount);
@@ -116,7 +116,7 @@ public class MyResultTest {
      */
     @Test
     public void testGetMsgLost() {
-        Logger.getLogger(MyResultTest.class).info("getMsgLost");
+        Logger.getLogger(MyResultTest.class.getName()).info("getMsgLost");
         MyResult instance = new MyResult();
         int expResult = 0;
         int result = instance.getMsgLost();
@@ -128,7 +128,7 @@ public class MyResultTest {
      */
     @Test
     public void testSetMsgLost() {
-        Logger.getLogger(MyResultTest.class).info("setMsgLost");
+        Logger.getLogger(MyResultTest.class.getName()).info("setMsgLost");
         int msgLost = 42;
         MyResult instance = new MyResult();
         instance.setMsgLost(msgLost);
@@ -140,7 +140,7 @@ public class MyResultTest {
      */
     @Test
     public void testEquals() {
-        Logger.getLogger(MyResultTest.class).info("equals");
+        Logger.getLogger(MyResultTest.class.getName()).info("equals");
         MyResult other = new MyResult();
         other.setId(66);
         MyResult instance = new MyResult();

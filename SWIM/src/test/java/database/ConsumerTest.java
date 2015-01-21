@@ -5,7 +5,7 @@
  */
 package database;
 
-import com.sun.istack.internal.logging.Logger;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -43,7 +43,7 @@ public class ConsumerTest {
      */
     @Test
     public void testGetId() {
-        Logger.getLogger(ConsumerTest.class).info("getId");
+        Logger.getLogger(ConsumerTest.class.getName()).info("getId");
         long expResult = 0L;
         Consumer instance = new Consumer();
         long result = instance.getId();
@@ -55,7 +55,7 @@ public class ConsumerTest {
      */
     @Test
     public void testSetId() {
-        Logger.getLogger(ConsumerTest.class).info("setId");
+        Logger.getLogger(ConsumerTest.class.getName()).info("setId");
         long expResult = 55L;
         Consumer instance = new Consumer();
         instance.setId(expResult);
@@ -68,7 +68,7 @@ public class ConsumerTest {
      */
     @Test
     public void testGetName() {
-        Logger.getLogger(ConsumerTest.class).info("getName");
+        Logger.getLogger(ConsumerTest.class.getName()).info("getName");
         Consumer instance = new Consumer();
         String expResult = null;
         String result = instance.getName();
@@ -80,7 +80,7 @@ public class ConsumerTest {
      */
     @Test
     public void testSetName() {
-        Logger.getLogger(ConsumerTest.class).info("setName");
+        Logger.getLogger(ConsumerTest.class.getName()).info("setName");
         String name = "toto";
         Consumer instance = new Consumer();
         instance.setName(name);
@@ -92,7 +92,7 @@ public class ConsumerTest {
      */
     @Test
     public void testEquals() {
-        Logger.getLogger(ConsumerTest.class).info("equals");
+        Logger.getLogger(ConsumerTest.class.getName()).info("equals");
         Consumer other = new Consumer();
         other.setName("sjhgjhdq");
         Consumer instance = new Consumer();

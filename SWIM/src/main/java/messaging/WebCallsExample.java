@@ -5,9 +5,10 @@
  */
 package messaging;
 
-import com.sun.istack.internal.logging.Logger;
+import java.util.logging.Logger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  *
@@ -25,10 +26,10 @@ public class WebCallsExample {
             src.ConsumerWS port = service.getConsumerWSPort();
             // TODO process result here
             java.lang.String result = port.addSequence(begin, end, dataSize, requestPerSecond);
-            Logger.getLogger(WebCallsExample.class).info("Result = " + result);
+            Logger.getLogger(WebCallsExample.class.getName()).log(Level.INFO, "Result = {0}", result);
         } catch (Exception ex) {
             // TODO handle custom exceptions here
-            Logger.getLogger(WebCallsExample.class).severe(ex.toString());
+            Logger.getLogger(WebCallsExample.class.getName()).severe(ex.toString());
         }
 
     }
@@ -40,10 +41,10 @@ public class WebCallsExample {
             src.ConsumerWS port = service.getConsumerWSPort();
             // TODO process result here
             java.lang.String result = port.resetSequence();
-            Logger.getLogger(WebCallsExample.class).info("Result = " + result);
+            Logger.getLogger(WebCallsExample.class.getName()).log(Level.INFO, "Result = {0}", result);
         } catch (Exception ex) {
             // TODO handle custom exceptions here
-            Logger.getLogger(WebCallsExample.class).severe(ex.toString());
+            Logger.getLogger(WebCallsExample.class.getName()).severe(ex.toString());
         }
 
     }
@@ -55,10 +56,10 @@ public class WebCallsExample {
             src.ConsumerWS port = service.getConsumerWSPort();
             // TODO process result here
             java.lang.String result = port.runConsumer();
-            Logger.getLogger(WebCallsExample.class).info("Result = " + result);
+            Logger.getLogger(WebCallsExample.class.getName()).log(Level.INFO, "Result = {0}", result);
         } catch (Exception ex) {
             // TODO handle custom exceptions here
-            Logger.getLogger(WebCallsExample.class).severe(ex.toString());
+            Logger.getLogger(WebCallsExample.class.getName()).severe(ex.toString());
         }
 
     }
@@ -69,10 +70,10 @@ public class WebCallsExample {
             src.ConsumerWS_Service service = new src.ConsumerWS_Service();
             src.ConsumerWS port = service.getConsumerWSPort();
             result = port.getresults();
-            Logger.getLogger(WebCallsExample.class).info("Result = " + result);
+            Logger.getLogger(WebCallsExample.class.getName()).log(Level.INFO, "Result = {0}", result);
         } catch (Exception ex) {
             // TODO handle custom exceptions here
-            Logger.getLogger(WebCallsExample.class).severe(ex.toString());
+            Logger.getLogger(WebCallsExample.class.getName()).severe(ex.toString());
         }
         return result;
     }
@@ -83,10 +84,10 @@ public class WebCallsExample {
             src.ProvideWS port = service.getProvideWSPort();
             // TODO process result here
             java.lang.String result = port.setProcessTime(processTime);
-            Logger.getLogger(WebCallsExample.class).info("Result = " + result);
+            Logger.getLogger(WebCallsExample.class.getName()).log(Level.INFO, "Result = {0}", result);
         } catch (Exception ex) {
             // TODO handle custom exceptions here
-            Logger.getLogger(WebCallsExample.class).severe(ex.toString());
+            Logger.getLogger(WebCallsExample.class.getName()).severe(ex.toString());
         }
     }
 

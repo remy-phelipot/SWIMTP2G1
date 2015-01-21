@@ -7,7 +7,7 @@ package manager;
 
 import beans.ScenarioBean;
 import beans.SequenceBean;
-import com.sun.istack.internal.logging.Logger;
+import java.util.logging.Logger;
 import database.Consumer;
 import database.MyResult;
 import database.MySequence;
@@ -62,7 +62,7 @@ public class DatabaseTest {
      */
     @Test
     public void testOpen() {
-        Logger.getLogger(DatabaseTest.class).info("open");
+        Logger.getLogger(DatabaseTest.class.getName()).info("open");
         Database instance = new Database();
         try {
             instance.open();
@@ -77,7 +77,7 @@ public class DatabaseTest {
      */
     @Test
     public void testClose() {
-        Logger.getLogger(DatabaseTest.class).info("close");
+        Logger.getLogger(DatabaseTest.class.getName()).info("close");
 
         Database instance = new Database();
         try {
@@ -97,7 +97,7 @@ public class DatabaseTest {
      */
     @Test
     public void testCreateScenario_ScenarioBean() {
-        Logger.getLogger(DatabaseTest.class).info("createScenario");
+        Logger.getLogger(DatabaseTest.class.getName()).info("createScenario");
         ScenarioBean scenarioBean = new ScenarioBean();
         Database instance = new Database();
 
@@ -117,7 +117,7 @@ public class DatabaseTest {
      */
     @Test
     public void testCreateScenario_Scenario() {
-        Logger.getLogger(DatabaseTest.class).info("createScenario");
+        Logger.getLogger(DatabaseTest.class.getName()).info("createScenario");
         Scenario scenario = new Scenario();
         scenario.setName("test");
         scenario.setDescription("description");
@@ -142,7 +142,7 @@ public class DatabaseTest {
      */
     @Test
     public void testCreateSequence() {
-        Logger.getLogger(DatabaseTest.class).info("createSequence");
+        Logger.getLogger(DatabaseTest.class.getName()).info("createSequence");
         SequenceBean sequenceBean = new SequenceBean();
         Database instance = new Database();
         int begin = 0;
@@ -182,7 +182,7 @@ public class DatabaseTest {
      */
     @Test
     public void testUpdateScenario() {
-        Logger.getLogger(DatabaseTest.class).info("updateScenario");
+        Logger.getLogger(DatabaseTest.class.getName()).info("updateScenario");
         String name = "test";
         Database instance = new Database();
 
@@ -235,7 +235,7 @@ public class DatabaseTest {
      */
     @Test
     public void testUpdateScenarioResult() {
-        Logger.getLogger(DatabaseTest.class).info("updateScenarioResult");
+        Logger.getLogger(DatabaseTest.class.getName()).info("updateScenarioResult");
         String name = "test";
         List<MyResult> res = new ArrayList<>();
         Database instance = new Database();
@@ -274,7 +274,7 @@ public class DatabaseTest {
      */
     @Test
     public void testGetScenarioByName() {
-        Logger.getLogger(DatabaseTest.class).info("getScenarioByName");
+        Logger.getLogger(DatabaseTest.class.getName()).info("getScenarioByName");
         String name = "testScenario";
         Database instance = new Database();
         Scenario expResult = new Scenario();
@@ -296,7 +296,7 @@ public class DatabaseTest {
      */
     @Test
     public void testGetScenarios() {
-        Logger.getLogger(DatabaseTest.class).info("getScenarios");
+        Logger.getLogger(DatabaseTest.class.getName()).info("getScenarios");
         Database instance = new Database();
         List<Scenario> expResult = new ArrayList();
         List<Scenario> result;
@@ -329,7 +329,7 @@ public class DatabaseTest {
      */
     @Test
     public void testAddConsumer_String() {
-        Logger.getLogger(DatabaseTest.class).info("addConsumer");
+        Logger.getLogger(DatabaseTest.class.getName()).info("addConsumer");
         String name = "testConsumer";
         Database instance = new Database();
 
@@ -352,7 +352,7 @@ public class DatabaseTest {
      */
     @Test
     public void testAddConsumer_Consumer() {
-        Logger.getLogger(DatabaseTest.class).info("addConsumer");
+        Logger.getLogger(DatabaseTest.class.getName()).info("addConsumer");
         Consumer c = new Consumer();
         c.setName("testCons");
 
@@ -373,7 +373,7 @@ public class DatabaseTest {
      */
     @Test
     public void testAddProvider_String() {
-        Logger.getLogger(DatabaseTest.class).info("addProvider");
+        Logger.getLogger(DatabaseTest.class.getName()).info("addProvider");
         String name = "testProvider";
         Database instance = new Database();
 
@@ -396,7 +396,7 @@ public class DatabaseTest {
      */
     @Test
     public void testAddProvider_Provider() {
-        Logger.getLogger(DatabaseTest.class).info("addProvider");
+        Logger.getLogger(DatabaseTest.class.getName()).info("addProvider");
         Provider p = new Provider();
         p.setName("ProviderName");
 
@@ -418,7 +418,7 @@ public class DatabaseTest {
      */
     @Test
     public void testAddResult() {
-        Logger.getLogger(DatabaseTest.class).info("addResult");
+        Logger.getLogger(DatabaseTest.class.getName()).info("addResult");
 
         MyResult rt = new MyResult();
 
@@ -439,7 +439,7 @@ public class DatabaseTest {
      */
     @Test
     public void testDeleteConsumer() {
-        Logger.getLogger(DatabaseTest.class).info("deleteConsumer");
+        Logger.getLogger(DatabaseTest.class.getName()).info("deleteConsumer");
         Consumer toDelete = new Consumer();
         Database instance = new Database();
 
@@ -460,7 +460,7 @@ public class DatabaseTest {
      */
     @Test
     public void testDeleteResult() {
-        Logger.getLogger(DatabaseTest.class).info("deleteResult");
+        Logger.getLogger(DatabaseTest.class.getName()).info("deleteResult");
         long id = 0L;
         Database instance = new Database();
 
@@ -493,7 +493,7 @@ public class DatabaseTest {
      */
     @Test
     public void testDeleteProvider() {
-        Logger.getLogger(DatabaseTest.class).info("deleteProvider");
+        Logger.getLogger(DatabaseTest.class.getName()).info("deleteProvider");
         Provider toDelete = new Provider();
         Database instance = new Database();
 
@@ -516,7 +516,7 @@ public class DatabaseTest {
      */
     @Test
     public void testDeleteScenarios() {
-        Logger.getLogger(DatabaseTest.class).info("deleteScenarios");
+        Logger.getLogger(DatabaseTest.class.getName()).info("deleteScenarios");
         Database instance = new Database();
 
         Scenario s = new Scenario();
@@ -541,7 +541,7 @@ public class DatabaseTest {
      */
     @Test
     public void testDeleteAllSequence() {
-        Logger.getLogger(DatabaseTest.class).info("deleteAllSequence");
+        Logger.getLogger(DatabaseTest.class.getName()).info("deleteAllSequence");
         Database instance = new Database();
 
         instance.open();
@@ -586,7 +586,7 @@ public class DatabaseTest {
      */
     @Test
     public void testDeleteSequence() {
-        Logger.getLogger(DatabaseTest.class).info("deleteSequence");
+        Logger.getLogger(DatabaseTest.class.getName()).info("deleteSequence");
         Database instance = new Database();
 
         instance.open();
@@ -630,7 +630,7 @@ public class DatabaseTest {
      */
     @Test
     public void testGetConsumerById() {
-        Logger.getLogger(DatabaseTest.class).info("getConsumerById");
+        Logger.getLogger(DatabaseTest.class.getName()).info("getConsumerById");
         Database instance = new Database();
 
         Consumer c = new Consumer();
@@ -649,7 +649,7 @@ public class DatabaseTest {
      */
     @Test
     public void testGetConsumerByName() {
-        Logger.getLogger(DatabaseTest.class).info("getConsumerByName");
+        Logger.getLogger(DatabaseTest.class.getName()).info("getConsumerByName");
         String name = "provider1";
         Database instance = new Database();
         Consumer expResult = new Consumer();
@@ -668,7 +668,7 @@ public class DatabaseTest {
      */
     @Test
     public void testGetProviderById() {
-        Logger.getLogger(DatabaseTest.class).info("getProviderById");
+        Logger.getLogger(DatabaseTest.class.getName()).info("getProviderById");
         Database instance = new Database();
 
         Provider c = new Provider();
@@ -687,7 +687,7 @@ public class DatabaseTest {
      */
     @Test
     public void testGetProviderByName() {
-        Logger.getLogger(DatabaseTest.class).info("getProviderByName");
+        Logger.getLogger(DatabaseTest.class.getName()).info("getProviderByName");
         String name = "provider1";
         Database instance = new Database();
         Provider expResult = new Provider();
@@ -706,7 +706,7 @@ public class DatabaseTest {
      */
     @Test
     public void testGetResultById() {
-        Logger.getLogger(DatabaseTest.class).info("getResultById");
+        Logger.getLogger(DatabaseTest.class.getName()).info("getResultById");
         MyResult rt = new MyResult();
 
         Database instance = new Database();
@@ -722,7 +722,7 @@ public class DatabaseTest {
      */
     @Test
     public void testGetConsumers() {
-        Logger.getLogger(DatabaseTest.class).info("getConsumers");
+        Logger.getLogger(DatabaseTest.class.getName()).info("getConsumers");
         Database instance = new Database();
         List<Consumer> expResult = new ArrayList();
         List<Consumer> result;
@@ -755,7 +755,7 @@ public class DatabaseTest {
      */
     @Test
     public void testGetProviders() {
-        Logger.getLogger(DatabaseTest.class).info("getProviders");
+        Logger.getLogger(DatabaseTest.class.getName()).info("getProviders");
         Database instance = new Database();
         List<Provider> expResult = new ArrayList();
         List<Provider> result;
@@ -788,7 +788,7 @@ public class DatabaseTest {
      */
     @Test
     public void testGetSequences() {
-        Logger.getLogger(DatabaseTest.class).info("getSequences");
+        Logger.getLogger(DatabaseTest.class.getName()).info("getSequences");
         Database instance = new Database();
         List<MySequence> expResult = new ArrayList<>();
         List<MySequence> result;
@@ -827,7 +827,7 @@ public class DatabaseTest {
      */
     @Test
     public void testGetSequenceByConsumer() {
-        Logger.getLogger(DatabaseTest.class).info("getSequenceByConsumer");
+        Logger.getLogger(DatabaseTest.class.getName()).info("getSequenceByConsumer");
         Database instance = new Database();
         List<MySequence> expResult = new ArrayList<>();
         List<MySequence> result;
@@ -866,7 +866,7 @@ public class DatabaseTest {
      */
     @Test
     public void testGetSequenceByProvider() {
-        Logger.getLogger(DatabaseTest.class).info("getSequenceByProvider");
+        Logger.getLogger(DatabaseTest.class.getName()).info("getSequenceByProvider");
         Database instance = new Database();
         List<MySequence> expResult = new ArrayList<>();
         List<MySequence> result;
@@ -905,7 +905,7 @@ public class DatabaseTest {
      */
     @Test
     public void testGetSequenceByParam() {
-        Logger.getLogger(DatabaseTest.class).info("getSequenceByParam");
+        Logger.getLogger(DatabaseTest.class.getName()).info("getSequenceByParam");
         int begin = 0;
         int dataSize = 0;
         int end = 0;
@@ -947,7 +947,7 @@ public class DatabaseTest {
      */
     @Test
     public void testHardReset() {
-        Logger.getLogger(DatabaseTest.class).info("hardReset");
+        Logger.getLogger(DatabaseTest.class.getName()).info("hardReset");
         Database instance = new Database();
         instance.open();
         instance.hardReset();

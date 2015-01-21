@@ -52,7 +52,7 @@ public class SequenceConverter implements Converter {
         int en = Integer.parseInt(end);
         int daS = Integer.parseInt(data);
         int prT = Integer.parseInt(pr);
-        int RpS = Integer.parseInt(rps);
+        int requestPerSecond = Integer.parseInt(rps);
         //we creat and open an acces to the database
         Database db = new Database();
         db.open();
@@ -60,7 +60,7 @@ public class SequenceConverter implements Converter {
         Consumer cons = db.getConsumerByName(cName);
         Provider prov = db.getProviderByName(pName);
         //we get the sequence from the database
-        sb = db.getSequenceByParam(beg, daS, en, prT, RpS, prov, cons);
+        sb = db.getSequenceByParam(beg, daS, en, prT, requestPerSecond, prov, cons);
         //close the access
         db.close();
         //return the sequence

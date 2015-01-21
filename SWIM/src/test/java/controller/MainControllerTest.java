@@ -9,6 +9,7 @@ import database.Scenario;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Logger;
 import manager.Database;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -66,7 +67,7 @@ public class MainControllerTest {
      */
     @Test
     public void testAddScenario() throws IOException {
-        System.out.println("addScenario");
+        Logger.getLogger(MainControllerTest.class.getName()).info("addScenario");
         File xmlFile = File.createTempFile("test", ".xml");
         try (PrintWriter pw = new PrintWriter(xmlFile)) {
             pw.print(xml);

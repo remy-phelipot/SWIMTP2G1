@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package beans;
 
 import java.util.logging.Logger;
@@ -271,14 +266,14 @@ public class BackingBean {
         //open it
         db.open();
         //we create a scenarioBean
-        ScenarioBean Sb = new ScenarioBean();
+        ScenarioBean scenarioBean = new ScenarioBean();
         //we set its description and name
-        Sb.setDescription(description);
-        Sb.setName(name);
+        scenarioBean.setDescription(description);
+        scenarioBean.setName(name);
         //if the scenario is not in the db
         if (db.getScenarioByName(name) == null) {
             //we add it to the db
-            db.createScenario(Sb);
+            db.createScenario(scenarioBean);
         }
         //we update the scenario in the db with the list of sequence
         db.updateScenario(name, listSelectedSequence);

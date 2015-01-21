@@ -7,6 +7,7 @@ package database;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import java.util.logging.Logger;
@@ -226,7 +227,7 @@ public class MySequenceTest {
     @Test
     public void testSetResults() {
         Logger.getLogger(MySequenceTest.class.getName()).info("setResults");
-        ArrayList<MyResult> results = new ArrayList<>();
+        List<MyResult> results = new ArrayList<>();
         results.add(new MyResult());
         MySequence instance = new MySequence();
         instance.setResults(results);

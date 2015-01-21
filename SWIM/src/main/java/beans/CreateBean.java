@@ -254,10 +254,9 @@ public class CreateBean {
     }
 
     /**
-     * set the providers
-     * @param listProvider 
+     * set the providers 
      */
-    public void setListProvider(List<Provider> listProvider) {
+    public void setListProvider() {
         //we create and open an access to the db
         Database db = new Database();
         db.open();
@@ -302,10 +301,9 @@ public class CreateBean {
     }
 
     /**
-     * set the consumer
-     * @param listConsumer 
+     * set the consumer 
      */
-    public void setListConsumer(List<Consumer> listConsumer) {
+    public void setListConsumer() {
         //we create and open an access to the database
         Database db = new Database();
         db.open();
@@ -447,10 +445,9 @@ public class CreateBean {
     }
 
     /**
-     * set the list of sequence
-     * @param listSequence 
+     * set the list of sequence 
      */
-    public void setListSequence(List<MySequence> listSequence) {
+    public void setListSequence() {
         //we create and open an access to the db
         Database db = new Database();
         db.open();

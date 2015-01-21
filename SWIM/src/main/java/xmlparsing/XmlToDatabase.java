@@ -21,7 +21,6 @@ import xmlmodel.XmlSequences;
  * @author Guillaume
  */
 public class XmlToDatabase {
-
     /**
      * load the database
      * @param params 

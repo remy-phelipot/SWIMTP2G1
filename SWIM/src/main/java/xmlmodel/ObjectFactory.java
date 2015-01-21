@@ -34,7 +34,7 @@ public class ObjectFactory {
     /**
      * field qname
      */
-    private final static QName _Params_QNAME = new QName("", "params");
+    private final static QName Params_QNAME = new QName("", "params");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: xmlModel
@@ -46,6 +46,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link XmlParameters }
      * 
+     * @return 
      */
     public XmlParameters createXmlParameters() {
         return new XmlParameters();
@@ -54,6 +55,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link XmlLinks }
      * 
+     * @return 
      */
     public XmlLinks createXmlLinks() {
         return new XmlLinks();
@@ -62,6 +64,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link XmlLink }
      * 
+     * @return 
      */
     public XmlLink createXmlLink() {
         return new XmlLink();
@@ -70,6 +73,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link XmlConsumer }
      * 
+     * @return 
      */
     public XmlConsumer createXmlConsumer() {
         return new XmlConsumer();
@@ -78,6 +82,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link XmlSequences }
      * 
+     * @return 
      */
     public XmlSequences createXmlSequences() {
         return new XmlSequences();
@@ -86,6 +91,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link XmlSequence }
      * 
+     * @return 
      */
     public XmlSequence createXmlSequence() {
         return new XmlSequence();
@@ -94,6 +100,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link XmlProviders }
      * 
+     * @return 
      */
     public XmlProviders createXmlProviders() {
         return new XmlProviders();
@@ -102,6 +109,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link XmlConsumers }
      * 
+     * @return 
      */
     public XmlConsumers createXmlConsumers() {
         return new XmlConsumers();
@@ -110,6 +118,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link XmlProvider }
      * 
+     * @return 
      */
     public XmlProvider createXmlProvider() {
         return new XmlProvider();
@@ -118,10 +127,12 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link XmlParameters }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "", name = "params")
     public JAXBElement<XmlParameters> createParams(XmlParameters value) {
-        return new JAXBElement<XmlParameters>(_Params_QNAME, XmlParameters.class, null, value);
+        return new JAXBElement<>(Params_QNAME, XmlParameters.class, null, value);
     }
 
 }

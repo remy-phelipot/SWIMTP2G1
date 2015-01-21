@@ -133,7 +133,7 @@ public class MainController {
         /* For each sequence of the scenario, we initialize the webs services */
         for (MySequence currentSequence : scenario.getSequences()) {
             /* set the web service consumer */
-            webCalls.addSequence(currentSequence.getBegin(), currentSequence.getEnd(), currentSequence.getDataSize(), currentSequence.getRequestPerSecond());; // parameter
+            webCalls.addSequence(currentSequence.getBegin(), currentSequence.getEnd(), currentSequence.getDataSize(), currentSequence.getRequestPerSecond()); // parameter
 
             /* set the web service provider */
             webCalls.setProducerProcessTime(currentSequence.getProcessingTime());

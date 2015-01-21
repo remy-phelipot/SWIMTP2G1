@@ -113,8 +113,8 @@ public class SequenceBean {
      *
      * @return
      */
-    public ArrayList<Scenario> getScenarios() {
-        return null;
+    public List<Scenario> getScenarios() {
+        return new ArrayList<>();
     }
 
     /**

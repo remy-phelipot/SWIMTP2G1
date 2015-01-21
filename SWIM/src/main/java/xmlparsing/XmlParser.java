@@ -41,7 +41,6 @@ public class XmlParser {
         // creating a schema factory
         SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         // creating the schema object corresponding to the XSD schema
-        //Schema schema = sf.newSchema(new File("xmlResources/schemaScenario.xsd"));
         Schema schema = sf.newSchema(XmlParameters.class.getResource("/xmlFiles/schemaScenario.xsd"));
         // setting xsd schema
         unmarshaller.setSchema(schema);
@@ -53,13 +52,13 @@ public class XmlParser {
     /**
      * Generates the configuration file from parameters
      *
-     * @param parameters
+     * @param file
      * @throws JAXBException
      */
-    public static void generateConfigFile(XmlParameters params, File file) throws JAXBException {
+    public static void generateConfigFile(File file) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(XmlParameters.class);
         Marshaller marshaller = jaxbContext.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, new Boolean(true));
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         marshaller.marshal(jaxbContext, file);
     }
     

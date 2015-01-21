@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package manager;
 
 import beans.ScenarioBean;
@@ -447,7 +442,6 @@ public class DatabaseTest {
     @Test
     public void testDeleteResult() {
         Logger.getLogger(DatabaseTest.class.getName()).info("deleteResult");
-        long id = 0L;
         Database instance = new Database();
 
         instance.open();
@@ -1009,7 +1003,7 @@ public class DatabaseTest {
     /**
      * field persistence
      */
-    private static final String persistenceUnitName = "persistanceunit";
+    private static final String PersistenceUnitName = "persistanceunit";
     /**
      * field emf
      */
@@ -1027,7 +1021,7 @@ public class DatabaseTest {
             throw new RuntimeException("Database already opened");
         }
 
-        this.emf = Persistence.createEntityManagerFactory(persistenceUnitName);
+        this.emf = Persistence.createEntityManagerFactory(PersistenceUnitName);
         this.em = emf.createEntityManager();
     }
 

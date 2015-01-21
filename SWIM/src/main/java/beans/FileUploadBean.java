@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 import controller.MainController;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -17,7 +16,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.logging.Level;
-import javax.faces.component.UIComponent;
 
 /**
  *
@@ -140,13 +138,7 @@ public class FileUploadBean {
             }
             statusMessage = "File upload successful!";
 
-            /* TODO: parser le fichier et inserer les donnees dans la database */
-            MainController mainController = new MainController();
-            try {
-                mainController.addScenario(outputFilePath, name, desc);
-            } catch (Exception e) {
-                statusMessage = e.getMessage();
-            }
+            addDataToDatabase(outputFilePath);          
         } catch (IOException ex) {
             statusMessage = "File upload failed!" + ex.toString();
         } finally {
@@ -157,6 +149,15 @@ public class FileUploadBean {
                 inputStream.close();
             }
         }
+    }
+    
+    private void addDataToDatabase(File outputFilePath) {
+        MainController mainController = new MainController();
+            try {
+                mainController.addScenario(outputFilePath, name, desc);
+            } catch (Exception e) {
+                statusMessage = e.getMessage();
+            }
     }
 
     /**
@@ -179,7 +180,7 @@ public class FileUploadBean {
      * @param comp
      * @param value 
      */
-    public void validateFile(FacesContext context, UIComponent comp, Object value) {
+    public void validateFile(Object value) {
         Part file = (Part) value;
         String contentType = "text/xml";
         Logger.getLogger(FileUploadBean.class.getName()).log(Level.INFO, "content type: {0}", file.getContentType());

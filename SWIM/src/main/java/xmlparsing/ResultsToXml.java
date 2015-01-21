@@ -17,7 +17,6 @@ import javax.xml.bind.Marshaller;
  * @author Guillaume
  */
 public class ResultsToXml {
-    
     /**
      * Allows to generate an XML file for the results given in parameters
      * @param results to serialize

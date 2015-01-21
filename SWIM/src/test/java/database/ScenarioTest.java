@@ -94,7 +94,7 @@ public class ScenarioTest {
     @Test
     public void testSetSequences() {
         Logger.getLogger(ScenarioTest.class.getName()).info("setSequences");
-        ArrayList<MySequence> sequences = new ArrayList<>();
+        List<MySequence> sequences = new ArrayList<>();
         sequences.add(new MySequence());
         Scenario instance = new Scenario();
         instance.setSequences(sequences);

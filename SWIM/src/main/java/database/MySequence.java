@@ -15,191 +15,204 @@ import javax.persistence.OneToMany;
 
 /**
  * JPA Entity related to the element MySequence
- * 
+ *
  * @author martin
  */
 @Entity
 @NamedQueries({
-    
-
-    @NamedQuery(name="MySequence.getByConsumer",
-                query="SELECT s FROM MySequence s WHERE s.consumer = :consumer"),
-    @NamedQuery(name="MySequence.getByProvider",
-                query="SELECT s FROM MySequence s WHERE s.provider = :provider"),
-    @NamedQuery(name="MySequence.getAll",
-                query="SELECT s FROM MySequence s"),
-    @NamedQuery(name="MySequence.del",
-                query="DELETE FROM MySequence s"),
-    @NamedQuery(name="MySequence.delete",
-                query="DELETE FROM MySequence s WHERE  s.end = :end AND s.begin = :begin AND s.consumer = :consumer AND s.dataSize = :dataSize AND s.processingTime = :processingTime AND s.provider = :provider AND s.requestPerSecond = :requestPerSecond  "),
-     @NamedQuery(name="MySequence.getOne",
-                query="SELECT s FROM MySequence s WHERE  s.end = :end AND s.begin = :begin AND s.consumer = :consumer AND s.dataSize = :dataSize AND s.processingTime = :processingTime AND s.provider = :provider AND s.requestPerSecond = :requestPerSecond  ")
+    @NamedQuery(name = "MySequence.getByConsumer",
+            query = "SELECT s FROM MySequence s WHERE s.consumer = :consumer"),
+    @NamedQuery(name = "MySequence.getByProvider",
+            query = "SELECT s FROM MySequence s WHERE s.provider = :provider"),
+    @NamedQuery(name = "MySequence.getAll",
+            query = "SELECT s FROM MySequence s"),
+    @NamedQuery(name = "MySequence.del",
+            query = "DELETE FROM MySequence s"),
+    @NamedQuery(name = "MySequence.delete",
+            query = "DELETE FROM MySequence s WHERE  s.end = :end AND s.begin = :begin AND s.consumer = :consumer AND s.dataSize = :dataSize AND s.processingTime = :processingTime AND s.provider = :provider AND s.requestPerSecond = :requestPerSecond  "),
+    @NamedQuery(name = "MySequence.getOne",
+            query = "SELECT s FROM MySequence s WHERE  s.end = :end AND s.begin = :begin AND s.consumer = :consumer AND s.dataSize = :dataSize AND s.processingTime = :processingTime AND s.provider = :provider AND s.requestPerSecond = :requestPerSecond  ")
 })
+
 public class MySequence implements Serializable {
+
     /**
      * field id
      */
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private long id;
-  /**
-   * field begin
-   */
-  private int begin;
-  /**
-   * field data size
-   */
-  private int dataSize;
-  /**
-   * field end
-   */
-  private int end;
-  /**
-   * field processing time
-   */
-  private int processingTime;
-  /**
-   * field request per second
-   */
-  private int requestPerSecond;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+    /**
+     * field begin
+     */
+    private int begin;
+    /**
+     * field data size
+     */
+    private int dataSize;
+    /**
+     * field end
+     */
+    private int end;
+    /**
+     * field processing time
+     */
+    private int processingTime;
+    /**
+     * field request per second
+     */
+    private int requestPerSecond;
 
-  /**
-   * field consumer
-   */
-  @ManyToOne
-  private Consumer consumer;
+    /**
+     * field consumer
+     */
+    @ManyToOne
+    private Consumer consumer;
 
-  /**
-   * field provider
-   */
-  @ManyToOne
-  private Provider provider;
+    /**
+     * field provider
+     */
+    @ManyToOne
+    private Provider provider;
 
+    /**
+     * field results
+     */
+    @OneToMany
+    private Collection<MyResult> results;
 
-  /**
-   * field results
-   */
-  @OneToMany
-  private Collection<MyResult> results;
+    /**
+     * field version
+     */
+    private static final long serialVersionUID = 1L;
 
-  /**
-   * field version
-   */
-  private static final long serialVersionUID = 1L;
+    /**
+     * constructor
+     */
+    public MySequence() {
+    }
 
-  /**
-   * constructor
-   */
-  public MySequence() {
-  }
+    /**
+     * get id
+     *
+     * @return
+     */
+    public long getId() {
+        return this.id;
+    }
 
-  /**
-   * get id
-   * @return 
-   */
-  public long getId() {
-    return this.id;
-  }
+    /**
+     * set id
+     *
+     * @param id
+     */
+    public void setId(long id) {
+        this.id = id;
+    }
 
-  /**
-   * set id
-   * @param id 
-   */
-  public void setId(long id) {
-    this.id = id;
-  }
+    /**
+     * get begin
+     *
+     * @return
+     */
+    public int getBegin() {
+        return this.begin;
+    }
 
-  /**
-   * get begin
-   * @return 
-   */
-  public int getBegin() {
-    return this.begin;
-  }
+    /**
+     * set begin
+     *
+     * @param begin
+     */
+    public void setBegin(int begin) {
+        this.begin = begin;
+    }
 
-  /**
-   * set begin
-   * @param begin 
-   */
-  public void setBegin(int begin) {
-    this.begin = begin;
-  }
+    /**
+     * get data size
+     *
+     * @return
+     */
+    public int getDataSize() {
+        return this.dataSize;
+    }
 
-  /**
-   * get data size
-   * @return 
-   */
-  public int getDataSize() {
-    return this.dataSize;
-  }
+    /**
+     * set data size
+     *
+     * @param dataSize
+     */
+    public void setDataSize(int dataSize) {
+        this.dataSize = dataSize;
+    }
 
-  /**
-   * set data size
-   * @param dataSize 
-   */
-  public void setDataSize(int dataSize) {
-    this.dataSize = dataSize;
-  }
+    /**
+     * get end
+     *
+     * @return
+     */
+    public int getEnd() {
+        return this.end;
+    }
 
-  /**
-   * get end
-   * @return 
-   */
-  public int getEnd() {
-    return this.end;
-  }
+    /**
+     * set end
+     *
+     * @param end
+     */
+    public void setEnd(int end) {
+        this.end = end;
+    }
 
-  /**
-   * set end
-   * @param end 
-   */
-  public void setEnd(int end) {
-    this.end = end;
-  }
+    /**
+     * get processing time
+     *
+     * @return
+     */
+    public int getProcessingTime() {
+        return this.processingTime;
+    }
 
-  /**
-   * get processing time
-   * @return 
-   */
-  public int getProcessingTime() {
-    return this.processingTime;
-  }
+    /**
+     * set processing time
+     *
+     * @param processingTime
+     */
+    public void setProcessingTime(int processingTime) {
+        this.processingTime = processingTime;
+    }
 
-  /**
-   * set processing time
-   * @param processingTime 
-   */
-  public void setProcessingTime(int processingTime) {
-    this.processingTime = processingTime;
-  }
+    /**
+     * get request
+     *
+     * @return
+     */
+    public int getRequestPerSecond() {
+        return this.requestPerSecond;
+    }
 
-  /**
-   * get request
-   * @return 
-   */
-  public int getRequestPerSecond() {
-    return this.requestPerSecond;
-  }
+    /**
+     * set request
+     *
+     * @param requestPerSecond
+     */
+    public void setRequestPerSecond(int requestPerSecond) {
+        this.requestPerSecond = requestPerSecond;
+    }
 
-  /**
-   * set request
-   * @param requestPerSecond 
-   */
-  public void setRequestPerSecond(int requestPerSecond) {
-    this.requestPerSecond = requestPerSecond;
-  }
-
-  /**
-   * get consumer
-   * @return 
-   */
+    /**
+     * get consumer
+     *
+     * @return
+     */
     public Consumer getConsumer() {
         return consumer;
     }
 
     /**
      * get provider
-     * @return 
+     *
+     * @return
      */
     public Provider getProvider() {
         return provider;
@@ -207,7 +220,8 @@ public class MySequence implements Serializable {
 
     /**
      * get results
-     * @return 
+     *
+     * @return
      */
     public Collection<MyResult> getResults() {
         return results;
@@ -215,7 +229,8 @@ public class MySequence implements Serializable {
 
     /**
      * set consumer
-     * @param consumer 
+     *
+     * @param consumer
      */
     public void setConsumer(Consumer consumer) {
         this.consumer = consumer;
@@ -223,7 +238,8 @@ public class MySequence implements Serializable {
 
     /**
      * set provider
-     * @param provider 
+     *
+     * @param provider
      */
     public void setProvider(Provider provider) {
         this.provider = provider;
@@ -231,58 +247,68 @@ public class MySequence implements Serializable {
 
     /**
      * set results
-     * @param results 
+     *
+     * @param results
      */
     public void setResults(List<MyResult> results) {
         this.results = results;
     }
-    
+
     /**
      * test equality
+     *
      * @param other
-     * @return 
+     * @return
      */
-   @Override
-    public boolean equals(Object other){
-        if(other == null){ 
+    @Override
+    public boolean equals(Object other) {
+        if (other == null) {
             return false;
         }
-        if(other.getClass() != this.getClass()){
+        if (other.getClass() != this.getClass()) {
             return false;
-        } 
-        MySequence otherC = (MySequence)other;
+        }
+        MySequence otherC = (MySequence) other;
         boolean cnameEqual;
-        if(otherC.getConsumer() != null && this.consumer != null)
-            if((otherC.getConsumer().getName() != null) && (this.consumer.getName() != null)){
+        if (otherC.getConsumer() != null && this.consumer != null) {
+            if ((otherC.getConsumer().getName() != null) && (this.consumer.getName() != null)) {
                 cnameEqual = otherC.getConsumer().getName().equalsIgnoreCase(this.consumer.getName());
-            } else {
+            }
+            else {
                 cnameEqual = otherC.getConsumer().getName() == null && this.consumer.getName() == null;
             }
-        else
+        }
+        else {
             cnameEqual = otherC.getConsumer() == this.consumer;
-        
+        }
+
         boolean pnameEqual;
-        if(otherC.getProvider() != null && this.provider != null)
-            if((otherC.getProvider().getName() != null) && (this.provider.getName() != null)){
+        if (otherC.getProvider() != null && this.provider != null) {
+            if ((otherC.getProvider().getName() != null) && (this.provider.getName() != null)) {
                 pnameEqual = otherC.getProvider().getName().equalsIgnoreCase(this.provider.getName());
-            } else {
+            }
+            else {
                 pnameEqual = otherC.getProvider().getName() == null && this.provider.getName() == null;
             }
-        else
+        }
+        else {
             pnameEqual = otherC.getProvider() == this.provider;
-        
-        return this.begin == otherC.getBegin() 
+        }
+        boolean res = this.begin == otherC.getBegin()
                 && cnameEqual
                 && otherC.getDataSize() == this.dataSize
                 && otherC.getEnd() == this.end
                 && otherC.getProcessingTime() == this.processingTime
                 && pnameEqual
                 && otherC.getRequestPerSecond() == this.requestPerSecond;
+
+        return res;
     }
 
     /**
      * hash code
-     * @return 
+     *
+     * @return
      */
     @Override
     public int hashCode() {

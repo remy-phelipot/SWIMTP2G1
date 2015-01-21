@@ -5,19 +5,8 @@
  */
 package beans;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ApplicationScoped;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
-import javax.servlet.http.Part;
 
 /**
  * Bean establishing the link between the View and the data to store scenarios
@@ -81,20 +70,17 @@ public class ScenarioBean {
      */
     @Override
     public boolean equals(Object other) {
+        boolean res;
         if (other.getClass() != this.getClass()) {
-            return false;
+            res = false;
         }
         else if (other == null) {
-            return false;
+            res = false;
         }
         else {
             ScenarioBean otherSb = (ScenarioBean) other;
-            if (otherSb.getName().equalsIgnoreCase(this.getName())) {
-                return true;
-            }
-            else {
-                return false;
-            }
+            res = otherSb.getName().equalsIgnoreCase(this.getName());
         }
+        return res;
     }
 }

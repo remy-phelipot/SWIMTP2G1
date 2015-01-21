@@ -29,12 +29,12 @@ import javax.persistence.Query;
  */
 public class Database {
 
-    private static final String persistenceUnitName = "persistanceunit";
+    private static final String PersistenceUnitName = "persistanceunit";
 
     private EntityManagerFactory emf = null;
     private EntityManager em = null;
 
-    public Database() throws RuntimeException {
+    public Database() {
         String driver = "org.sqlite.JDBC";
         try {
 
@@ -51,7 +51,7 @@ public class Database {
             throw new RuntimeException("Database already opened");
         }
 
-        this.emf = Persistence.createEntityManagerFactory(persistenceUnitName);
+        this.emf = Persistence.createEntityManagerFactory(PersistenceUnitName);
         this.em = emf.createEntityManager();
     }
 

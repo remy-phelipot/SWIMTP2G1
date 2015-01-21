@@ -5,6 +5,7 @@
  */
 package database;
 
+import com.sun.istack.internal.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,22 +18,22 @@ import static org.junit.Assert.*;
  * @author ender
  */
 public class MyResultTest {
-    
+
     public MyResultTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -42,7 +43,7 @@ public class MyResultTest {
      */
     @Test
     public void testGetId() {
-        System.out.println("getId");
+        Logger.getLogger(MyResultTest.class).info("getId");
         MyResult instance = new MyResult();
         long expResult = 0L;
         long result = instance.getId();
@@ -54,11 +55,11 @@ public class MyResultTest {
      */
     @Test
     public void testSetId() {
-        System.out.println("setId");
+        Logger.getLogger(MyResultTest.class).info("setId");
         long id = 0L;
         MyResult instance = new MyResult();
         instance.setId(id);
-        
+
         assertEquals(id, instance.getId());
     }
 
@@ -67,7 +68,7 @@ public class MyResultTest {
      */
     @Test
     public void testGetAverageresponseTime() {
-        System.out.println("getAverageresponseTime");
+        Logger.getLogger(MyResultTest.class).info("getAverageresponseTime");
         MyResult instance = new MyResult();
         float expResult = 0.0F;
         float result = instance.getAverageresponseTime();
@@ -79,7 +80,7 @@ public class MyResultTest {
      */
     @Test
     public void testSetAverageresponseTime() {
-        System.out.println("setAverageresponseTime");
+        Logger.getLogger(MyResultTest.class).info("setAverageresponseTime");
         float averageresponseTime = 1.0F;
         MyResult instance = new MyResult();
         instance.setAverageresponseTime(averageresponseTime);
@@ -91,7 +92,7 @@ public class MyResultTest {
      */
     @Test
     public void testGetMsgCount() {
-        System.out.println("getMsgCount");
+        Logger.getLogger(MyResultTest.class).info("getMsgCount");
         MyResult instance = new MyResult();
         int expResult = 0;
         int result = instance.getMsgCount();
@@ -103,7 +104,7 @@ public class MyResultTest {
      */
     @Test
     public void testSetMsgCount() {
-        System.out.println("setMsgCount");
+        Logger.getLogger(MyResultTest.class).info("setMsgCount");
         int msgCount = 42;
         MyResult instance = new MyResult();
         instance.setMsgCount(msgCount);
@@ -115,7 +116,7 @@ public class MyResultTest {
      */
     @Test
     public void testGetMsgLost() {
-        System.out.println("getMsgLost");
+        Logger.getLogger(MyResultTest.class).info("getMsgLost");
         MyResult instance = new MyResult();
         int expResult = 0;
         int result = instance.getMsgLost();
@@ -127,7 +128,7 @@ public class MyResultTest {
      */
     @Test
     public void testSetMsgLost() {
-        System.out.println("setMsgLost");
+        Logger.getLogger(MyResultTest.class).info("setMsgLost");
         int msgLost = 42;
         MyResult instance = new MyResult();
         instance.setMsgLost(msgLost);
@@ -139,7 +140,7 @@ public class MyResultTest {
      */
     @Test
     public void testEquals() {
-        System.out.println("equals");
+        Logger.getLogger(MyResultTest.class).info("equals");
         MyResult other = new MyResult();
         other.setId(66);
         MyResult instance = new MyResult();

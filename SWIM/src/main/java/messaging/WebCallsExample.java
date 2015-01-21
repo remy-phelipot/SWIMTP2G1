@@ -5,6 +5,7 @@
  */
 package messaging;
 
+import com.sun.istack.internal.logging.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,78 +13,81 @@ import java.util.List;
  *
  * @author frankgouineau
  */
-public class webCallsExample {
-    
-    
+public class WebCallsExample {
+
     public void addSequence(int begin,
-                            int end ,
-                            int dataSize,
-                            int requestPerSecond){
-       
-        
+            int end,
+            int dataSize,
+            int requestPerSecond) {
+
         try { // Call Web Service Operation
             src.ConsumerWS_Service service = new src.ConsumerWS_Service();
             src.ConsumerWS port = service.getConsumerWSPort();
             // TODO process result here
             java.lang.String result = port.addSequence(begin, end, dataSize, requestPerSecond);
-            System.out.println("Result = "+result);
+            Logger.getLogger(WebCallsExample.class).info("Result = " + result);
         } catch (Exception ex) {
             // TODO handle custom exceptions here
+            Logger.getLogger(WebCallsExample.class).severe(ex.toString());
         }
 
     }
-    
-    public void resetSequence(){
-        
+
+    public void resetSequence() {
+
         try { // Call Web Service Operation
             src.ConsumerWS_Service service = new src.ConsumerWS_Service();
             src.ConsumerWS port = service.getConsumerWSPort();
             // TODO process result here
             java.lang.String result = port.resetSequence();
-            System.out.println("Result = "+result);
+            Logger.getLogger(WebCallsExample.class).info("Result = " + result);
         } catch (Exception ex) {
             // TODO handle custom exceptions here
+            Logger.getLogger(WebCallsExample.class).severe(ex.toString());
         }
 
     }
 
-    public void runConsumer(){
-        
+    public void runConsumer() {
+
         try { // Call Web Service Operation
             src.ConsumerWS_Service service = new src.ConsumerWS_Service();
             src.ConsumerWS port = service.getConsumerWSPort();
             // TODO process result here
             java.lang.String result = port.runConsumer();
-            System.out.println("Result = "+result);
+            Logger.getLogger(WebCallsExample.class).info("Result = " + result);
         } catch (Exception ex) {
             // TODO handle custom exceptions here
+            Logger.getLogger(WebCallsExample.class).severe(ex.toString());
         }
 
     }
 
-    public List<Float> getResult(){
-        List<Float> result=new ArrayList<>();
+    public List<Float> getResult() {
+        List<Float> result = new ArrayList<>();
         try { // Call Web Service Operation
             src.ConsumerWS_Service service = new src.ConsumerWS_Service();
-            src.ConsumerWS port = service.getConsumerWSPort(); result = port.getresults();
-            System.out.println("Result = "+result);
+            src.ConsumerWS port = service.getConsumerWSPort();
+            result = port.getresults();
+            Logger.getLogger(WebCallsExample.class).info("Result = " + result);
         } catch (Exception ex) {
             // TODO handle custom exceptions here
+            Logger.getLogger(WebCallsExample.class).severe(ex.toString());
         }
         return result;
     }
 
-    public void setProducerProcessTime(int processTime){
+    public void setProducerProcessTime(int processTime) {
         try { // Call Web Service Operation
             src.ProvideWS_Service service = new src.ProvideWS_Service();
             src.ProvideWS port = service.getProvideWSPort();
             // TODO process result here
             java.lang.String result = port.setProcessTime(processTime);
-            System.out.println("Result = "+result);
+            Logger.getLogger(WebCallsExample.class).info("Result = " + result);
         } catch (Exception ex) {
             // TODO handle custom exceptions here
+            Logger.getLogger(WebCallsExample.class).severe(ex.toString());
         }
     }
 
-    
 }

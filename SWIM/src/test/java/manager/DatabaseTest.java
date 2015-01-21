@@ -7,6 +7,7 @@ package manager;
 
 import beans.ScenarioBean;
 import beans.SequenceBean;
+import com.sun.istack.internal.logging.Logger;
 import database.Consumer;
 import database.MyResult;
 import database.MySequence;
@@ -15,8 +16,6 @@ import database.Scenario;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -63,7 +62,7 @@ public class DatabaseTest {
      */
     @Test
     public void testOpen() {
-        System.out.println("open");
+        Logger.getLogger(DatabaseTest.class).info("open");
         Database instance = new Database();
         try {
             instance.open();
@@ -78,7 +77,7 @@ public class DatabaseTest {
      */
     @Test
     public void testClose() {
-        System.out.println("close");
+        Logger.getLogger(DatabaseTest.class).info("close");
 
         Database instance = new Database();
         try {
@@ -98,7 +97,7 @@ public class DatabaseTest {
      */
     @Test
     public void testCreateScenario_ScenarioBean() {
-        System.out.println("createScenario");
+        Logger.getLogger(DatabaseTest.class).info("createScenario");
         ScenarioBean scenarioBean = new ScenarioBean();
         Database instance = new Database();
 
@@ -118,7 +117,7 @@ public class DatabaseTest {
      */
     @Test
     public void testCreateScenario_Scenario() {
-        System.out.println("createScenario");
+        Logger.getLogger(DatabaseTest.class).info("createScenario");
         Scenario scenario = new Scenario();
         scenario.setName("test");
         scenario.setDescription("description");
@@ -143,7 +142,7 @@ public class DatabaseTest {
      */
     @Test
     public void testCreateSequence() {
-        System.out.println("createSequence");
+        Logger.getLogger(DatabaseTest.class).info("createSequence");
         SequenceBean sequenceBean = new SequenceBean();
         Database instance = new Database();
         int begin = 0;
@@ -156,25 +155,25 @@ public class DatabaseTest {
         sequenceBean.setDataSize(dataSize);
         sequenceBean.setProcessingTime(processTime);
         sequenceBean.setRequestPerSecond(requestPerSecond);
-        
+
         instance.open();
-        
+
         Consumer c = new Consumer();
         c.setName("toto");
-        
+
         Provider p = new Provider();
         p.setName("tata");
-        
+
         instance.addConsumer(c);
         instance.addProvider(p);
-        
+
         sequenceBean.setConsumer(c);
         sequenceBean.setProvider(p);
-        
+
         instance.createSequence(sequenceBean);
         MySequence s = instance.getSequenceByParam(begin, dataSize, end, processTime, requestPerSecond, p, c);
         instance.close();
-        
+
         assertNotNull(s);
     }
 
@@ -183,10 +182,10 @@ public class DatabaseTest {
      */
     @Test
     public void testUpdateScenario() {
-        System.out.println("updateScenario");
+        Logger.getLogger(DatabaseTest.class).info("updateScenario");
         String name = "test";
         Database instance = new Database();
-        
+
         instance.open();
         Scenario scenario = new Scenario();
         scenario.setName(name);
@@ -196,7 +195,7 @@ public class DatabaseTest {
         Provider p = new Provider();
         p.setName("tata");
         instance.addConsumer(c);
-        instance.addProvider(p); 
+        instance.addProvider(p);
         MySequence s = new MySequence();
         s.setDataSize(1802);
         s.setBegin(2);
@@ -215,18 +214,18 @@ public class DatabaseTest {
         assertTrue(sc2.getSequences().isEmpty());
 
         this.close();
-        
-        ArrayList<MySequence> seqs = new ArrayList<MySequence>();
+
+        ArrayList<MySequence> seqs = new ArrayList<>();
         seqs.add(s);
-        
+
         instance.open();
         instance.updateScenario(name, seqs);
         instance.close();
-        
+
         this.open();
 
         Scenario sc3 = em.find(Scenario.class, scenario.getId());
-        assertEquals(sc3.getSequences(),seqs);
+        assertEquals(sc3.getSequences(), seqs);
 
         this.close();
     }
@@ -236,37 +235,37 @@ public class DatabaseTest {
      */
     @Test
     public void testUpdateScenarioResult() {
-        System.out.println("updateScenarioResult");
+        Logger.getLogger(DatabaseTest.class).info("updateScenarioResult");
         String name = "test";
-        List<MyResult> res = new ArrayList<MyResult>();
+        List<MyResult> res = new ArrayList<>();
         Database instance = new Database();
-        
+
         Scenario scenario = new Scenario();
         scenario.setName(name);
         scenario.setDescription("description");
 
         instance.open();
         instance.createScenario(scenario);
-        
+
         assertTrue(scenario.getResults().isEmpty());
-        
+
         MyResult r = new MyResult();
         r.setMsgCount(8);
         r.setMsgLost(8);
         r.setAverageresponseTime(89);
-        
+
         instance.addResult(r);
-        
+
         res.add(r);
         instance.updateScenarioResult(name, res);
         instance.close();
-        
+
         instance.open();
 
         Scenario sc2 = instance.getScenarioByName(name);
-        
+
         assertEquals(res, sc2.getResults());
-        
+
         instance.close();
     }
 
@@ -275,7 +274,7 @@ public class DatabaseTest {
      */
     @Test
     public void testGetScenarioByName() {
-        System.out.println("getScenarioByName");
+        Logger.getLogger(DatabaseTest.class).info("getScenarioByName");
         String name = "testScenario";
         Database instance = new Database();
         Scenario expResult = new Scenario();
@@ -297,7 +296,7 @@ public class DatabaseTest {
      */
     @Test
     public void testGetScenarios() {
-        System.out.println("getScenarios");
+        Logger.getLogger(DatabaseTest.class).info("getScenarios");
         Database instance = new Database();
         List<Scenario> expResult = new ArrayList();
         List<Scenario> result;
@@ -330,7 +329,7 @@ public class DatabaseTest {
      */
     @Test
     public void testAddConsumer_String() {
-        System.out.println("addConsumer");
+        Logger.getLogger(DatabaseTest.class).info("addConsumer");
         String name = "testConsumer";
         Database instance = new Database();
 
@@ -353,7 +352,7 @@ public class DatabaseTest {
      */
     @Test
     public void testAddConsumer_Consumer() {
-        System.out.println("addConsumer");
+        Logger.getLogger(DatabaseTest.class).info("addConsumer");
         Consumer c = new Consumer();
         c.setName("testCons");
 
@@ -374,7 +373,7 @@ public class DatabaseTest {
      */
     @Test
     public void testAddProvider_String() {
-        System.out.println("addProvider");
+        Logger.getLogger(DatabaseTest.class).info("addProvider");
         String name = "testProvider";
         Database instance = new Database();
 
@@ -397,7 +396,7 @@ public class DatabaseTest {
      */
     @Test
     public void testAddProvider_Provider() {
-        System.out.println("addProvider");
+        Logger.getLogger(DatabaseTest.class).info("addProvider");
         Provider p = new Provider();
         p.setName("ProviderName");
 
@@ -419,15 +418,15 @@ public class DatabaseTest {
      */
     @Test
     public void testAddResult() {
-        System.out.println("addResult");
-        
+        Logger.getLogger(DatabaseTest.class).info("addResult");
+
         MyResult rt = new MyResult();
-        
+
         Database instance = new Database();
         instance.open();
-        
+
         instance.addResult(rt);
-        
+
         instance.close();
 
         this.open();
@@ -440,17 +439,17 @@ public class DatabaseTest {
      */
     @Test
     public void testDeleteConsumer() {
-        System.out.println("deleteConsumer");
+        Logger.getLogger(DatabaseTest.class).info("deleteConsumer");
         Consumer toDelete = new Consumer();
         Database instance = new Database();
-        
+
         toDelete.setName("toto");
-        
+
         instance.open();
         instance.addConsumer(toDelete);
         instance.deleteConsumer(toDelete);
         instance.close();
-        
+
         this.open();
         assertFalse(this.em.contains(toDelete));
         this.close();
@@ -461,29 +460,29 @@ public class DatabaseTest {
      */
     @Test
     public void testDeleteResult() {
-        System.out.println("deleteResult");
+        Logger.getLogger(DatabaseTest.class).info("deleteResult");
         long id = 0L;
         Database instance = new Database();
-                
+
         instance.open();
-        
+
         MyResult r = new MyResult();
         r.setMsgCount(865);
         r.setMsgLost(85);
         r.setAverageresponseTime(5);
-        
+
         instance.addResult(r);
-        
+
         instance.close();
-        
+
         this.open();
         assertNotNull(this.em.find(MyResult.class, r.getId()));
         this.close();
-        
+
         instance.open();
         instance.deleteResult(r.getId());
         instance.close();
-        
+
         this.open();
         assertNull(this.em.find(MyResult.class, r.getId()));
         this.close();
@@ -494,19 +493,19 @@ public class DatabaseTest {
      */
     @Test
     public void testDeleteProvider() {
-        System.out.println("deleteProvider");
+        Logger.getLogger(DatabaseTest.class).info("deleteProvider");
         Provider toDelete = new Provider();
         Database instance = new Database();
-        
+
         toDelete.setName("toto");
-        
+
         instance.open();
         instance.addProvider(toDelete);
-        
+
         instance.deleteProvider(toDelete);
-        
+
         instance.close();
-        
+
         this.open();
         assertFalse(this.em.contains(toDelete));
         this.close();
@@ -517,7 +516,7 @@ public class DatabaseTest {
      */
     @Test
     public void testDeleteScenarios() {
-        System.out.println("deleteScenarios");
+        Logger.getLogger(DatabaseTest.class).info("deleteScenarios");
         Database instance = new Database();
 
         Scenario s = new Scenario();
@@ -542,20 +541,20 @@ public class DatabaseTest {
      */
     @Test
     public void testDeleteAllSequence() {
-        System.out.println("deleteAllSequence");
+        Logger.getLogger(DatabaseTest.class).info("deleteAllSequence");
         Database instance = new Database();
-        
+
         instance.open();
-        
+
         Consumer c = new Consumer();
         c.setName("toto");
-        
+
         Provider p = new Provider();
         p.setName("tata");
-        
+
         instance.addConsumer(c);
-        instance.addProvider(p); 
-        
+        instance.addProvider(p);
+
         MySequence s = new MySequence();
         s.setDataSize(1802);
         s.setBegin(2);
@@ -563,19 +562,19 @@ public class DatabaseTest {
         s.setProvider(p);
         s.setConsumer(c);
         s.setProcessingTime(566);
-        s.setRequestPerSecond(9);     
-        
+        s.setRequestPerSecond(9);
+
         instance.addSequence(s);
         instance.close();
-        
+
         this.open();
         assertNotNull(this.em.find(MySequence.class, s.getId()));
         this.close();
-        
+
         instance.open();
         instance.deleteAllSequence();
         instance.close();
-        
+
         this.open();
         Query q = this.em.createQuery("SELECT s FROM MySequence s");
         assertTrue(q.getResultList().isEmpty());
@@ -587,20 +586,20 @@ public class DatabaseTest {
      */
     @Test
     public void testDeleteSequence() {
-        System.out.println("deleteSequence");
+        Logger.getLogger(DatabaseTest.class).info("deleteSequence");
         Database instance = new Database();
-        
+
         instance.open();
-        
+
         Consumer c = new Consumer();
         c.setName("toto");
-        
+
         Provider p = new Provider();
         p.setName("tata");
-        
+
         instance.addConsumer(c);
-        instance.addProvider(p); 
-        
+        instance.addProvider(p);
+
         MySequence s = new MySequence();
         s.setDataSize(1802);
         s.setBegin(2);
@@ -608,22 +607,22 @@ public class DatabaseTest {
         s.setProvider(p);
         s.setConsumer(c);
         s.setProcessingTime(566);
-        s.setRequestPerSecond(9);     
-        
+        s.setRequestPerSecond(9);
+
         instance.addSequence(s);
         instance.close();
-        
+
         this.open();
         assertNotNull(this.em.find(MySequence.class, s.getId()));
         this.close();
-        
+
         instance.open();
         instance.deleteSequence(s);
         instance.close();
-        
+
         this.open();
         assertNull(this.em.find(MySequence.class, s.getId()));
-        this.close();   
+        this.close();
     }
 
     /**
@@ -631,7 +630,7 @@ public class DatabaseTest {
      */
     @Test
     public void testGetConsumerById() {
-        System.out.println("getConsumerById");
+        Logger.getLogger(DatabaseTest.class).info("getConsumerById");
         Database instance = new Database();
 
         Consumer c = new Consumer();
@@ -650,7 +649,7 @@ public class DatabaseTest {
      */
     @Test
     public void testGetConsumerByName() {
-        System.out.println("getConsumerByName");
+        Logger.getLogger(DatabaseTest.class).info("getConsumerByName");
         String name = "provider1";
         Database instance = new Database();
         Consumer expResult = new Consumer();
@@ -660,7 +659,7 @@ public class DatabaseTest {
         instance.addConsumer(expResult);
         Consumer result = instance.getConsumerByName(name);
         instance.close();
-        
+
         assertEquals(expResult, result);
     }
 
@@ -669,7 +668,7 @@ public class DatabaseTest {
      */
     @Test
     public void testGetProviderById() {
-        System.out.println("getProviderById");
+        Logger.getLogger(DatabaseTest.class).info("getProviderById");
         Database instance = new Database();
 
         Provider c = new Provider();
@@ -679,7 +678,7 @@ public class DatabaseTest {
         instance.addProvider(c);
         Provider result = instance.getProviderById(c.getId());
         instance.close();
-        
+
         assertEquals(result, c);
     }
 
@@ -688,7 +687,7 @@ public class DatabaseTest {
      */
     @Test
     public void testGetProviderByName() {
-        System.out.println("getProviderByName");
+        Logger.getLogger(DatabaseTest.class).info("getProviderByName");
         String name = "provider1";
         Database instance = new Database();
         Provider expResult = new Provider();
@@ -698,7 +697,7 @@ public class DatabaseTest {
         instance.addProvider(expResult);
         Provider result = instance.getProviderByName(name);
         instance.close();
-        
+
         assertEquals(expResult, result);
     }
 
@@ -707,12 +706,12 @@ public class DatabaseTest {
      */
     @Test
     public void testGetResultById() {
-        System.out.println("getResultById");       
+        Logger.getLogger(DatabaseTest.class).info("getResultById");
         MyResult rt = new MyResult();
-        
+
         Database instance = new Database();
         instance.open();
-        
+
         instance.addResult(rt);
         assertEquals(instance.getResultById(rt.getId()), rt);
         instance.close();
@@ -723,7 +722,7 @@ public class DatabaseTest {
      */
     @Test
     public void testGetConsumers() {
-        System.out.println("getConsumers");
+        Logger.getLogger(DatabaseTest.class).info("getConsumers");
         Database instance = new Database();
         List<Consumer> expResult = new ArrayList();
         ArrayList<Consumer> result;
@@ -756,7 +755,7 @@ public class DatabaseTest {
      */
     @Test
     public void testGetProviders() {
-        System.out.println("getProviders");
+        Logger.getLogger(DatabaseTest.class).info("getProviders");
         Database instance = new Database();
         List<Provider> expResult = new ArrayList();
         ArrayList<Provider> result;
@@ -789,22 +788,22 @@ public class DatabaseTest {
      */
     @Test
     public void testGetSequences() {
-        System.out.println("getSequences");
+        Logger.getLogger(DatabaseTest.class).info("getSequences");
         Database instance = new Database();
         ArrayList<MySequence> expResult = new ArrayList<MySequence>();
-        ArrayList<MySequence> result = null;        
-        
+        ArrayList<MySequence> result = null;
+
         instance.open();
-        
+
         Consumer c = new Consumer();
         c.setName("toto");
-        
+
         Provider p = new Provider();
         p.setName("tata");
-        
+
         instance.addConsumer(c);
-        instance.addProvider(p); 
-        
+        instance.addProvider(p);
+
         MySequence s = new MySequence();
         s.setDataSize(1802);
         s.setBegin(2);
@@ -812,11 +811,11 @@ public class DatabaseTest {
         s.setProvider(p);
         s.setConsumer(c);
         s.setProcessingTime(566);
-        s.setRequestPerSecond(9);     
-        
+        s.setRequestPerSecond(9);
+
         instance.addSequence(s);
         expResult.add(s);
-             
+
         result = instance.getSequences();
         instance.close();
 
@@ -828,22 +827,22 @@ public class DatabaseTest {
      */
     @Test
     public void testGetSequenceByConsumer() {
-        System.out.println("getSequenceByConsumer");
+        Logger.getLogger(DatabaseTest.class).info("getSequenceByConsumer");
         Database instance = new Database();
-        ArrayList<MySequence> expResult = new ArrayList<MySequence>();
-        ArrayList<MySequence> result = null;        
-        
+        ArrayList<MySequence> expResult = new ArrayList<>();
+        ArrayList<MySequence> result = null;
+
         instance.open();
-        
+
         Consumer c = new Consumer();
         c.setName("toto");
-        
+
         Provider p = new Provider();
         p.setName("tata");
-        
+
         instance.addConsumer(c);
-        instance.addProvider(p); 
-        
+        instance.addProvider(p);
+
         MySequence s = new MySequence();
         s.setDataSize(1802);
         s.setBegin(2);
@@ -851,14 +850,14 @@ public class DatabaseTest {
         s.setProvider(p);
         s.setConsumer(c);
         s.setProcessingTime(566);
-        s.setRequestPerSecond(9);     
-        
+        s.setRequestPerSecond(9);
+
         instance.addSequence(s);
         expResult.add(s);
-             
+
         result = instance.getSequenceByConsumer(c);
         assertEquals(expResult, result);
-        
+
         instance.close();
     }
 
@@ -867,22 +866,22 @@ public class DatabaseTest {
      */
     @Test
     public void testGetSequenceByProvider() {
-        System.out.println("getSequenceByProvider");
+        Logger.getLogger(DatabaseTest.class).info("getSequenceByProvider");
         Database instance = new Database();
-        ArrayList<MySequence> expResult = new ArrayList<MySequence>();
-        ArrayList<MySequence> result = null;        
-        
+        ArrayList<MySequence> expResult = new ArrayList<>();
+        ArrayList<MySequence> result = null;
+
         instance.open();
-        
+
         Consumer c = new Consumer();
         c.setName("toto");
-        
+
         Provider p = new Provider();
         p.setName("tata");
-        
+
         instance.addConsumer(c);
-        instance.addProvider(p); 
-        
+        instance.addProvider(p);
+
         MySequence s = new MySequence();
         s.setDataSize(1802);
         s.setBegin(2);
@@ -890,14 +889,14 @@ public class DatabaseTest {
         s.setProvider(p);
         s.setConsumer(c);
         s.setProcessingTime(566);
-        s.setRequestPerSecond(9);     
-        
+        s.setRequestPerSecond(9);
+
         instance.addSequence(s);
         expResult.add(s);
-             
+
         result = instance.getSequenceByProvider(p);
         assertEquals(expResult, result);
-        
+
         instance.close();
     }
 
@@ -906,7 +905,7 @@ public class DatabaseTest {
      */
     @Test
     public void testGetSequenceByParam() {
-        System.out.println("getSequenceByParam");
+        Logger.getLogger(DatabaseTest.class).info("getSequenceByParam");
         int begin = 0;
         int dataSize = 0;
         int end = 0;
@@ -914,18 +913,18 @@ public class DatabaseTest {
         int requestPerSecond = 0;
         Database instance = new Database();
         MySequence result;
-                
+
         instance.open();
-        
+
         Consumer c = new Consumer();
         c.setName("toto");
-        
+
         Provider p = new Provider();
         p.setName("tata");
-        
+
         instance.addConsumer(c);
-        instance.addProvider(p); 
-        
+        instance.addProvider(p);
+
         MySequence expResult = new MySequence();
         expResult.setDataSize(dataSize);
         expResult.setBegin(begin);
@@ -933,13 +932,13 @@ public class DatabaseTest {
         expResult.setProvider(p);
         expResult.setConsumer(c);
         expResult.setProcessingTime(processTime);
-        expResult.setRequestPerSecond(requestPerSecond);     
-        
+        expResult.setRequestPerSecond(requestPerSecond);
+
         instance.addSequence(expResult);
-             
+
         result = instance.getSequenceByParam(begin, dataSize, end, processTime, requestPerSecond, p, c);
         assertEquals(expResult, result);
-        
+
         instance.close();
     }
 
@@ -948,19 +947,19 @@ public class DatabaseTest {
      */
     @Test
     public void testHardReset() {
-        System.out.println("hardReset");
+        Logger.getLogger(DatabaseTest.class).info("hardReset");
         Database instance = new Database();
         instance.open();
         instance.hardReset();
         instance.close();
-        
+
         this.open();
         Query s = this.em.createQuery("SELECT s FROM Scenario s");
         Query r = this.em.createQuery("SELECT r FROM MyResult r");
         Query p = this.em.createQuery("SELECT p FROM Provider p");
         Query c = this.em.createQuery("SELECT c FROM Consumer c");
         Query se = this.em.createQuery("SELECT s FROM MySequence s");
-        
+
         assertTrue(s.getResultList().isEmpty());
         assertTrue(r.getResultList().isEmpty());
         assertTrue(p.getResultList().isEmpty());

@@ -5,6 +5,7 @@
  */
 package beans;
 
+import com.sun.istack.internal.logging.Logger;
 import controller.MainController;
 import database.Scenario;
 import database.MySequence;
@@ -12,13 +13,9 @@ import database.MyResult;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.servlet.http.Part;
 import javax.xml.bind.JAXBException;
 import manager.Database;
 import xmlParsing.ResultsToXml;
@@ -30,7 +27,7 @@ import xmlParsing.ResultsToXml;
 @ManagedBean
 @ViewScoped
 public class BackingBean {
-
+    
     private String name;
     private String description;
     private MySequence selectedSequence;
@@ -40,104 +37,104 @@ public class BackingBean {
     private List<MyResult> results;
     private ArrayList<MySequence> listSelectedSequence;
     private List<Scenario> listScenario;
-
+    
     public List<Scenario> getListScenario() {
         Database db = new Database();
         db.open();
         List<Scenario> ret = db.getScenarios();
         db.close();
         return ret;
-
+        
     }
-
+    
     public List<MyResult> getResults() {
         return this.selectedScenario.getResults();
     }
-
+    
     public MyResult getSelectedResult() {
         return selectedResult;
     }
-
+    
     public void setSelectedResult(MyResult selectedResult) {
         this.selectedResult = selectedResult;
     }
-
+    
     public Scenario getSelectedScenario() {
         return selectedScenario;
     }
-
+    
     public int getNumberOfResults() {
         return this.selectedScenario.getResults().size();
     }
-
+    
     public long getResultId(int index) {
         return this.selectedScenario.getResults().get(index).getId();
     }
-
+    
     public float getResultAverageResponseTime(int index) {
         return this.selectedScenario.getResults().get(index).getAverageresponseTime();
     }
-
+    
     public void setSelectedScenario(Scenario selectedScenario) {
         this.selectedScenario = selectedScenario;
     }
-
+    
     public String getName() {
         return name;
     }
-
+    
     public void setName(String name) {
         this.name = name;
     }
-
+    
     public String getDescription() {
         return description;
     }
-
+    
     public void setDescription(String description) {
         this.description = description;
     }
-
+    
     public MySequence getSelectedSequence() {
         return selectedSequence;
     }
-
+    
     public void setSelectedSequence(MySequence selectedSequence) {
         this.selectedSequence = selectedSequence;
     }
-
+    
     public MySequence getToRemoveSequence() {
         return toRemoveSequence;
     }
-
+    
     public void setToRemoveSequence(MySequence toRemoveSequence) {
         this.toRemoveSequence = toRemoveSequence;
     }
-
+    
     public ArrayList<MySequence> getListSelectedSequence() {
         return listSelectedSequence;
     }
-
+    
     public void setListSelectedSequence(ArrayList<MySequence> listSelectedSequence) {
         this.listSelectedSequence = listSelectedSequence;
     }
-
+    
     public void addSelectedSequence() {
-
+        
         if (this.listSelectedSequence == null) {
             this.listSelectedSequence = new ArrayList<>();
         }
         if (!this.listSelectedSequence.contains(selectedSequence)) {
             this.listSelectedSequence.add(selectedSequence);
         }
-
+        
     }
-
+    
     public void removeSelectedSequence() {
         if (this.listSelectedSequence == null) {
             this.listSelectedSequence = new ArrayList<>();
         }
-
+        
         this.listSelectedSequence.remove(toRemoveSequence);
     }
 
@@ -146,7 +143,7 @@ public class BackingBean {
      */
     public BackingBean() {
     }
-
+    
     public void createScenario() {
         Database db = new Database();
         db.open();
@@ -159,11 +156,11 @@ public class BackingBean {
         db.updateScenario(name, listSelectedSequence);
         db.close();
     }
-
+    
     public void addResult() {
         if (this.selectedScenario.getResults() == null) {
             this.selectedScenario.setResults(new ArrayList<MyResult>());
-
+            
         }
         List<MyResult> alr;
         alr = this.selectedScenario.getResults();
@@ -177,10 +174,10 @@ public class BackingBean {
         alr.add(tmp);
         db.updateScenarioResult(this.selectedScenario.getName(), alr);
         db.close();
-
+        
         this.selectedScenario.setResults(alr);
     }
-
+    
     public void deleteResult() {
         Database db = new Database();
         db.open();
@@ -191,9 +188,9 @@ public class BackingBean {
         this.results = sce.getResults();
         db.deleteResult(rt.getId());
         db.close();
-
+        
     }
-
+    
     public void setSce(Scenario sce) {
         this.selectedScenario = sce;
     }
@@ -206,16 +203,16 @@ public class BackingBean {
     public void downloadXML() {
         try {
             String basePath = System.getProperty("java.io.tmpdir") + File.separator;
-            System.out.println("base path: " + basePath);
+            Logger.getLogger(BackingBean.class).info("base path: " + basePath);
             String outputFilePath = basePath + "results.xml";
             ResultsToXml.generateXml(selectedResult, outputFilePath);
         } catch (JAXBException ex) {
-            Logger.getLogger(BackingBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BackingBean.class).severe(ex.toString());
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(BackingBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BackingBean.class).severe(ex.toString());
         }
     }
-
+    
     public void onLaunching() {
         MainController controller = new MainController();
         controller.launchScenario(selectedScenario);

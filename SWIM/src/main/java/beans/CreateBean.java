@@ -3,19 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package beans;
 
+import com.sun.istack.internal.logging.Logger;
 import database.Consumer;
 import database.Provider;
 import database.Scenario;
 import database.MySequence;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import manager.Database;
@@ -40,11 +36,11 @@ public class CreateBean {
     private String providerName;
     private String consumerName;
     private Scenario created = new Scenario();
-    private ArrayList<MySequence> listSelectedSequence;   
+    private ArrayList<MySequence> listSelectedSequence;
     private List<MySequence> listSequence;
     private List<Consumer> listConsumer;
     private List<Provider> listProvider;
-    private int begin,end,RpS,processTime,DataS; 
+    private int begin, end, RpS, processTime, DataS;
 
     public Scenario getScenario() {
         return scenario;
@@ -69,7 +65,7 @@ public class CreateBean {
     public void setToRemoveSequence(MySequence toRemoveSequence) {
         this.toRemoveSequence = toRemoveSequence;
     }
-    
+
     public MySequence getSelectedSequence() {
         return selectedSequence;
     }
@@ -77,8 +73,7 @@ public class CreateBean {
     public void setSelectedSequence(MySequence selectedSequence) {
         this.selectedSequence = selectedSequence;
     }
-  
-    
+
     public MySequence getToDeleteSequence() {
         return toDeleteSequence;
     }
@@ -86,7 +81,8 @@ public class CreateBean {
     public void setToDeleteSequence(MySequence toDeleteSequence) {
         this.toDeleteSequence = toDeleteSequence;
     }
-     public Consumer getToDeleteConsumer() {
+
+    public Consumer getToDeleteConsumer() {
         return toDeleteConsumer;
     }
 
@@ -101,6 +97,7 @@ public class CreateBean {
     public void setToDeleteProvider(Provider toDeleteProvider) {
         this.toDeleteProvider = toDeleteProvider;
     }
+
     public Provider getSelectedProvider() {
         return selectedProvider;
     }
@@ -108,6 +105,7 @@ public class CreateBean {
     public void setSelectedProvider(Provider selectedProvider) {
         this.selectedProvider = selectedProvider;
     }
+
     public String getProviderName() {
         return providerName;
     }
@@ -115,6 +113,7 @@ public class CreateBean {
     public void setProviderName(String providerName) {
         this.providerName = providerName;
     }
+
     public List<Provider> getListProvider() {
         Database db = new Database();
         db.open();
@@ -124,12 +123,13 @@ public class CreateBean {
     }
 
     public void setListProvider(List<Provider> listProvider) {
-          Database db = new Database();
+        Database db = new Database();
         db.open();
         List<Provider> ret = db.getProviders();
         db.close();
         this.listProvider = ret;
     }
+
     public Consumer getSelectedConsumer() {
         return selectedConsumer;
     }
@@ -137,6 +137,7 @@ public class CreateBean {
     public void setSelectedConsumer(Consumer selectedConsumer) {
         this.selectedConsumer = selectedConsumer;
     }
+
     public List<Consumer> getListConsumer() {
         Database db = new Database();
         db.open();
@@ -152,6 +153,7 @@ public class CreateBean {
         db.close();
         this.listConsumer = ret;
     }
+
     public String getConsumerName() {
         return consumerName;
     }
@@ -159,6 +161,7 @@ public class CreateBean {
     public void setConsumerName(String consumerName) {
         this.consumerName = consumerName;
     }
+
     public int getBegin() {
         return begin;
     }
@@ -198,10 +201,9 @@ public class CreateBean {
     public void setDataS(int DataS) {
         this.DataS = DataS;
     }
-    
-    
+
     public ScenarioBean getSb() {
-        
+
         return Sb;
     }
 
@@ -210,7 +212,7 @@ public class CreateBean {
     }
 
     public List<MySequence> getListSequence() {
-         Database db = new Database();
+        Database db = new Database();
         db.open();
         List<MySequence> ret = db.getSequences();
         db.close();
@@ -218,7 +220,7 @@ public class CreateBean {
     }
 
     public void setListSequence(List<MySequence> listSequence) {
-         Database db = new Database();
+        Database db = new Database();
         db.open();
         List<MySequence> ret = db.getSequences();
         db.close();
@@ -226,7 +228,6 @@ public class CreateBean {
     }
 
     public Scenario getCreated() {
-        
 
         return created;
     }
@@ -234,30 +235,33 @@ public class CreateBean {
     public void setCreated(Scenario created) {
         this.created = created;
     }
+
     /**
      * Creates a new instance of CreateBean
      */
     public CreateBean() {
     }
-    
-    public void print(){
-        System.out.print(Sb.getName());
-        System.out.print(Sb.getDescription());
+
+    public void print() {
+        Logger.getLogger(CreateBean.class).info(Sb.getName());
+        Logger.getLogger(CreateBean.class).info(Sb.getDescription());
     }
-    
-    public void addConsumer(){
+
+    public void addConsumer() {
         Database db = new Database();
         db.open();
         db.addConsumer(consumerName);
         db.close();
     }
-    public void addProvider(){
+
+    public void addProvider() {
         Database db = new Database();
         db.open();
         db.addProvider(providerName);
         db.close();
     }
-    public void addSequence(){
+
+    public void addSequence() {
         Database db = new Database();
         db.open();
         SequenceBean seq = new SequenceBean();
@@ -271,25 +275,29 @@ public class CreateBean {
         db.createSequence(seq);
         db.close();
     }
-     public void deleteConsumer(){
+
+    public void deleteConsumer() {
         Database db = new Database();
         db.open();
         db.deleteConsumer(toDeleteConsumer);
         db.close();
     }
-    public void deleteProvider(){
+
+    public void deleteProvider() {
         Database db = new Database();
         db.open();
         db.deleteProvider(toDeleteProvider);
         db.close();
     }
-     public void deleteSequence(){
+
+    public void deleteSequence() {
         Database db = new Database();
         db.open();
         db.deleteSequence(toDeleteSequence);
         db.close();
     }
-   public void delete(){
+
+    public void delete() {
         Database db = new Database();
         db.open();
         db.deleteAllSequence();

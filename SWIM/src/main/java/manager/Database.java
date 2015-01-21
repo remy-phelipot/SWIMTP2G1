@@ -13,13 +13,11 @@ import database.Scenario;
 import database.MySequence;
 import database.MyResult;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.NamedQuery;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
@@ -49,17 +47,19 @@ public class Database {
     }
 
     public synchronized void open() {
-        if(this.emf != null || this.em != null)
+        if (this.emf != null || this.em != null) {
             throw new RuntimeException("Database already opened");
-        
+        }
+
         this.emf = Persistence.createEntityManagerFactory(persistenceUnitName);
         this.em = emf.createEntityManager();
     }
 
     public synchronized void close() {
-        if(this.emf == null || this.em == null)
+        if (this.emf == null || this.em == null) {
             throw new RuntimeException("Database is not opened");
-        
+        }
+
         em.close();
         emf.close();
         this.emf = null;
@@ -71,15 +71,14 @@ public class Database {
         scenario.setDescription(scenarioBean.getDescription());
         scenario.setName(scenarioBean.getName());
 
-        System.out.println("Creating scenario " + scenario.getName());
+        Logger.getLogger(Database.class.getName()).log(Level.INFO, null, "Creating scenario " + scenario.getName());
         em.getTransaction().begin();
         em.persist(scenario);
         em.getTransaction().commit();
     }
-    
-    
+
     public void createScenario(Scenario scenario) {
-        System.out.println("Creating scenario " + scenario.getName());
+        Logger.getLogger(Database.class.getName()).log(Level.INFO, null, "Creating scenario " + scenario.getName());
         em.getTransaction().begin();
         em.persist(scenario);
         em.getTransaction().commit();
@@ -92,11 +91,11 @@ public class Database {
         sequence.setEnd(sequenceBean.getEnd());
         sequence.setProcessingTime(sequenceBean.getProcessingTime());
         sequence.setRequestPerSecond(sequenceBean.getRequestPerSecond());
-      //  sequence.setScenarios(sequenceBean.getScenarios());
+        //  sequence.setScenarios(sequenceBean.getScenarios());
         sequence.setConsumer(sequenceBean.getConsumer());
         sequence.setProvider(sequenceBean.getProvider());
 
-        System.out.println("Creating sequence " + sequence.getDataSize());
+        Logger.getLogger(Database.class.getName()).log(Level.INFO, null, "Creating sequence " + sequence.getDataSize());
         em.getTransaction().begin();
         em.persist(sequence);
         em.getTransaction().commit();
@@ -108,9 +107,9 @@ public class Database {
         Query query = em.createNamedQuery("Scenario.findByName");
         query.setParameter("name", name);
         if (!query.getResultList().isEmpty()) {
-              Scenario sce = (Scenario) query.getResultList().get(0);
-        sce.setSequences(seqs);
-        } 
+            Scenario sce = (Scenario) query.getResultList().get(0);
+            sce.setSequences(seqs);
+        }
         em.getTransaction().commit();
     }
 
@@ -135,7 +134,8 @@ public class Database {
             Scenario sce = (Scenario) query.getResultList().get(0);
             em.getTransaction().commit();
             return sce;
-        } else {
+        }
+        else {
             em.getTransaction().commit();
             return null;
         }
@@ -150,8 +150,8 @@ public class Database {
         if (!name.equals("") && getConsumerByName(name) == null) {
             Consumer toAdd = new Consumer();
             toAdd.setName(name);
-          
-            System.out.println("Creating Consumer " + toAdd.getId());
+
+            Logger.getLogger(Database.class.getName()).log(Level.INFO, null, "Creating consumer " + toAdd.getId());
 
             em.getTransaction().begin();
             em.persist(toAdd);
@@ -159,37 +159,37 @@ public class Database {
         }
 
     }
-    
-    public void addConsumer(Consumer c){
-         em.getTransaction().begin();
-         em.persist(c);
-         em.getTransaction().commit();
+
+    public void addConsumer(Consumer c) {
+        em.getTransaction().begin();
+        em.persist(c);
+        em.getTransaction().commit();
     }
-    
-    public void addSequence(MySequence s){
-         em.getTransaction().begin();
-         em.persist(s);
-         em.getTransaction().commit();
+
+    public void addSequence(MySequence s) {
+        em.getTransaction().begin();
+        em.persist(s);
+        em.getTransaction().commit();
     }
 
     public void addProvider(String name) {
         if (!name.equals("") && getProviderByName(name) == null) {
             Provider toAdd = new Provider();
             toAdd.setName(name);
-      
-            System.out.println("Creating Provider " + toAdd.getId());
+
+            Logger.getLogger(Database.class.getName()).log(Level.INFO, null, "Creating consumer " + toAdd.getId());
             em.getTransaction().begin();
             em.persist(toAdd);
             em.getTransaction().commit();
         }
     }
 
-    public void addProvider(Provider p){
-         em.getTransaction().begin();
-         em.persist(p);  
-         em.getTransaction().commit();
+    public void addProvider(Provider p) {
+        em.getTransaction().begin();
+        em.persist(p);
+        em.getTransaction().commit();
     }
-    
+
     public void addResult(MyResult rt) {
         if (getResultById(rt.getId()) == null) {
 
@@ -272,7 +272,8 @@ public class Database {
             Consumer consumer = (Consumer) query.getResultList().get(0);
             em.getTransaction().commit();
             return consumer;
-        } else {
+        }
+        else {
             em.getTransaction().commit();
 
             return null;
@@ -287,7 +288,8 @@ public class Database {
             Consumer consumer = (Consumer) query.getResultList().get(0);
             em.getTransaction().commit();
             return consumer;
-        } else {
+        }
+        else {
             em.getTransaction().commit();
             return null;
         }
@@ -301,7 +303,8 @@ public class Database {
             Provider provider = (Provider) query.getResultList().get(0);
             em.getTransaction().commit();
             return provider;
-        } else {
+        }
+        else {
             em.getTransaction().commit();
             return null;
         }
@@ -316,7 +319,8 @@ public class Database {
             Provider provider = (Provider) query.getResultList().get(0);
             em.getTransaction().commit();
             return provider;
-        } else {
+        }
+        else {
             em.getTransaction().commit();
             return null;
         }
@@ -331,7 +335,8 @@ public class Database {
             MyResult result = (MyResult) query.getResultList().get(0);
             em.getTransaction().commit();
             return result;
-        } else {
+        }
+        else {
             em.getTransaction().commit();
             return null;
         }
@@ -416,7 +421,8 @@ public class Database {
             MySequence ms = (MySequence) query.getResultList().get(0);
             em.getTransaction().commit();
             return ms;
-        } else {
+        }
+        else {
             em.getTransaction().commit();
             return null;
         }
@@ -444,9 +450,9 @@ public class Database {
         query.executeUpdate();
         em.getTransaction().commit();
     }
-    
+
     /* For test purpose only */
-    public EntityManager getEm(){
+    public EntityManager getEm() {
         return this.em;
     }
 }

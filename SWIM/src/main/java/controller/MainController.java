@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.bind.JAXBException;
 import manager.Database;
-import messaging.webCallsExample;
+import messaging.WebCallsExample;
 import org.xml.sax.SAXException;
 import xmlModel.XmlParameters;
 import xmlParsing.XmlParser;
@@ -23,12 +23,13 @@ import xmlParsing.XmlToDatabase;
  * @author Rémy
  */
 public class MainController {
+
     private final Database database;
-    private final webCallsExample webCalls;
+    private final WebCallsExample webCalls;
 
     public MainController() {
         database = new Database();
-        webCalls = new webCallsExample();
+        webCalls = new WebCallsExample();
     }
 
     public void addScenario(File xmlFile, String name, String description) {
@@ -37,7 +38,7 @@ public class MainController {
         List<Provider> providers = database.getProviders();
         List<Consumer> consumers = database.getConsumers();
         database.close();
-        
+
         XmlParameters params = null;
         try {
             //Transform the XML file to an object 
@@ -48,15 +49,14 @@ public class MainController {
 
             // Verify for each provider and consumer if they exist in the database
             for (MySequence sequence : scenario.getSequences()) {
-                
-                
+
                 Provider provider = sequence.getProvider();
                 Consumer consumer = sequence.getConsumer();
 
                 if (!providers.contains(provider)) {
                     /*throw new RuntimeException("Provider "
-                            + provider.getName()
-                            + " is not in the database");*/
+                     + provider.getName()
+                     + " is not in the database");*/
                     database.open();
                     database.addProvider(provider);
                     database.close();
@@ -64,13 +64,13 @@ public class MainController {
 
                 if (!consumers.contains(consumer)) {
                     /*throw new RuntimeException("Consumer "
-                            + consumer.getName()
-                            + " is not in the database");*/
+                     + consumer.getName()
+                     + " is not in the database");*/
                     database.open();
                     database.addConsumer(consumer);
                     database.close();
                 }
-                
+
                 database.open();
                 database.addSequence(sequence);
                 database.close();
@@ -81,20 +81,22 @@ public class MainController {
             scenario.setName(name);
             scenario.setDescription(description);
             database.createScenario(scenario);
-            database.close();  System.out.println(scenario.getSequences().get(0).getConsumer().getName());
+            database.close();
+
+            Logger.getLogger(MainController.class.getName()).log(Level.INFO, null, scenario.getSequences().get(0).getConsumer().getName());
         } catch (JAXBException | SAXException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
             throw new RuntimeException(ex.getMessage());
         }
-       
+
     }
 
     public void onEndOfScenario(Scenario scenario) {
         Logger.getLogger("MainController").info("onEndOfScenario");
-        List<Float> scenarioResults=webCalls.getResult();
+        List<Float> scenarioResults = webCalls.getResult();
         ArrayList<MyResult> results = new ArrayList<MyResult>();
-        
-        for (Float currentResult: scenarioResults){
+
+        for (Float currentResult : scenarioResults) {
             MyResult toAdd = new MyResult();
             toAdd.setAverageresponseTime(currentResult);
             database.open();
@@ -106,32 +108,29 @@ public class MainController {
         database.updateScenarioResult(scenario.getName(), results);
         database.close();
     }
-    
-    public void launchScenario(Scenario scenario){
-        
-        System.out.println("parametrage des webservices");
+
+    public void launchScenario(Scenario scenario) {
+        Logger.getLogger(MainController.class.getName()).log(Level.INFO, null, "parametrage des webservices");
         //ArrayList<ConsumerWs> consumersToStart = new ArrayList<ConsumerWs>();
         webCalls.resetSequence();
         /* For each sequence of the scenario, we initialize the webs services */
-        for (MySequence currentSequence: scenario.getSequences()){
+        for (MySequence currentSequence : scenario.getSequences()) {
             /* set the web service consumer */
             //currentSequence.getConsumer().getName(); 
             webCalls.addSequence(currentSequence.getBegin(), currentSequence.getEnd(), currentSequence.getDataSize(), currentSequence.getRequestPerSecond());; // parameter
-            
+
             //consumersToStart.add(/*the current web service*/);
-            
             /* set the web service provider */
             //currentSequence.getProvider().getName();
             webCalls.setProducerProcessTime(currentSequence.getProcessingTime());
             //currentSequence.getDataSize(); // parameter
-            
+
         }
-        
-      /*  for (ConsumerWs consumer: consumersToStart){
-            consumer.run();
-        }*/
-        
-        System.out.println("Consumer en train de run ...");
+
+        /*  for (ConsumerWs consumer: consumersToStart){
+         consumer.run();
+         }*/
+        Logger.getLogger(MainController.class.getName()).log(Level.INFO, null, "Consumer en train de run...");
         webCalls.runConsumer();
         onEndOfScenario(scenario);
     }

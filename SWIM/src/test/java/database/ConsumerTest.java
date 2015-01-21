@@ -5,6 +5,7 @@
  */
 package database;
 
+import com.sun.istack.internal.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,22 +18,22 @@ import static org.junit.Assert.*;
  * @author ender
  */
 public class ConsumerTest {
-    
+
     public ConsumerTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -42,7 +43,7 @@ public class ConsumerTest {
      */
     @Test
     public void testGetId() {
-        System.out.println("getId");
+        Logger.getLogger(ConsumerTest.class).info("getId");
         long expResult = 0L;
         Consumer instance = new Consumer();
         long result = instance.getId();
@@ -54,7 +55,7 @@ public class ConsumerTest {
      */
     @Test
     public void testSetId() {
-        System.out.println("setId");
+        Logger.getLogger(ConsumerTest.class).info("setId");
         long expResult = 55L;
         Consumer instance = new Consumer();
         instance.setId(expResult);
@@ -67,7 +68,7 @@ public class ConsumerTest {
      */
     @Test
     public void testGetName() {
-        System.out.println("getName");
+        Logger.getLogger(ConsumerTest.class).info("getName");
         Consumer instance = new Consumer();
         String expResult = null;
         String result = instance.getName();
@@ -79,7 +80,7 @@ public class ConsumerTest {
      */
     @Test
     public void testSetName() {
-        System.out.println("setName");
+        Logger.getLogger(ConsumerTest.class).info("setName");
         String name = "toto";
         Consumer instance = new Consumer();
         instance.setName(name);
@@ -91,12 +92,12 @@ public class ConsumerTest {
      */
     @Test
     public void testEquals() {
-        System.out.println("equals");
+        Logger.getLogger(ConsumerTest.class).info("equals");
         Consumer other = new Consumer();
         other.setName("sjhgjhdq");
         Consumer instance = new Consumer();
         assertEquals(true, instance.equals(instance));
         assertEquals(false, instance.equals(other));
     }
-    
+
 }

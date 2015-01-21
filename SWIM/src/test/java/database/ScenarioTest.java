@@ -5,6 +5,7 @@
  */
 package database;
 
+import com.sun.istack.internal.logging.Logger;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
@@ -20,6 +21,9 @@ import static org.junit.Assert.*;
  */
 public class ScenarioTest {
     
+    /**
+     * Constructor
+     */
     public ScenarioTest() {
     }
     
@@ -44,7 +48,7 @@ public class ScenarioTest {
      */
     @Test
     public void testGetId() {
-        System.out.println("getId");
+        Logger.getLogger(ScenarioTest.class).info("getId");
         Scenario instance = new Scenario();
         long expResult = 0L;
         long result = instance.getId();
@@ -56,7 +60,7 @@ public class ScenarioTest {
      */
     @Test
     public void testSetId() {
-        System.out.println("setId");
+        Logger.getLogger(ScenarioTest.class).info("setId");
         long id = 0L;
         Scenario instance = new Scenario();
         instance.setId(id);
@@ -68,7 +72,7 @@ public class ScenarioTest {
      */
     @Test
     public void testGetName() {
-        System.out.println("getName");
+        Logger.getLogger(ScenarioTest.class).info("getName");
         Scenario instance = new Scenario();
         String expResult = null;
         String result = instance.getName();
@@ -80,7 +84,7 @@ public class ScenarioTest {
      */
     @Test
     public void testSetName() {
-        System.out.println("setName");
+        Logger.getLogger(ScenarioTest.class).info("setName");
         String name = "";
         Scenario instance = new Scenario();
         instance.setName(name);
@@ -92,7 +96,7 @@ public class ScenarioTest {
      */
     @Test
     public void testGetDescription() {
-        System.out.println("getDescription");
+        Logger.getLogger(ScenarioTest.class).info("getDescription");
         Scenario instance = new Scenario();
         String expResult = null;
         String result = instance.getDescription();
@@ -104,7 +108,7 @@ public class ScenarioTest {
      */
     @Test
     public void testSetDescription() {
-        System.out.println("setDescription");
+        Logger.getLogger(ScenarioTest.class).info("setDescription");
         String description = "";
         Scenario instance = new Scenario();
         instance.setDescription(description);
@@ -116,7 +120,7 @@ public class ScenarioTest {
      */
     @Test
     public void testSetSequences() {
-        System.out.println("setSequences");
+        Logger.getLogger(ScenarioTest.class).info("setSequences");
         ArrayList<MySequence> sequences = new ArrayList<>();
         sequences.add(new MySequence());
         Scenario instance = new Scenario();
@@ -129,8 +133,8 @@ public class ScenarioTest {
      */
     @Test
     public void testSetResults() {
-        System.out.println("setResults");
-        List<MyResult> results = new ArrayList<MyResult>();
+        Logger.getLogger(ScenarioTest.class).info("setResults");
+        List<MyResult> results = new ArrayList<>();
         Scenario instance = new Scenario();
         instance.setResults(results);
         assertEquals(results, instance.getResults());
@@ -141,7 +145,7 @@ public class ScenarioTest {
      */
     @Test
     public void testGetSequences() {
-        System.out.println("getSequences");
+        Logger.getLogger(ScenarioTest.class).info("getSequences");
         Scenario instance = new Scenario();
         List<MySequence> expResult = null;
         List<MySequence> result = instance.getSequences();
@@ -153,7 +157,7 @@ public class ScenarioTest {
      */
     @Test
     public void testGetResults() {
-        System.out.println("getResults");
+        Logger.getLogger(ScenarioTest.class).info("getResults");
         Scenario instance = new Scenario();
         List<MyResult> expResult = null;
         List<MyResult> result = instance.getResults();
@@ -165,7 +169,7 @@ public class ScenarioTest {
      */
     @Test
     public void testEquals() {
-        System.out.println("equals");
+        Logger.getLogger(ScenarioTest.class).info("equals");
         Scenario other = new Scenario();
         other.setName("sjhgjhdq");
         Scenario instance = new Scenario();

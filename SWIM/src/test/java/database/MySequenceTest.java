@@ -13,28 +13,29 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import com.sun.istack.internal.logging.Logger;
 
 /**
  *
  * @author ender
  */
 public class MySequenceTest {
-    
+
     public MySequenceTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -44,7 +45,7 @@ public class MySequenceTest {
      */
     @Test
     public void testGetId() {
-        System.out.println("getId");
+        Logger.getLogger(MySequenceTest.class).info("getId");
         MySequence instance = new MySequence();
         long expResult = 0L;
         long result = instance.getId();
@@ -56,7 +57,7 @@ public class MySequenceTest {
      */
     @Test
     public void testSetId() {
-        System.out.println("setId");
+        Logger.getLogger(MySequenceTest.class).info("setId");
         long id = 42L;
         MySequence instance = new MySequence();
         instance.setId(id);
@@ -68,7 +69,7 @@ public class MySequenceTest {
      */
     @Test
     public void testGetBegin() {
-        System.out.println("getBegin");
+        Logger.getLogger(MySequenceTest.class).info("getbegin");
         MySequence instance = new MySequence();
         int expResult = 0;
         int result = instance.getBegin();
@@ -80,7 +81,7 @@ public class MySequenceTest {
      */
     @Test
     public void testSetBegin() {
-        System.out.println("setBegin");
+        Logger.getLogger(MySequenceTest.class).info("setBegin");
         int begin = 42;
         MySequence instance = new MySequence();
         instance.setBegin(begin);
@@ -92,7 +93,7 @@ public class MySequenceTest {
      */
     @Test
     public void testGetDataSize() {
-        System.out.println("getDataSize");
+        Logger.getLogger(MySequenceTest.class).info("getDataSize");
         MySequence instance = new MySequence();
         int expResult = 0;
         int result = instance.getDataSize();
@@ -104,7 +105,7 @@ public class MySequenceTest {
      */
     @Test
     public void testSetDataSize() {
-        System.out.println("setDataSize");
+        Logger.getLogger(MySequenceTest.class).info("setDataSize");
         int dataSize = 42;
         MySequence instance = new MySequence();
         instance.setDataSize(dataSize);
@@ -116,7 +117,7 @@ public class MySequenceTest {
      */
     @Test
     public void testGetEnd() {
-        System.out.println("getEnd");
+        Logger.getLogger(MySequenceTest.class).info("getEnd");
         MySequence instance = new MySequence();
         int expResult = 0;
         int result = instance.getEnd();
@@ -128,7 +129,7 @@ public class MySequenceTest {
      */
     @Test
     public void testSetEnd() {
-        System.out.println("setEnd");
+        Logger.getLogger(MySequenceTest.class).info("setEnd");
         int end = 42;
         MySequence instance = new MySequence();
         instance.setEnd(end);
@@ -140,7 +141,7 @@ public class MySequenceTest {
      */
     @Test
     public void testGetProcessingTime() {
-        System.out.println("getProcessingTime");
+        Logger.getLogger(MySequenceTest.class).info("getProcessingTime");
         MySequence instance = new MySequence();
         int expResult = 0;
         int result = instance.getProcessingTime();
@@ -152,7 +153,7 @@ public class MySequenceTest {
      */
     @Test
     public void testSetProcessingTime() {
-        System.out.println("setProcessingTime");
+        Logger.getLogger(MySequenceTest.class).info("setProcessingTime");
         int processingTime = 42;
         MySequence instance = new MySequence();
         instance.setProcessingTime(processingTime);
@@ -164,7 +165,7 @@ public class MySequenceTest {
      */
     @Test
     public void testGetRequestPerSecond() {
-        System.out.println("getRequestPerSecond");
+        Logger.getLogger(MySequenceTest.class).info("getRequestPerSecond");
         MySequence instance = new MySequence();
         int expResult = 0;
         int result = instance.getRequestPerSecond();
@@ -176,7 +177,7 @@ public class MySequenceTest {
      */
     @Test
     public void testSetRequestPerSecond() {
-        System.out.println("setRequestPerSecond");
+        Logger.getLogger(MySequenceTest.class).info("setRequestPerSecond");
         int requestPerSecond = 42;
         MySequence instance = new MySequence();
         instance.setRequestPerSecond(requestPerSecond);
@@ -188,7 +189,7 @@ public class MySequenceTest {
      */
     @Test
     public void testGetConsumer() {
-        System.out.println("getConsumer");
+        Logger.getLogger(MySequenceTest.class).info("getConsumer");
         MySequence instance = new MySequence();
         Consumer expResult = null;
         Consumer result = instance.getConsumer();
@@ -200,7 +201,7 @@ public class MySequenceTest {
      */
     @Test
     public void testGetProvider() {
-        System.out.println("getProvider");
+        Logger.getLogger(MySequenceTest.class).info("getProvider");
         MySequence instance = new MySequence();
         Provider expResult = null;
         Provider result = instance.getProvider();
@@ -212,7 +213,7 @@ public class MySequenceTest {
      */
     @Test
     public void testGetResults() {
-        System.out.println("getResults");
+        Logger.getLogger(MySequenceTest.class).info("getResults");
         MySequence instance = new MySequence();
         Collection<MyResult> expResult = null;
         Collection<MyResult> result = instance.getResults();
@@ -224,7 +225,7 @@ public class MySequenceTest {
      */
     @Test
     public void testSetConsumer() {
-        System.out.println("setConsumer");
+        Logger.getLogger(MySequenceTest.class).info("setConsumer");
         Consumer consumer = new Consumer();
         MySequence instance = new MySequence();
         instance.setConsumer(consumer);
@@ -236,7 +237,7 @@ public class MySequenceTest {
      */
     @Test
     public void testSetProvider() {
-        System.out.println("setProvider");
+        Logger.getLogger(MySequenceTest.class).info("setProvider");
         Provider provider = new Provider();
         MySequence instance = new MySequence();
         instance.setProvider(provider);
@@ -248,8 +249,8 @@ public class MySequenceTest {
      */
     @Test
     public void testSetResults() {
-        System.out.println("setResults");
-        ArrayList<MyResult> results = new ArrayList<MyResult>();
+        Logger.getLogger(MySequenceTest.class).info("setResults");
+        ArrayList<MyResult> results = new ArrayList<>();
         results.add(new MyResult());
         MySequence instance = new MySequence();
         instance.setResults(results);
@@ -261,12 +262,12 @@ public class MySequenceTest {
      */
     @Test
     public void testEquals() {
-        System.out.println("equals");        
+        Logger.getLogger(MySequenceTest.class).info("equals");
         MySequence other = new MySequence();
         other.setDataSize(5666);
         MySequence instance = new MySequence();
         assertEquals(true, instance.equals(instance));
         assertEquals(false, instance.equals(other));
     }
-    
+
 }

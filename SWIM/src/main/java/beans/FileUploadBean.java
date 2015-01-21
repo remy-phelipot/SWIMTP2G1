@@ -5,6 +5,7 @@ package beans;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import com.sun.istack.internal.logging.Logger;
 import controller.MainController;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -70,10 +71,10 @@ public class FileUploadBean {
 
     public void uploadFile() throws IOException {
         String fileName = getFileName(part);
-        System.out.println("filename: " + fileName);
+        Logger.getLogger(FileUploadBean.class).info("filename: " + fileName);
         // Download the file into the tmp folder of your computer
         String basePath = System.getProperty("java.io.tmpdir") + File.separator;
-        System.out.println("base path: " + basePath);
+        Logger.getLogger(FileUploadBean.class).info("base path: " + basePath);
         File outputFilePath = new File(basePath + fileName);
 
         InputStream inputStream = null;
@@ -83,24 +84,21 @@ public class FileUploadBean {
             inputStream = part.getInputStream();
             outputStream = new FileOutputStream(outputFilePath);
 
-            int read = 0;
+            int read;
             final byte[] bytes = new byte[1024];
             while ((read = inputStream.read(bytes)) != -1) {
                 outputStream.write(bytes, 0, read);
             }
             statusMessage = "File upload successful!";
-            
+
             /* TODO: parser le fichier et inserer les donnees dans la database */
             MainController mainController = new MainController();
-            try{
-                System.out.println(outputFilePath);
-                mainController.addScenario(outputFilePath,name,desc);
-            } catch(Exception e){
-                e.printStackTrace();
+            try {
+                mainController.addScenario(outputFilePath, name, desc);
+            } catch (Exception e) {
                 statusMessage = e.getMessage();
             }
         } catch (IOException ex) {
-            ex.printStackTrace();
             statusMessage = "File upload failed!" + ex.toString();
         } finally {
             if (outputStream != null) {
@@ -125,19 +123,19 @@ public class FileUploadBean {
         //ArrayList<FacesMessage> msgs = new ArrayList<>();
         Part file = (Part) value;
         String contentType = "text/xml";
-        System.out.println("content type: " + file.getContentType());
-        System.out.println("size: " + file.getSize());
-        
+        Logger.getLogger(FileUploadBean.class).info("content type: " + file.getContentType());
+        Logger.getLogger(FileUploadBean.class).info("size: " + file.getSize());
+
         // Pour l'instant, pas de contrainte de taille
         /*if (file.getSize() > 1024) {
-            msgs.add(new FacesMessage("The selected file is too big"));
-        }*/
+         msgs.add(new FacesMessage("The selected file is too big"));
+         }*/
         if (!contentType.equals(file.getContentType())) {
             statusMessage = "The selected file is not a XML file.";
             //msgs.add(new FacesMessage("The selected file is not a XML file."));
         }
         /*if (!msgs.isEmpty()) {
-            throw new ValidatorException(msgs);
-        }*/
+         throw new ValidatorException(msgs);
+         }*/
     }
 }

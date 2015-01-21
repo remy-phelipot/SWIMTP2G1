@@ -5,6 +5,7 @@
  */
 package database;
 
+import com.sun.istack.internal.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,22 +18,22 @@ import static org.junit.Assert.*;
  * @author ender
  */
 public class ProviderTest {
-    
+
     public ProviderTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -42,7 +43,7 @@ public class ProviderTest {
      */
     @Test
     public void testGetId() {
-        System.out.println("getId");
+        Logger.getLogger(ProviderTest.class).info("getId");
         Provider instance = new Provider();
         long expResult = 0L;
         long result = instance.getId();
@@ -54,7 +55,7 @@ public class ProviderTest {
      */
     @Test
     public void testSetId() {
-        System.out.println("setId");
+        Logger.getLogger(ProviderTest.class).info("setId");
         long id = 42L;
         Provider instance = new Provider();
         instance.setId(id);
@@ -66,7 +67,7 @@ public class ProviderTest {
      */
     @Test
     public void testGetName() {
-        System.out.println("getName");
+        Logger.getLogger(ProviderTest.class).info("getName");
         Provider instance = new Provider();
         String expResult = null;
         String result = instance.getName();
@@ -78,7 +79,7 @@ public class ProviderTest {
      */
     @Test
     public void testSetName() {
-        System.out.println("setName");
+        Logger.getLogger(ProviderTest.class).info("setName");
         String name = "dsqdqs";
         Provider instance = new Provider();
         instance.setName(name);
@@ -90,12 +91,12 @@ public class ProviderTest {
      */
     @Test
     public void testEquals() {
-        System.out.println("equals");
+        Logger.getLogger(ProviderTest.class).info("equals");
         Provider other = new Provider();
         other.setName("sjhgjhdq");
         Provider instance = new Provider();
         assertEquals(true, instance.equals(instance));
         assertEquals(false, instance.equals(other));
     }
-    
+
 }

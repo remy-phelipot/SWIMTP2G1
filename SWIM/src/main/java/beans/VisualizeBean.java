@@ -6,6 +6,7 @@
 
 package beans;
 
+import com.sun.istack.internal.logging.Logger;
 import database.MySequence;
 import database.MyResult;
 import database.Scenario;
@@ -55,7 +56,7 @@ public class VisualizeBean {
    
     public void setSelectedScenario(Scenario selectedScenario) {
         this.selectedScenario = selectedScenario;
-        System.out.println(this.selectedScenario.getName());
+        Logger.getLogger(VisualizeBean.class).info(this.selectedScenario.getName());
     }
     
     public List<Scenario> getListScenario(){

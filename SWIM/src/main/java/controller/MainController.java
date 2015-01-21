@@ -23,15 +23,29 @@ import xmlParsing.XmlToDatabase;
  * @author Rémy
  */
 public class MainController {
-
+    /**
+     * 
+     */
     private final Database database;
+    /**
+     * 
+     */
     private final WebCallsExample webCalls;
 
+    /**
+     * 
+     */
     public MainController() {
         database = new Database();
         webCalls = new WebCallsExample();
     }
 
+    /**
+     * 
+     * @param xmlFile
+     * @param name
+     * @param description 
+     */
     public void addScenario(File xmlFile, String name, String description) {
         // Get the saved providers and consumers
         database.open();
@@ -91,11 +105,17 @@ public class MainController {
 
     }
 
+    /**
+     * 
+     * @param scenario 
+     */
     public void onEndOfScenario(Scenario scenario) {
+        /* Prepare the list to be used for the database storing */
         Logger.getLogger("MainController").info("onEndOfScenario");
         List<Float> scenarioResults = webCalls.getResult();
         List<MyResult> results = new ArrayList<>();
 
+        /* Iterate through the list of result returned by the ESB */
         for (Float currentResult : scenarioResults) {
             MyResult toAdd = new MyResult();
             toAdd.setAverageresponseTime(currentResult);
@@ -109,6 +129,10 @@ public class MainController {
         database.close();
     }
 
+    /**
+     * 
+     * @param scenario 
+     */
     public void launchScenario(Scenario scenario) {
         Logger.getLogger(MainController.class.getName()).log(Level.INFO, null, "parametrage des webservices");
         //ArrayList<ConsumerWs> consumersToStart = new ArrayList<ConsumerWs>();

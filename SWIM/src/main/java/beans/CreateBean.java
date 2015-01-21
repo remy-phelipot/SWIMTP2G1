@@ -23,7 +23,7 @@ import manager.Database;
 @RequestScoped
 public class CreateBean {
 
-    private ScenarioBean Sb = new ScenarioBean();
+    private ScenarioBean scenarioBean = new ScenarioBean();
     private Scenario scenario = new Scenario();
     private Consumer selectedConsumer;
     private Provider selectedProvider;
@@ -39,7 +39,7 @@ public class CreateBean {
     private List<MySequence> listSequence;
     private List<Consumer> listConsumer;
     private List<Provider> listProvider;
-    private int begin, end, RpS, processTime, DataS;
+    private int begin, end, requestPerSecond, processTime, dataSize;
 
     public Scenario getScenario() {
         return scenario;
@@ -178,11 +178,11 @@ public class CreateBean {
     }
 
     public int getRpS() {
-        return RpS;
+        return requestPerSecond;
     }
 
     public void setRpS(int RpS) {
-        this.RpS = RpS;
+        this.requestPerSecond = RpS;
     }
 
     public int getProcessTime() {
@@ -194,20 +194,20 @@ public class CreateBean {
     }
 
     public int getDataS() {
-        return DataS;
+        return dataSize;
     }
 
     public void setDataS(int DataS) {
-        this.DataS = DataS;
+        this.dataSize = DataS;
     }
 
     public ScenarioBean getSb() {
 
-        return Sb;
+        return scenarioBean;
     }
 
     public void setSb(ScenarioBean Sb) {
-        this.Sb = Sb;
+        this.scenarioBean = Sb;
     }
 
     public List<MySequence> getListSequence() {
@@ -242,8 +242,8 @@ public class CreateBean {
     }
 
     public void print() {
-        Logger.getLogger(CreateBean.class.getName()).info(Sb.getName());
-        Logger.getLogger(CreateBean.class.getName()).info(Sb.getDescription());
+        Logger.getLogger(CreateBean.class.getName()).info(scenarioBean.getName());
+        Logger.getLogger(CreateBean.class.getName()).info(scenarioBean.getDescription());
     }
 
     public void addConsumer() {
@@ -266,11 +266,11 @@ public class CreateBean {
         SequenceBean seq = new SequenceBean();
         seq.setBegin(begin);
         seq.setConsumer(selectedConsumer);
-        seq.setDataSize(DataS);
+        seq.setDataSize(dataSize);
         seq.setEnd(end);
         seq.setProcessingTime(processTime);
         seq.setProvider(selectedProvider);
-        seq.setRequestPerSecond(RpS);
+        seq.setRequestPerSecond(requestPerSecond);
         db.createSequence(seq);
         db.close();
     }

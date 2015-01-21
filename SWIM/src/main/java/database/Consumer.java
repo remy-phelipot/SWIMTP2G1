@@ -29,34 +29,66 @@ import javax.persistence.NamedQuery;
                 query="DELETE FROM Consumer c ")
 })
 public class Consumer implements Serializable {
- 
+ /**
+  * field id
+  */
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
 
+  /**
+   * field name
+   */
   private String name;
 
+  /**
+   * field version
+   */
   private static final long serialVersionUID = 1L;
 
+  /**
+   * constructor
+   */
   public Consumer() {
   }
 
+  /**
+   * get id
+   * @return 
+   */
   public long getId() {
     return this.id;
   }
 
+  /**
+   * set id
+   * @param id 
+   */
   public void setId(long id) {
     this.id = id;
   }
 
+  /**
+   * get name
+   * @return 
+   */
   public String getName() {
     return this.name;
   }
 
+  /**
+   * set the name
+   * @param name 
+   */
   public void setName(String name) {
     this.name = name;
   }
 
+  /**
+   * test equality
+   * @param other
+   * @return 
+   */
     @Override
     public boolean equals(Object other){
         if(other == null)
@@ -74,6 +106,10 @@ public class Consumer implements Serializable {
         }
     }
 
+    /** hash code
+     * 
+     * @return 
+     */
     @Override
     public int hashCode() {
         int hash = 3;

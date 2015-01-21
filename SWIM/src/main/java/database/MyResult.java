@@ -29,55 +29,109 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name="results")
 public class MyResult implements Serializable {
+    /**
+     * field id
+     */
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
 
+  /**
+   * field response time
+   */
   @XmlElement(name="averageresponseTime")
   private float averageresponseTime;
+  /**
+   * field msgcount
+   */
   @XmlElement(name="msgCount")
+  /**
+   * field msg lost
+   */
   private int msgCount;
   @XmlElement(name="msgLost")
   private int msgLost;
 
-
+/**
+ * field version
+ */
   private static final long serialVersionUID = 1L;
 
+  /**
+   * constructor
+   */
   public MyResult() {
   }
 
+  /**
+   * get id
+   * @return 
+   */
   public long getId() {
     return this.id;
   }
 
+  /**
+   * set id
+   * @param id 
+   */
   public void setId(long id) {
     this.id = id;
   }
 
+  /**
+   * get the response time
+   * @return 
+   */
   public float getAverageresponseTime() {
     return this.averageresponseTime;
   }
 
+  /**
+   * set the response time
+   * @param averageresponseTime 
+   */
   public void setAverageresponseTime(float averageresponseTime) {
     this.averageresponseTime = averageresponseTime;
   }
 
+  /**
+   * get the msg count
+   * @return 
+   */
   public int getMsgCount() {
     return this.msgCount;
   }
 
+  /**
+   * set the msg count
+   * @param msgCount 
+   */
   public void setMsgCount(int msgCount) {
     this.msgCount = msgCount;
   }
 
+  /**
+   * get the msg lost
+   * @return 
+   */
   public int getMsgLost() {
     return this.msgLost;
   }
 
+  /**
+   * set the msg lost
+   * @param msgLost 
+   */
   public void setMsgLost(int msgLost) {
     this.msgLost = msgLost;
   }
 
+  /**
+   * test equality
+   * @param obj
+   * @return 
+   */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -90,6 +144,10 @@ public class MyResult implements Serializable {
         return this.id == other.getId();
     }
 
+    /**
+     * hash code
+     * @return 
+     */
     @Override
     public int hashCode() {
         int hash = 7;

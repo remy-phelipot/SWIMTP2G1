@@ -41,6 +41,9 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class XmlProviders {
 
+    /**
+     * field provider
+     */
     @XmlElement(nillable = true)
     protected List<XmlProvider> provider;
 

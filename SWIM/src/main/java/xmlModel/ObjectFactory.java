@@ -31,6 +31,9 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    /**
+     * field qname
+     */
     private final static QName _Params_QNAME = new QName("", "params");
 
     /**

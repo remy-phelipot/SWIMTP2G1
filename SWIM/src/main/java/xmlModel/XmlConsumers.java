@@ -41,6 +41,9 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class XmlConsumers {
 
+    /**
+     * field consumer
+     */
     @XmlElement(nillable = true)
     protected List<XmlConsumer> consumer;
 

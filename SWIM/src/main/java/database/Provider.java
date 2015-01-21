@@ -30,33 +30,66 @@ import javax.persistence.NamedQuery;
                 query="DELETE FROM Provider p")
 })
 public class Provider implements Serializable {
+    /**
+     * field id
+     */
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
 
+  /**
+   * field name
+   */
   private String name;
 
+  /**
+   * field version
+   */
   private static final long serialVersionUID = 1L;
 
+  /**
+   * constructor
+   */
   public Provider() {
   }
 
+  /**
+   * get id
+   * @return 
+   */
   public long getId() {
     return this.id;
   }
 
+  /**
+   * set id
+   * @param id 
+   */
   public void setId(long id) {
     this.id = id;
   }
 
+  /**
+   * get name
+   * @return 
+   */
   public String getName() {
     return this.name;
   }
 
+  /**
+   * set nalme
+   * @param name 
+   */
   public void setName(String name) {
     this.name = name;
   }
 
+  /**
+   * test equality
+   * @param other
+   * @return 
+   */
     @Override
     public boolean equals(Object other){
         if(other == null)
@@ -74,6 +107,10 @@ public class Provider implements Serializable {
         }
     }
 
+    /**
+     * hash code
+     * @return 
+     */
     @Override
     public int hashCode() {
         int hash = 3;

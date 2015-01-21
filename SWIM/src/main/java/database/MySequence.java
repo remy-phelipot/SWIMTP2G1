@@ -36,102 +36,212 @@ import javax.persistence.OneToMany;
                 query="SELECT s FROM MySequence s WHERE  s.end = :end AND s.begin = :begin AND s.consumer = :consumer AND s.dataSize = :dataSize AND s.processingTime = :processingTime AND s.provider = :provider AND s.requestPerSecond = :requestPerSecond  ")
 })
 public class MySequence implements Serializable {
+    /**
+     * field id
+     */
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
+  /**
+   * field begin
+   */
   private int begin;
+  /**
+   * field data size
+   */
   private int dataSize;
+  /**
+   * field end
+   */
   private int end;
+  /**
+   * field processing time
+   */
   private int processingTime;
+  /**
+   * field request per second
+   */
   private int requestPerSecond;
 
+  /**
+   * field consumer
+   */
   @ManyToOne
   private Consumer consumer;
 
+  /**
+   * field provider
+   */
   @ManyToOne
   private Provider provider;
 
 
+  /**
+   * field results
+   */
   @OneToMany
   private Collection<MyResult> results;
 
+  /**
+   * field version
+   */
   private static final long serialVersionUID = 1L;
 
+  /**
+   * constructor
+   */
   public MySequence() {
   }
 
+  /**
+   * get id
+   * @return 
+   */
   public long getId() {
     return this.id;
   }
 
+  /**
+   * set id
+   * @param id 
+   */
   public void setId(long id) {
     this.id = id;
   }
 
+  /**
+   * get begin
+   * @return 
+   */
   public int getBegin() {
     return this.begin;
   }
 
+  /**
+   * set begin
+   * @param begin 
+   */
   public void setBegin(int begin) {
     this.begin = begin;
   }
 
+  /**
+   * get data size
+   * @return 
+   */
   public int getDataSize() {
     return this.dataSize;
   }
 
+  /**
+   * set data size
+   * @param dataSize 
+   */
   public void setDataSize(int dataSize) {
     this.dataSize = dataSize;
   }
 
+  /**
+   * get end
+   * @return 
+   */
   public int getEnd() {
     return this.end;
   }
 
+  /**
+   * set end
+   * @param end 
+   */
   public void setEnd(int end) {
     this.end = end;
   }
 
+  /**
+   * get processing time
+   * @return 
+   */
   public int getProcessingTime() {
     return this.processingTime;
   }
 
+  /**
+   * set processing time
+   * @param processingTime 
+   */
   public void setProcessingTime(int processingTime) {
     this.processingTime = processingTime;
   }
 
+  /**
+   * get request
+   * @return 
+   */
   public int getRequestPerSecond() {
     return this.requestPerSecond;
   }
 
+  /**
+   * set request
+   * @param requestPerSecond 
+   */
   public void setRequestPerSecond(int requestPerSecond) {
     this.requestPerSecond = requestPerSecond;
   }
 
+  /**
+   * get consumer
+   * @return 
+   */
     public Consumer getConsumer() {
         return consumer;
     }
 
+    /**
+     * get provider
+     * @return 
+     */
     public Provider getProvider() {
         return provider;
     }
 
+    /**
+     * get results
+     * @return 
+     */
     public Collection<MyResult> getResults() {
         return results;
     }
 
+    /**
+     * set consumer
+     * @param consumer 
+     */
     public void setConsumer(Consumer consumer) {
         this.consumer = consumer;
     }
 
+    /**
+     * set provider
+     * @param provider 
+     */
     public void setProvider(Provider provider) {
         this.provider = provider;
     }
 
+    /**
+     * set results
+     * @param results 
+     */
     public void setResults(List<MyResult> results) {
         this.results = results;
     }
     
+    /**
+     * test equality
+     * @param other
+     * @return 
+     */
    @Override
     public boolean equals(Object other){
         if(other == null){ 
@@ -170,6 +280,10 @@ public class MySequence implements Serializable {
                 && otherC.getRequestPerSecond() == this.requestPerSecond;
     }
 
+    /**
+     * hash code
+     * @return 
+     */
     @Override
     public int hashCode() {
         int hash = 3;

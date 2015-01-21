@@ -242,10 +242,14 @@ public class CreateBean {
      * @return 
      */
     public List<Provider> getListProvider() {
+        //create an access to the db and open it
         Database db = new Database();
         db.open();
+        //we get the list of all provider in the db
         List<Provider> ret = db.getProviders();
+        //we close the access
         db.close();
+        //return the list
         return ret;
     }
 
@@ -254,10 +258,14 @@ public class CreateBean {
      * @param listProvider 
      */
     public void setListProvider(List<Provider> listProvider) {
+        //we create and open an access to the db
         Database db = new Database();
         db.open();
+        //we get all the providers in the db
         List<Provider> ret = db.getProviders();
+        //we close the access to the db
         db.close();
+        //we set the list of provider to the one of the database
         this.listProvider = ret;
     }
 
@@ -282,10 +290,14 @@ public class CreateBean {
      * @return 
      */
     public List<Consumer> getListConsumer() {
+        //we access the database
         Database db = new Database();
         db.open();
+        //we get all the consumers
         List<Consumer> ret = db.getConsumers();
+        //we close the access to the db
         db.close();
+        //we return the list of consumers
         return ret;
     }
 
@@ -294,10 +306,14 @@ public class CreateBean {
      * @param listConsumer 
      */
     public void setListConsumer(List<Consumer> listConsumer) {
+        //we create and open an access to the database
         Database db = new Database();
         db.open();
+        //we get all the consumers in the database
         List<Consumer> ret = db.getConsumers();
+        //we close the access
         db.close();
+        //we set the list of consumer to the one of the db
         this.listConsumer = ret;
     }
 
@@ -419,10 +435,14 @@ public class CreateBean {
      * @return 
      */
     public List<MySequence> getListSequence() {
+        //we create and open an access to the db
         Database db = new Database();
         db.open();
+        //we get all the sequences in the db
         List<MySequence> ret = db.getSequences();
+        //we close the access
         db.close();
+        //we return the list
         return ret;
     }
 
@@ -431,10 +451,14 @@ public class CreateBean {
      * @param listSequence 
      */
     public void setListSequence(List<MySequence> listSequence) {
+        //we create and open an access to the db
         Database db = new Database();
         db.open();
+        //we get all the sequences
         List<MySequence> ret = db.getSequences();
+        //we close the access
         db.close();
+        //we set the list of sequence to the one of the database
         this.listSequence = ret;
     }
 
@@ -467,9 +491,12 @@ public class CreateBean {
      * add a consumer
      */
     public void addConsumer() {
+        //create an acces to the database and open it 
         Database db = new Database();
         db.open();
+        //add the consumer to the db using its name
         db.addConsumer(consumerName);
+        //cloe the access
         db.close();
     }
 
@@ -477,9 +504,12 @@ public class CreateBean {
      * add a provider
      */
     public void addProvider() {
+         //create an acces to the database and open it 
         Database db = new Database();
         db.open();
+        //add the provider to the db using its name
         db.addProvider(providerName);
+        //close the access
         db.close();
     }
 
@@ -487,8 +517,10 @@ public class CreateBean {
      * add a sequence
      */
     public void addSequence() {
+        //create an acces to the database and open it 
         Database db = new Database();
         db.open();
+        //we create the sequence bean and set its attributes
         SequenceBean seq = new SequenceBean();
         seq.setBegin(begin);
         seq.setConsumer(selectedConsumer);
@@ -497,7 +529,9 @@ public class CreateBean {
         seq.setProcessingTime(processTime);
         seq.setProvider(selectedProvider);
         seq.setRequestPerSecond(requestPerSecond);
+        //we then add it to the db
         db.createSequence(seq);
+        //we then close the access
         db.close();
     }
 
@@ -505,9 +539,14 @@ public class CreateBean {
      * delete a consumer
      */
     public void deleteConsumer() {
-        Database db = new Database();
+        //we create an acces
+       
+        Database db = new Database();       
+        //open it
         db.open();
-        db.deleteConsumer(toDeleteConsumer);
+        // delete the object
+        db.deleteConsumer(toDeleteConsumer); 
+        //close the access to the db
         db.close();
     }
 
@@ -515,9 +554,14 @@ public class CreateBean {
      * delete a provider
      */
     public void deleteProvider() {
-        Database db = new Database();
-        db.open();
-        db.deleteProvider(toDeleteProvider);
+        //we create an acces
+      
+        Database db = new Database(); 
+        //open it
+        db.open();  
+        // delete the object
+        db.deleteProvider(toDeleteProvider); 
+        //close the access to the db
         db.close();
     }
 
@@ -525,9 +569,14 @@ public class CreateBean {
      * delete a sequence
      */
     public void deleteSequence() {
+        //we create an acces
+       
         Database db = new Database();
-        db.open();
+        //open it
+         db.open();
+        // delete the object
         db.deleteSequence(toDeleteSequence);
+        //close the access to the db 
         db.close();
     }
 
@@ -535,9 +584,15 @@ public class CreateBean {
      * delete the database
      */
     public void delete() {
+        //we create an acces
+        
         Database db = new Database();
-        db.open();
+        //open it
+       db.open();
+         // delete the object
+        
         db.deleteAllSequence();
+        //close the access to the db
         db.close();
     }
 

@@ -37,12 +37,14 @@ public class ScenarioConverter implements Converter {
      */
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        
+        //we create and open an access to the dtabase
         Database db = new Database();
         db.open();
+        //we get the scenario using its name
         Scenario sb = db.getScenarioByName(value.split(" ")[0]);
+        //we close the db acces
         db.close();
-        
+        //we return the scenario
         return (Object)sb;
     }
 
@@ -55,7 +57,9 @@ public class ScenarioConverter implements Converter {
      */
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
+        //cast the object to a scenrio
         Scenario sb = (Scenario)value;
+        //we return its name and description
         return sb.getName() + " - " + sb.getDescription();
     }
     

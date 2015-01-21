@@ -38,10 +38,13 @@ public class ResultConverter implements Converter {
      */
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
+        //we create and open an acce to the database
         Database db = new Database();
         db.open();
+        //we get the result using its Id
         MyResult sb = db.getResultById(Long.parseLong(value));
         db.close();
+        //we return the result
         return (Object)sb;
     }
 
@@ -54,7 +57,9 @@ public class ResultConverter implements Converter {
      */
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
+        //cast of the object to a result
         MyResult sb = (MyResult)value;
+        //return the id of the result
         return Long.toString(sb.getId());
     }
     

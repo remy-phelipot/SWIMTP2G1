@@ -38,7 +38,9 @@ public class SequenceConverter implements Converter {
      */
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
+        //we parse the value string
         MySequence sb;
+        //we get all the attributes of the sequence
         String begin = value.split(" ")[0];
         String data = value.split(" ")[1];
         String end = value.split(" ")[2];
@@ -51,13 +53,17 @@ public class SequenceConverter implements Converter {
         int daS = Integer.parseInt(data);
         int prT = Integer.parseInt(pr);
         int RpS = Integer.parseInt(rps);
+        //we creat and open an acces to the database
         Database db = new Database();
         db.open();
+        //we get the consumer and the provider using their name
         Consumer cons = db.getConsumerByName(cName);
         Provider prov = db.getProviderByName(pName);
-
+        //we get the sequence from the database
         sb = db.getSequenceByParam(beg, daS, en, prT, RpS, prov, cons);
+        //close the access
         db.close();
+        //return the sequence
         return (Object) sb;
     }
 
@@ -70,7 +76,9 @@ public class SequenceConverter implements Converter {
      */
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
+        //cast from an object to a sequence
         MySequence sb = (MySequence) value;
+        //we then return an unique string describing the sequence
         return sb.getBegin() + " " + sb.getDataSize() + " " + sb.getEnd() + " " + sb.getProcessingTime() + " " + sb.getRequestPerSecond() + " " + sb.getConsumer().getName() + " " + sb.getProvider().getName();
     }
 }

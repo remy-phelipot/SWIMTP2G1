@@ -37,10 +37,14 @@ public class ConsumerConverter implements Converter {
      */
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
+        //we open an access to the db
         Database db = new Database();
         db.open();
+        //we get the consumer in the db using its name
         Consumer sb = db.getConsumerByName(value);
+        //we close the access
         db.close();
+        //we return the consumer
         return (Object)sb;
     }
 
@@ -53,7 +57,9 @@ public class ConsumerConverter implements Converter {
      */
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
+        //cast from object to consumer
         Consumer sb = (Consumer)value;
+        //return the name of the consumer
         return sb.getName();
     }
     

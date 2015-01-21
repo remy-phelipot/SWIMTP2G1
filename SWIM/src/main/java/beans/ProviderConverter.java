@@ -38,10 +38,14 @@ public class ProviderConverter implements Converter {
      */
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
+        //create an access to the db and open it
         Database db = new Database();
         db.open();
+        //we get the provider using its name
         Provider sb = db.getProviderByName(value);
+        //we close the access
         db.close();
+        //we return the new provider
         return (Object)sb;
     }
 
@@ -54,6 +58,7 @@ public class ProviderConverter implements Converter {
      */
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
+        //we get the provider and return its name
         Provider sb = (Provider)value;
         return sb.getName();
     }

@@ -70,9 +70,13 @@ public class BackingBean {
      * @return 
      */
     public List<Scenario> getListScenario() {
+        // create a new database access
         Database db = new Database();
+        // open it
         db.open();
+        //we get all the scenrios in the db
         List<Scenario> ret = db.getScenarios();
+        //close the db access
         db.close();
         return ret;
         
@@ -228,11 +232,14 @@ public class BackingBean {
      * add a sequence
      */
     public void addSelectedSequence() {
-        
+        //if the list is not set
         if (this.listSelectedSequence == null) {
+            // we create it 
             this.listSelectedSequence = new ArrayList<>();
         }
+        // if the selected sequence isnot in the list
         if (!this.listSelectedSequence.contains(selectedSequence)) {
+            //we add it to the list
             this.listSelectedSequence.add(selectedSequence);
         }
         
@@ -242,10 +249,13 @@ public class BackingBean {
      * remove a sequence
      */
     public void removeSelectedSequence() {
+         //if the list is not set
         if (this.listSelectedSequence == null) {
+            // we create it 
+
             this.listSelectedSequence = new ArrayList<>();
         }
-        
+        //we remove the sequence to remove
         this.listSelectedSequence.remove(toRemoveSequence);
     }
 
@@ -256,39 +266,61 @@ public class BackingBean {
     }
     
     public void createScenario() {
+        //create a new database access
         Database db = new Database();
+        //open it
         db.open();
+        //we create a scenarioBean
         ScenarioBean Sb = new ScenarioBean();
+        //we set its description and name
         Sb.setDescription(description);
         Sb.setName(name);
+        //if the scenario is not in the db
         if (db.getScenarioByName(name) == null) {
+            //we add it to the db
             db.createScenario(Sb);
         }
+        //we update the scenario in the db with the list of sequence
         db.updateScenario(name, listSelectedSequence);
+        //we close the access
         db.close();
     }
     
     /**
      * add a result
+     * deprecated
      */
     public void addResult() {
+        // THIS FONCTION IS NOT TO BE  USED ANYMORE
+        // TEST FUNCTION
+        //if the scenario has not any result
         if (this.selectedScenario.getResults() == null) {
+            //we create the list
             this.selectedScenario.setResults(new ArrayList<MyResult>());
             
         }
+        //we create a new list of result
         List<MyResult> alr;
+        //the list is set to the current scenario's list
         alr = this.selectedScenario.getResults();
+        //we create some new random results
         MyResult tmp = new MyResult();
         tmp.setAverageresponseTime((int) (Math.random() * 1000));
         tmp.setMsgCount(500 + (int) (Math.random() * 1000));
         tmp.setMsgLost((int) (Math.random() * 500));
+        //we create a new db access
         Database db = new Database();
+        //we open it
         db.open();
+        //we then add the result to the db
         db.addResult(tmp);
+        //we add the result to the list
         alr.add(tmp);
+        //we update the scenario with the new list of result
         db.updateScenarioResult(this.selectedScenario.getName(), alr);
+        //we close the access to the db
         db.close();
-        
+        //we save the list in the bean's scenario
         this.selectedScenario.setResults(alr);
     }
     
@@ -296,14 +328,22 @@ public class BackingBean {
      * delete a result
      */
     public void deleteResult() {
+        //access to the db
         Database db = new Database();
+        //we open the access
         db.open();
+        //we get the result using its id
         MyResult rt = db.getResultById(selectedResult.getId());
+        //we get the scenario by its name
         Scenario sce = db.getScenarioByName(selectedScenario.getName());
+        //we remove the result from the scenario
         sce.getResults().remove(rt);
+        //we save the scenario and its results in the bean
         this.selectedScenario = sce;
         this.results = sce.getResults();
+        //we delete the result from the db
         db.deleteResult(rt.getId());
+        //we cloe the access
         db.close();
         
     }

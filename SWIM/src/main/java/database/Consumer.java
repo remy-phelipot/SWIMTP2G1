@@ -1,18 +1,13 @@
 package database;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 
 /**
  * JPA Entity related to the element Consumer
@@ -74,8 +69,15 @@ public class Consumer implements Serializable {
             if((otherC.getName() != null) && (this.name != null)){
                 return otherC.getName().equalsIgnoreCase(this.getName());
             } else {
-                return otherC.getName() == this.name;
+                return otherC.getName() == null && this.name == null;
             }
         }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 17 * hash + Objects.hashCode(this.name);
+        return hash;
     }
 }

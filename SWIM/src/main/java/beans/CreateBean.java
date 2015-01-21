@@ -390,7 +390,7 @@ public class CreateBean {
 
     /**
      * set the data size
-     * @param DataS 
+     * @param dataS 
      */
     public void setDataS(int dataS) {
         this.DataS = dataS;
@@ -407,7 +407,7 @@ public class CreateBean {
 
     /**
      * set the sb
-     * @param Sb 
+     * @param sb 
      */
     public void setSb(ScenarioBean sb) {
         this.Sb = sb;

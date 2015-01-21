@@ -23,28 +23,87 @@ import manager.Database;
 @RequestScoped
 public class CreateBean {
 
+    /**
+     * field scenario bean
+     */
     private ScenarioBean Sb = new ScenarioBean();
+    /**
+     * field scenario
+     */
     private Scenario scenario = new Scenario();
+    /**
+     * field consumer
+     */
     private Consumer selectedConsumer;
+    /**
+     * field provider
+     */
     private Provider selectedProvider;
+    /**
+     * field sequence
+     */
     private MySequence selectedSequence;
+    /**
+     * field sequence to remove
+     */
     private MySequence toRemoveSequence;
+    /**
+     * field consumer to delete
+     */
     private Consumer toDeleteConsumer;
+    /**
+     * field provider to delete
+     */
     private Provider toDeleteProvider;
+    /**
+     * field sequence to delete
+     */
     private MySequence toDeleteSequence;
+    /**
+     * field provider name
+     */
     private String providerName;
+    /**
+     * field consumer name
+     */
     private String consumerName;
+    /**
+     * field scenario created
+     */
     private Scenario created = new Scenario();
+    /**
+     * field list of sequence
+     */
     private List<MySequence> listSelectedSequence;
+    /**
+     * field list of sequence
+     */
     private List<MySequence> listSequence;
+    /**
+     * field list of consumer
+     */
     private List<Consumer> listConsumer;
+    /**
+     * field list of provider
+     */
     private List<Provider> listProvider;
+    /**
+     * fields data of a sequence
+     */
     private int begin, end, RpS, processTime, DataS;
 
+    /**
+     * get a scenario
+     * @return 
+     */
     public Scenario getScenario() {
         return scenario;
     }
 
+    /**
+     * field
+     * @param scenario 
+     */
     public void setScenario(Scenario scenario) {
         this.scenario = scenario;
     }

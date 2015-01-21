@@ -27,7 +27,14 @@ public class ConsumerConverter implements Converter {
      */
     public ConsumerConverter() {
     }
-
+    
+    /**
+     * get the object
+     * @param context
+     * @param component
+     * @param value
+     * @return 
+     */
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         Database db = new Database();
@@ -37,6 +44,13 @@ public class ConsumerConverter implements Converter {
         return (Object)sb;
     }
 
+    /**
+     * get the string
+     * @param context
+     * @param component
+     * @param value
+     * @return 
+     */
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
         Consumer sb = (Consumer)value;

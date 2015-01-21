@@ -28,16 +28,47 @@ import xmlParsing.ResultsToXml;
 @ViewScoped
 public class BackingBean {
     
+    /**
+     * field name
+     */
     private String name;
+    /**
+     * field description
+     */
     private String description;
+    /**
+     * field sequence
+     */
     private MySequence selectedSequence;
+    /**
+     * field sequence to remove
+     */
     private MySequence toRemoveSequence;
+    /**
+     * field scenario selected
+     */
     private Scenario selectedScenario;
+    /**
+     * field result
+     */
     private MyResult selectedResult;
+    /**
+     * field list of results
+     */
     private List<MyResult> results;
+    /**
+     * field list sequence
+     */
     private List<MySequence> listSelectedSequence;
+    /**
+     * field list of scenario
+     */
     private List<Scenario> listScenario;
     
+    /**
+     * get the list of scenario
+     * @return 
+     */
     public List<Scenario> getListScenario() {
         Database db = new Database();
         db.open();
@@ -47,78 +78,155 @@ public class BackingBean {
         
     }
     
+    /**
+     * get the results
+     * @return 
+     */
     public List<MyResult> getResults() {
         return this.selectedScenario.getResults();
     }
     
+    /**
+     * get the result selected by user
+     * @return 
+     */
     public MyResult getSelectedResult() {
         return selectedResult;
     }
     
+    /**
+     * set the result
+     * @param selectedResult 
+     */
     public void setSelectedResult(MyResult selectedResult) {
         this.selectedResult = selectedResult;
     }
     
+    /**
+     * get the scenario selected
+     * @return 
+     */
     public Scenario getSelectedScenario() {
         return selectedScenario;
     }
     
+    /**
+     * get the number of results
+     * @return 
+     */
     public int getNumberOfResults() {
         return this.selectedScenario.getResults().size();
     }
     
+    /**
+     * get the id
+     * @param index
+     * @return 
+     */
     public long getResultId(int index) {
         return this.selectedScenario.getResults().get(index).getId();
     }
     
+    /**
+     * get the average response time
+     * @param index
+     * @return 
+     */
     public float getResultAverageResponseTime(int index) {
         return this.selectedScenario.getResults().get(index).getAverageresponseTime();
     }
     
+    /**
+     * set the scenario
+     * @param selectedScenario 
+     */
     public void setSelectedScenario(Scenario selectedScenario) {
         this.selectedScenario = selectedScenario;
     }
     
+    /**
+     * get the name
+     * @return 
+     */
     public String getName() {
         return name;
     }
     
+    /**
+     * set the name
+     * @param name 
+     */
     public void setName(String name) {
         this.name = name;
     }
     
+    /**
+     * get the description
+     * @return 
+     */
     public String getDescription() {
         return description;
     }
     
+    /**
+     * set the description
+     * @param description 
+     */
     public void setDescription(String description) {
         this.description = description;
     }
     
+    /**
+     * get the sequence
+     * @return 
+     */
     public MySequence getSelectedSequence() {
         return selectedSequence;
     }
     
+    /**
+     * set the sequence
+     * @param selectedSequence 
+     */
     public void setSelectedSequence(MySequence selectedSequence) {
         this.selectedSequence = selectedSequence;
     }
     
+    /**
+     * remove the sequence
+     * @return 
+     */
     public MySequence getToRemoveSequence() {
         return toRemoveSequence;
     }
     
+    /**
+     * set the sequence
+     * @param toRemoveSequence 
+     */
     public void setToRemoveSequence(MySequence toRemoveSequence) {
         this.toRemoveSequence = toRemoveSequence;
     }
     
+    /**
+     * get the list of sequence
+     * @return 
+     */
     public List<MySequence> getListSelectedSequence() {
         return listSelectedSequence;
     }
     
+    /**
+     * set the sequences
+     * @param listSelectedSequence 
+     */
     public void setListSelectedSequence(List<MySequence> listSelectedSequence) {
         this.listSelectedSequence = listSelectedSequence;
     }
     
+    /**
+     * add a sequence
+     */
     public void addSelectedSequence() {
         
         if (this.listSelectedSequence == null) {
@@ -130,6 +238,9 @@ public class BackingBean {
         
     }
     
+    /**
+     * remove a sequence
+     */
     public void removeSelectedSequence() {
         if (this.listSelectedSequence == null) {
             this.listSelectedSequence = new ArrayList<>();
@@ -157,6 +268,9 @@ public class BackingBean {
         db.close();
     }
     
+    /**
+     * add a result
+     */
     public void addResult() {
         if (this.selectedScenario.getResults() == null) {
             this.selectedScenario.setResults(new ArrayList<MyResult>());
@@ -178,6 +292,9 @@ public class BackingBean {
         this.selectedScenario.setResults(alr);
     }
     
+    /**
+     * delete a result
+     */
     public void deleteResult() {
         Database db = new Database();
         db.open();
@@ -191,6 +308,10 @@ public class BackingBean {
         
     }
     
+    /**
+     * set a scenario
+     * @param sce 
+     */
     public void setSce(Scenario sce) {
         this.selectedScenario = sce;
     }
@@ -213,6 +334,9 @@ public class BackingBean {
         }
     }
     
+    /**
+     * called on launching, set the controller
+     */
     public void onLaunching() {
         MainController controller = new MainController();
         controller.launchScenario(selectedScenario);

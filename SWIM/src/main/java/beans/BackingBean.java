@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package beans;
 
 import controller.MainController;
@@ -29,7 +28,6 @@ import xmlParsing.ResultsToXml;
 @ViewScoped
 public class BackingBean {
 
-  
     private String name;
     private String description;
     private MySequence selectedSequence;
@@ -37,22 +35,21 @@ public class BackingBean {
     private Scenario selectedScenario;
     private MyResult selectedResult;
     private List<MyResult> results;
-    private ArrayList<MySequence> listSelectedSequence;   
- private List<Scenario> listScenario;
+    private ArrayList<MySequence> listSelectedSequence;
+    private List<Scenario> listScenario;
 
-  public List<Scenario> getListScenario(){
-         Database db = new Database();
+    public List<Scenario> getListScenario() {
+        Database db = new Database();
         db.open();
         List<Scenario> ret = db.getScenarios();
         db.close();
         return ret;
-       
+
     }
+
     public List<MyResult> getResults() {
         return this.selectedScenario.getResults();
     }
-
-   
 
     public MyResult getSelectedResult() {
         return selectedResult;
@@ -64,6 +61,18 @@ public class BackingBean {
 
     public Scenario getSelectedScenario() {
         return selectedScenario;
+    }
+
+    public int getNumberOfResults() {
+        return this.selectedScenario.getResults().size();
+    }
+
+    public long getResultId(int index) {
+        return this.selectedScenario.getResults().get(index).getId();
+    }
+
+    public float getResultAverageResponseTime(int index) {
+        return this.selectedScenario.getResults().get(index).getAverageresponseTime();
     }
 
     public void setSelectedScenario(Scenario selectedScenario) {
@@ -110,66 +119,67 @@ public class BackingBean {
         this.listSelectedSequence = listSelectedSequence;
     }
 
-    public void addSelectedSequence(){
-        
-        if(this.listSelectedSequence == null){
+    public void addSelectedSequence() {
+
+        if (this.listSelectedSequence == null) {
             this.listSelectedSequence = new ArrayList<>();
         }
-        if(!this.listSelectedSequence.contains(selectedSequence)){
+        if (!this.listSelectedSequence.contains(selectedSequence)) {
             this.listSelectedSequence.add(selectedSequence);
         }
-       
-        
+
     }
-    public void removeSelectedSequence(){
-        if(this.listSelectedSequence == null){
+
+    public void removeSelectedSequence() {
+        if (this.listSelectedSequence == null) {
             this.listSelectedSequence = new ArrayList<>();
         }
-       
+
         this.listSelectedSequence.remove(toRemoveSequence);
     }
+
     /**
      * Creates a new instance of CreateBean
      */
     public BackingBean() {
     }
-    
-     public void createScenario(){
+
+    public void createScenario() {
         Database db = new Database();
         db.open();
-       ScenarioBean Sb = new ScenarioBean();
-       Sb.setDescription(description);
-       Sb.setName(name);
-       if(db.getScenarioByName(name) == null){
-        db.createScenario(Sb);
-       }
-       db.updateScenario(name, listSelectedSequence);
-       db.close();
+        ScenarioBean Sb = new ScenarioBean();
+        Sb.setDescription(description);
+        Sb.setName(name);
+        if (db.getScenarioByName(name) == null) {
+            db.createScenario(Sb);
+        }
+        db.updateScenario(name, listSelectedSequence);
+        db.close();
     }
-    
- public void addResult(){
-        if(this.selectedScenario.getResults() == null){
+
+    public void addResult() {
+        if (this.selectedScenario.getResults() == null) {
             this.selectedScenario.setResults(new ArrayList<MyResult>());
-            
+
         }
         List<MyResult> alr;
         alr = this.selectedScenario.getResults();
         MyResult tmp = new MyResult();
-        tmp.setAverageresponseTime((int)(Math.random()*1000));
-        tmp.setMsgCount(500+(int)(Math.random()*1000));
-        tmp.setMsgLost((int)(Math.random()*500));
+        tmp.setAverageresponseTime((int) (Math.random() * 1000));
+        tmp.setMsgCount(500 + (int) (Math.random() * 1000));
+        tmp.setMsgLost((int) (Math.random() * 500));
         Database db = new Database();
         db.open();
         db.addResult(tmp);
         alr.add(tmp);
-        db.updateScenarioResult(this.selectedScenario.getName(),alr );
+        db.updateScenarioResult(this.selectedScenario.getName(), alr);
         db.close();
-        
-        
+
         this.selectedScenario.setResults(alr);
     }
-    public void deleteResult(){
-       Database db = new Database();
+
+    public void deleteResult() {
+        Database db = new Database();
         db.open();
         MyResult rt = db.getResultById(selectedResult.getId());
         Scenario sce = db.getScenarioByName(selectedScenario.getName());
@@ -178,28 +188,29 @@ public class BackingBean {
         this.results = sce.getResults();
         db.deleteResult(rt.getId());
         db.close();
-        
-   }
-    public void setSce(Scenario sce){
+
+    }
+
+    public void setSce(Scenario sce) {
         this.selectedScenario = sce;
     }
-    
+
     /**
      * Called when user click on "Download as XML"
-     * 
+     *
      * Launch the process of XML writing of the result on the specified file
      */
-    public void downloadXML(){
+    public void downloadXML() {
         try {
-            ResultsToXml.generateXml(selectedResult, "/home/martin/Bureau/result.xml" );
+            ResultsToXml.generateXml(selectedResult, "/Users/frankgouineau/Desktop/result.xml");
         } catch (JAXBException ex) {
             Logger.getLogger(BackingBean.class.getName()).log(Level.SEVERE, null, ex);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(BackingBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void onLaunching(){
+
+    public void onLaunching() {
         MainController controller = new MainController();
         controller.launchScenario(selectedScenario);
     }

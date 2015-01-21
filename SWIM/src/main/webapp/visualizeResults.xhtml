@@ -20,7 +20,7 @@ and open the template in the editor.
             google.load("visualization", "1", {packages: ["corechart"]});
             google.setOnLoadCallback(drawChart);
             function drawChart() {
-
+                /*
                 var data = google.visualization.arrayToDataTable([
                     ['Msg', 'number'],
                     ['MsgOk', #{backingBean.selectedResult.msgCount} -#{backingBean.selectedResult.msgLost}],
@@ -37,6 +37,29 @@ and open the template in the editor.
                 var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
                 chart.draw(data, options);
+                */
+                   
+                var data = [
+                    ['Result', 'Average Response Time'],
+                    [#{backingBean.selectedScenario.results[i]}, #{backingBean.selectedScenario.results[i].averageresponseTime}]
+
+                ];
+                
+                var i=0;
+                for(i=0;i<#{backingBean.getNumberOfResults()};i++){
+                    data.push([#{backingBean.getResultId(i)},#{backingBean.getResultAverageResponseTime(i)}]);
+                }
+                
+                var data2 = google.visualization.arrayToDataTable(data);
+                
+                var options = {
+                    title: 'Average response time by sequence',
+                    legend: { position: 'none'},
+                };
+
+                var chart = new google.visualization.Histogram(document.getElementById('histogramChart'));
+
+                chart.draw(data2, options);
             }
         </script>      
     </h:head>
@@ -101,7 +124,16 @@ and open the template in the editor.
         
         </h:form>
         
-        <div id="piechart"></div>
+        <div id=histogramChart">
+            
+        </div>
+        
+        <div id="piechart">
+            Average Response Time :
+            <h:outputText value="#{backingBean.selectedResult.averageresponseTime}" />
+            
+        </div>
+        
         
     </h:body>
 </html>

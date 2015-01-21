@@ -101,13 +101,16 @@ public class DatabaseTest {
         System.out.println("createScenario");
         ScenarioBean scenarioBean = new ScenarioBean();
         Database instance = new Database();
+
+        scenarioBean.setName("test");
+        scenarioBean.setDescription("description");
+
+        instance.open();
         instance.createScenario(scenarioBean);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Scenario s = instance.getScenarioByName("test");
+        instance.close();
 
-        this.open();
-
-        this.close();
+        assertNotNull(s);
     }
 
     /**
@@ -141,11 +144,38 @@ public class DatabaseTest {
     @Test
     public void testCreateSequence() {
         System.out.println("createSequence");
-        SequenceBean sequenceBean = null;
+        SequenceBean sequenceBean = new SequenceBean();
         Database instance = new Database();
+        int begin = 0;
+        int dataSize = 0;
+        int end = 0;
+        int processTime = 0;
+        int requestPerSecond = 0;
+        sequenceBean.setBegin(begin);
+        sequenceBean.setEnd(end);
+        sequenceBean.setDataSize(dataSize);
+        sequenceBean.setProcessingTime(processTime);
+        sequenceBean.setRequestPerSecond(requestPerSecond);
+        
+        instance.open();
+        
+        Consumer c = new Consumer();
+        c.setName("toto");
+        
+        Provider p = new Provider();
+        p.setName("tata");
+        
+        instance.addConsumer(c);
+        instance.addProvider(p);
+        
+        sequenceBean.setConsumer(c);
+        sequenceBean.setProvider(p);
+        
         instance.createSequence(sequenceBean);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        MySequence s = instance.getSequenceByParam(begin, dataSize, end, processTime, requestPerSecond, p, c);
+        instance.close();
+        
+        assertNotNull(s);
     }
 
     /**
@@ -207,12 +237,37 @@ public class DatabaseTest {
     @Test
     public void testUpdateScenarioResult() {
         System.out.println("updateScenarioResult");
-        String name = "";
-        List<MyResult> res = null;
+        String name = "test";
+        List<MyResult> res = new ArrayList<MyResult>();
         Database instance = new Database();
+        
+        Scenario scenario = new Scenario();
+        scenario.setName(name);
+        scenario.setDescription("description");
+
+        instance.open();
+        instance.createScenario(scenario);
+        
+        assertTrue(scenario.getResults().isEmpty());
+        
+        MyResult r = new MyResult();
+        r.setMsgCount(8);
+        r.setMsgLost(8);
+        r.setAverageresponseTime(89);
+        
+        instance.addResult(r);
+        
+        res.add(r);
         instance.updateScenarioResult(name, res);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.close();
+        
+        instance.open();
+
+        Scenario sc2 = instance.getScenarioByName(name);
+        
+        assertEquals(res, sc2.getResults());
+        
+        instance.close();
     }
 
     /**
@@ -774,13 +829,37 @@ public class DatabaseTest {
     @Test
     public void testGetSequenceByConsumer() {
         System.out.println("getSequenceByConsumer");
-        Consumer c = null;
         Database instance = new Database();
-        ArrayList<MySequence> expResult = null;
-        ArrayList<MySequence> result = instance.getSequenceByConsumer(c);
+        ArrayList<MySequence> expResult = new ArrayList<MySequence>();
+        ArrayList<MySequence> result = null;        
+        
+        instance.open();
+        
+        Consumer c = new Consumer();
+        c.setName("toto");
+        
+        Provider p = new Provider();
+        p.setName("tata");
+        
+        instance.addConsumer(c);
+        instance.addProvider(p); 
+        
+        MySequence s = new MySequence();
+        s.setDataSize(1802);
+        s.setBegin(2);
+        s.setEnd(66);
+        s.setProvider(p);
+        s.setConsumer(c);
+        s.setProcessingTime(566);
+        s.setRequestPerSecond(9);     
+        
+        instance.addSequence(s);
+        expResult.add(s);
+             
+        result = instance.getSequenceByConsumer(c);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        instance.close();
     }
 
     /**
@@ -789,13 +868,37 @@ public class DatabaseTest {
     @Test
     public void testGetSequenceByProvider() {
         System.out.println("getSequenceByProvider");
-        Provider p = null;
         Database instance = new Database();
-        ArrayList<MySequence> expResult = null;
-        ArrayList<MySequence> result = instance.getSequenceByProvider(p);
+        ArrayList<MySequence> expResult = new ArrayList<MySequence>();
+        ArrayList<MySequence> result = null;        
+        
+        instance.open();
+        
+        Consumer c = new Consumer();
+        c.setName("toto");
+        
+        Provider p = new Provider();
+        p.setName("tata");
+        
+        instance.addConsumer(c);
+        instance.addProvider(p); 
+        
+        MySequence s = new MySequence();
+        s.setDataSize(1802);
+        s.setBegin(2);
+        s.setEnd(66);
+        s.setProvider(p);
+        s.setConsumer(c);
+        s.setProcessingTime(566);
+        s.setRequestPerSecond(9);     
+        
+        instance.addSequence(s);
+        expResult.add(s);
+             
+        result = instance.getSequenceByProvider(p);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        instance.close();
     }
 
     /**
@@ -809,14 +912,35 @@ public class DatabaseTest {
         int end = 0;
         int processTime = 0;
         int requestPerSecond = 0;
-        Provider p = null;
-        Consumer c = null;
         Database instance = new Database();
-        MySequence expResult = null;
-        MySequence result = instance.getSequenceByParam(begin, dataSize, end, processTime, requestPerSecond, p, c);
+        MySequence result;
+                
+        instance.open();
+        
+        Consumer c = new Consumer();
+        c.setName("toto");
+        
+        Provider p = new Provider();
+        p.setName("tata");
+        
+        instance.addConsumer(c);
+        instance.addProvider(p); 
+        
+        MySequence expResult = new MySequence();
+        expResult.setDataSize(dataSize);
+        expResult.setBegin(begin);
+        expResult.setEnd(end);
+        expResult.setProvider(p);
+        expResult.setConsumer(c);
+        expResult.setProcessingTime(processTime);
+        expResult.setRequestPerSecond(requestPerSecond);     
+        
+        instance.addSequence(expResult);
+             
+        result = instance.getSequenceByParam(begin, dataSize, end, processTime, requestPerSecond, p, c);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        instance.close();
     }
 
     /**
@@ -826,9 +950,23 @@ public class DatabaseTest {
     public void testHardReset() {
         System.out.println("hardReset");
         Database instance = new Database();
+        instance.open();
         instance.hardReset();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.close();
+        
+        this.open();
+        Query s = this.em.createQuery("SELECT s FROM Scenario s");
+        Query r = this.em.createQuery("SELECT r FROM MyResult r");
+        Query p = this.em.createQuery("SELECT p FROM Provider p");
+        Query c = this.em.createQuery("SELECT c FROM Consumer c");
+        Query se = this.em.createQuery("SELECT s FROM MySequence s");
+        
+        assertTrue(s.getResultList().isEmpty());
+        assertTrue(r.getResultList().isEmpty());
+        assertTrue(p.getResultList().isEmpty());
+        assertTrue(c.getResultList().isEmpty());
+        assertTrue(se.getResultList().isEmpty());
+        this.close();
     }
 
     public boolean isExistingConsumer(String name) {

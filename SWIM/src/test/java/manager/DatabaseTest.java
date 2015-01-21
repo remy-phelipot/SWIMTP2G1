@@ -20,10 +20,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -32,18 +29,6 @@ import static org.junit.Assert.*;
  * @author ender
  */
 public class DatabaseTest {
-
-    public DatabaseTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
     @Before
     public void setUp() {
         File f = new File("test.db");
@@ -52,11 +37,7 @@ public class DatabaseTest {
             f.delete();
         }
     }
-
-    @After
-    public void tearDown() {
-    }
-
+    
     /**
      * Test of open method, of class Database.
      */
@@ -68,6 +49,7 @@ public class DatabaseTest {
             instance.open();
             instance.close();
         } catch (Exception e) {
+            Logger.getLogger(DatabaseTest.class.getName()).severe(e.getMessage());
             fail(e.getMessage());
         }
     }
@@ -88,6 +70,7 @@ public class DatabaseTest {
             instance.open();
             instance.close();
         } catch (Exception e) {
+            Logger.getLogger(DatabaseTest.class.getName()).severe(e.getMessage());
             fail(e.getMessage());
         }
     }
@@ -96,7 +79,7 @@ public class DatabaseTest {
      * Test of createScenario method, of class Database.
      */
     @Test
-    public void testCreateScenario_ScenarioBean() {
+    public void testCreateScenarioScenarioBean() {
         Logger.getLogger(DatabaseTest.class.getName()).info("createScenario");
         ScenarioBean scenarioBean = new ScenarioBean();
         Database instance = new Database();
@@ -116,7 +99,7 @@ public class DatabaseTest {
      * Test of createScenario method, of class Database.
      */
     @Test
-    public void testCreateScenario_Scenario() {
+    public void testCreateScenarioScenario() {
         Logger.getLogger(DatabaseTest.class.getName()).info("createScenario");
         Scenario scenario = new Scenario();
         scenario.setName("test");
@@ -328,7 +311,7 @@ public class DatabaseTest {
      * Test of addConsumer method, of class Database.
      */
     @Test
-    public void testAddConsumer_String() {
+    public void testAddConsumerString() {
         Logger.getLogger(DatabaseTest.class.getName()).info("addConsumer");
         String name = "testConsumer";
         Database instance = new Database();
@@ -351,7 +334,7 @@ public class DatabaseTest {
      * Test of addConsumer method, of class Database.
      */
     @Test
-    public void testAddConsumer_Consumer() {
+    public void testAddConsumerConsumer() {
         Logger.getLogger(DatabaseTest.class.getName()).info("addConsumer");
         Consumer c = new Consumer();
         c.setName("testCons");
@@ -372,7 +355,7 @@ public class DatabaseTest {
      * Test of addProvider method, of class Database.
      */
     @Test
-    public void testAddProvider_String() {
+    public void testAddProviderString() {
         Logger.getLogger(DatabaseTest.class.getName()).info("addProvider");
         String name = "testProvider";
         Database instance = new Database();
@@ -395,7 +378,7 @@ public class DatabaseTest {
      * Test of addProvider method, of class Database.
      */
     @Test
-    public void testAddProvider_Provider() {
+    public void testAddProviderProvider() {
         Logger.getLogger(DatabaseTest.class.getName()).info("addProvider");
         Provider p = new Provider();
         p.setName("ProviderName");

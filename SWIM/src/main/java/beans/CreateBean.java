@@ -359,10 +359,10 @@ public class CreateBean {
 
     /**
      * set the rps
-     * @param RpS 
+     * @param rpS 
      */
-    public void setRpS(int RpS) {
-        this.requestPerSecond = RpS;
+    public void setRpS(int rpS) {
+        this.requestPerSecond = rpS;
     }
 
     /**
@@ -391,10 +391,10 @@ public class CreateBean {
 
     /**
      * set the data size
-     * @param DataS 
+     * @param dataS 
      */
-    public void setDataS(int DataS) {
-        this.dataSize = DataS;
+    public void setDataS(int dataS) {
+        this.dataSize = dataS;
     }
 
     /**
@@ -408,10 +408,10 @@ public class CreateBean {
 
     /**
      * set the sb
-     * @param Sb 
+     * @param sb 
      */
-    public void setSb(ScenarioBean Sb) {
-        this.scenarioBean = Sb;
+    public void setSb(ScenarioBean sb) {
+        this.scenarioBean = sb;
     }
 
     /**
@@ -453,12 +453,6 @@ public class CreateBean {
      */
     public void setCreated(Scenario created) {
         this.created = created;
-    }
-
-    /**
-     * Creates a new instance of CreateBean
-     */
-    public CreateBean() {
     }
 
     /**

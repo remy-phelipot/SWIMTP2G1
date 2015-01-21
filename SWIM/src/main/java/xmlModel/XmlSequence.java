@@ -46,14 +46,29 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class XmlSequence {
 
+    /**
+     * field processing time
+     */
     @XmlElement(name = "processing_time_provider")
     protected int processingTimeProvider;
+    /**
+     * field datasize
+     */
     @XmlElement(name = "data_size")
     protected int dataSize;
+    /**
+     * field request
+     */
     @XmlElement(name = "nbr_req_per_sec_consumer")
     protected int nbrReqPerSecConsumer;
+    /**
+     * field begin
+     */
     @XmlAttribute(name = "begin", required = true)
     protected int begin;
+    /**
+     * field end
+     */
     @XmlAttribute(name = "end", required = true)
     protected int end;
 

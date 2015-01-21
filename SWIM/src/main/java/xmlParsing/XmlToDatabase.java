@@ -22,6 +22,10 @@ import xmlModel.XmlSequences;
  */
 public class XmlToDatabase {
 
+    /**
+     * load the database
+     * @param params 
+     */
     public static void loadDatabase(XmlParameters params) {
         Database db = new Database();
         Scenario scenario = paramsToScenarioDb(params);
@@ -33,6 +37,11 @@ public class XmlToDatabase {
         scenario = null;
     }
 
+    /**
+     * prepare the scenario
+     * @param params
+     * @return 
+     */
     public static Scenario paramsToScenarioDb(XmlParameters params) {
         Scenario scenario = new Scenario();
         scenario.setSequences(new ArrayList<MySequence>());

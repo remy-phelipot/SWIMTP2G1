@@ -1,6 +1,7 @@
 package database;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -71,5 +72,12 @@ public class Provider implements Serializable {
                 return otherC.getName() == null && this.name == null;
             }
         }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.name);
+        return hash;
     }
 }

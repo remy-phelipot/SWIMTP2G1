@@ -41,7 +41,8 @@ public class XmlParser {
         // creating a schema factory
         SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         // creating the schema object corresponding to the XSD schema
-        Schema schema = sf.newSchema(new File("xmlResources/schemaScenario.xsd"));
+        //Schema schema = sf.newSchema(new File("xmlResources/schemaScenario.xsd"));
+        Schema schema = sf.newSchema(XmlParameters.class.getResource("/xmlFiles/schemaScenario.xsd"));
         // setting xsd schema
         unmarshaller.setSchema(schema);
         // parsing XML file

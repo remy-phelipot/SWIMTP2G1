@@ -27,23 +27,51 @@ import javax.faces.component.UIComponent;
 @RequestScoped
 public class FileUploadBean {
 
+    /**
+     * field part
+     */
     private Part part;
+    /**
+     * field statusmessage
+     */
     private String statusMessage;
+    /**
+     * field name
+     */
     private String name;
+    /**
+     * field desc
+     */
     private String desc;
 
+    /**
+     * get the name
+     * @return 
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * set the name
+     * @param name 
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * get the desc
+     * @return 
+     */
     public String getDesc() {
         return desc;
     }
 
+    /**
+     * set the desc
+     * @param desc 
+     */
     public void setDesc(String desc) {
         this.desc = desc;
     }
@@ -54,22 +82,42 @@ public class FileUploadBean {
     public FileUploadBean() {
     }
 
+    /**
+     * get the part
+     * @return 
+     */
     public Part getPart() {
         return part;
     }
 
+    /**
+     * set the part
+     * @param part 
+     */
     public void setPart(Part part) {
         this.part = part;
     }
 
+    /**
+     * get status message
+     * @return 
+     */
     public String getStatusMessage() {
         return this.statusMessage;
     }
 
+    /**
+     * set the status message
+     * @param msg 
+     */
     public void setStatusMessage(String msg) {
         this.statusMessage = msg;
     }
 
+    /**
+     * upload a file
+     * @throws IOException 
+     */
     public void uploadFile() throws IOException {
         String fileName = getFileName(part);
         Logger.getLogger(FileUploadBean.class.getName()).log(Level.INFO, "filename: {0}", fileName);
@@ -111,6 +159,11 @@ public class FileUploadBean {
         }
     }
 
+    /**
+     * get the file name
+     * @param part
+     * @return 
+     */
     private String getFileName(Part part) {
         for (String content : part.getHeader("content-disposition").split(";")) {
             if (content.trim().startsWith("filename")) {
@@ -120,6 +173,12 @@ public class FileUploadBean {
         return null;
     }
 
+    /**
+     * validate a file
+     * @param context
+     * @param comp
+     * @param value 
+     */
     public void validateFile(FacesContext context, UIComponent comp, Object value) {
         Part file = (Part) value;
         String contentType = "text/xml";

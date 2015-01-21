@@ -29,6 +29,13 @@ public class SequenceConverter implements Converter {
     public SequenceConverter() {
     }
 
+    /**
+     * get as object
+     * @param context
+     * @param component
+     * @param value
+     * @return 
+     */
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         MySequence sb;
@@ -54,6 +61,13 @@ public class SequenceConverter implements Converter {
         return (Object) sb;
     }
 
+    /**
+     * get as string
+     * @param context
+     * @param component
+     * @param value
+     * @return 
+     */
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
         MySequence sb = (MySequence) value;

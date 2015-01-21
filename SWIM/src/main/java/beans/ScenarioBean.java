@@ -74,6 +74,11 @@ public class ScenarioBean {
         this.description = description;
     }
 
+    /**
+     * test the equality
+     * @param other
+     * @return 
+     */
     @Override
     public boolean equals(Object other) {
         if (other.getClass() != this.getClass()) {

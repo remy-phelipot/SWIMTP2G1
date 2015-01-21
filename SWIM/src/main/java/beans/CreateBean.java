@@ -101,77 +101,145 @@ public class CreateBean {
     }
 
     /**
-     * field
+     * set a scenario
      * @param scenario 
      */
     public void setScenario(Scenario scenario) {
         this.scenario = scenario;
     }
 
+    /**
+     * get the list of sequence
+     * @return 
+     */
     public List<MySequence> getListSelectedSequence() {
         return listSelectedSequence;
     }
 
+    /**
+     * set the sequence
+     * @param listSelectedSequence 
+     */
     public void setListSelectedSequence(List<MySequence> listSelectedSequence) {
         this.listSelectedSequence = listSelectedSequence;
     }
 
+    /**
+     * remove a sequence
+     * @return 
+     */
     public MySequence getToRemoveSequence() {
         return toRemoveSequence;
     }
-
+    
+    /**
+     * set the sequence to remove
+     * @param toRemoveSequence 
+     */
     public void setToRemoveSequence(MySequence toRemoveSequence) {
         this.toRemoveSequence = toRemoveSequence;
     }
 
+    /**
+     * get the sequence
+     * @return 
+     */
     public MySequence getSelectedSequence() {
         return selectedSequence;
     }
 
+    /**
+     * set the sequence
+     * @param selectedSequence 
+     */
     public void setSelectedSequence(MySequence selectedSequence) {
         this.selectedSequence = selectedSequence;
     }
 
+    /**
+     * delete the sequence
+     * @return 
+     */
     public MySequence getToDeleteSequence() {
         return toDeleteSequence;
     }
 
+    /**
+     * set the deletion
+     * @param toDeleteSequence 
+     */
     public void setToDeleteSequence(MySequence toDeleteSequence) {
         this.toDeleteSequence = toDeleteSequence;
     }
 
+    /**
+     * delete a consumer
+     * @return 
+     */
     public Consumer getToDeleteConsumer() {
         return toDeleteConsumer;
     }
 
+    /**
+     * set the deletion
+     * @param toDeleteConsumer 
+     */
     public void setToDeleteConsumer(Consumer toDeleteConsumer) {
         this.toDeleteConsumer = toDeleteConsumer;
     }
 
+    /**
+     * get a provider to delete
+     * @return 
+     */
     public Provider getToDeleteProvider() {
         return toDeleteProvider;
     }
 
+    /**
+     * set the deletion of a provider
+     * @param toDeleteProvider 
+     */
     public void setToDeleteProvider(Provider toDeleteProvider) {
         this.toDeleteProvider = toDeleteProvider;
     }
 
+    /**
+     * *get a provider
+     * @return 
+     */
     public Provider getSelectedProvider() {
         return selectedProvider;
     }
 
+    /**
+     * set the provider
+     * @param selectedProvider 
+     */
     public void setSelectedProvider(Provider selectedProvider) {
         this.selectedProvider = selectedProvider;
     }
 
+    /**
+     * get a provider
+     * @return 
+     */
     public String getProviderName() {
         return providerName;
     }
 
+    /**
+     * set a provider
+     * @param providerName 
+     */
     public void setProviderName(String providerName) {
         this.providerName = providerName;
     }
 
+    /**
+     * get the providers
+     * @return 
+     */
     public List<Provider> getListProvider() {
         Database db = new Database();
         db.open();
@@ -180,6 +248,10 @@ public class CreateBean {
         return ret;
     }
 
+    /**
+     * set the providers
+     * @param listProvider 
+     */
     public void setListProvider(List<Provider> listProvider) {
         Database db = new Database();
         db.open();
@@ -188,14 +260,26 @@ public class CreateBean {
         this.listProvider = ret;
     }
 
+    /**
+     * get a consumer
+     * @return 
+     */
     public Consumer getSelectedConsumer() {
         return selectedConsumer;
     }
 
+    /**
+     * set a consumer
+     * @param selectedConsumer 
+     */
     public void setSelectedConsumer(Consumer selectedConsumer) {
         this.selectedConsumer = selectedConsumer;
     }
 
+    /**
+     * get a consumer
+     * @return 
+     */
     public List<Consumer> getListConsumer() {
         Database db = new Database();
         db.open();
@@ -204,6 +288,10 @@ public class CreateBean {
         return ret;
     }
 
+    /**
+     * set the consumer
+     * @param listConsumer 
+     */
     public void setListConsumer(List<Consumer> listConsumer) {
         Database db = new Database();
         db.open();
@@ -212,63 +300,123 @@ public class CreateBean {
         this.listConsumer = ret;
     }
 
+    /**
+     * get the consumer name
+     * @return 
+     */
     public String getConsumerName() {
         return consumerName;
     }
 
+    /**
+     * set the consumer name
+     * @param consumerName 
+     */
     public void setConsumerName(String consumerName) {
         this.consumerName = consumerName;
     }
 
+    /**
+     * get the begin
+     * @return 
+     */
     public int getBegin() {
         return begin;
     }
 
+    /**
+     * set the begin
+     * @param begin 
+     */
     public void setBegin(int begin) {
         this.begin = begin;
     }
 
+    /**
+     * get the end
+     * @return 
+     */
     public int getEnd() {
         return end;
     }
 
+    /**
+     * set the end
+     * @param end 
+     */
     public void setEnd(int end) {
         this.end = end;
     }
 
+    /**
+     * get the rps
+     * @return 
+     */
     public int getRpS() {
         return RpS;
     }
 
+    /**
+     * set the rps
+     * @param RpS 
+     */
     public void setRpS(int RpS) {
         this.RpS = RpS;
     }
 
+    /**
+     * get the process time
+     * @return 
+     */
     public int getProcessTime() {
         return processTime;
     }
 
+    /**
+     * set the process time
+     * @param processTime 
+     */
     public void setProcessTime(int processTime) {
         this.processTime = processTime;
     }
 
+    /**
+     * get the datasize
+     * @return 
+     */
     public int getDataS() {
         return DataS;
     }
 
+    /**
+     * set the data size
+     * @param DataS 
+     */
     public void setDataS(int DataS) {
         this.DataS = DataS;
     }
 
+    /**
+     * get the sb
+     * @return 
+     */
     public ScenarioBean getSb() {
 
         return Sb;
     }
 
+    /**
+     * set the sb
+     * @param Sb 
+     */
     public void setSb(ScenarioBean Sb) {
         this.Sb = Sb;
     }
 
+    /**
+     * get the list of sequences
+     * @return 
+     */
     public List<MySequence> getListSequence() {
         Database db = new Database();
         db.open();
@@ -277,6 +425,10 @@ public class CreateBean {
         return ret;
     }
 
+    /**
+     * set the list of sequence
+     * @param listSequence 
+     */
     public void setListSequence(List<MySequence> listSequence) {
         Database db = new Database();
         db.open();
@@ -285,11 +437,19 @@ public class CreateBean {
         this.listSequence = ret;
     }
 
+    /**
+     * get the creation
+     * @return 
+     */
     public Scenario getCreated() {
 
         return created;
     }
 
+    /**
+     * set the creation
+     * @param created 
+     */
     public void setCreated(Scenario created) {
         this.created = created;
     }
@@ -300,11 +460,17 @@ public class CreateBean {
     public CreateBean() {
     }
 
+    /**
+     * print
+     */
     public void print() {
         Logger.getLogger(CreateBean.class.getName()).info(Sb.getName());
         Logger.getLogger(CreateBean.class.getName()).info(Sb.getDescription());
     }
 
+    /**
+     * add a consumer
+     */
     public void addConsumer() {
         Database db = new Database();
         db.open();
@@ -312,6 +478,9 @@ public class CreateBean {
         db.close();
     }
 
+    /**
+     * add a provider
+     */
     public void addProvider() {
         Database db = new Database();
         db.open();
@@ -319,6 +488,9 @@ public class CreateBean {
         db.close();
     }
 
+    /**
+     * add a sequence
+     */
     public void addSequence() {
         Database db = new Database();
         db.open();
@@ -334,6 +506,9 @@ public class CreateBean {
         db.close();
     }
 
+    /**
+     * delete a consumer
+     */
     public void deleteConsumer() {
         Database db = new Database();
         db.open();
@@ -341,6 +516,9 @@ public class CreateBean {
         db.close();
     }
 
+    /**
+     * delete a provider
+     */
     public void deleteProvider() {
         Database db = new Database();
         db.open();
@@ -348,6 +526,9 @@ public class CreateBean {
         db.close();
     }
 
+    /**
+     * delete a sequence
+     */
     public void deleteSequence() {
         Database db = new Database();
         db.open();
@@ -355,6 +536,9 @@ public class CreateBean {
         db.close();
     }
 
+    /**
+     * delete the database
+     */
     public void delete() {
         Database db = new Database();
         db.open();

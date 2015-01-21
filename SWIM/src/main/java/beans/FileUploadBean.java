@@ -121,22 +121,14 @@ public class FileUploadBean {
     }
 
     public void validateFile(FacesContext context, UIComponent comp, Object value) {
-        //ArrayList<FacesMessage> msgs = new ArrayList<>();
         Part file = (Part) value;
         String contentType = "text/xml";
         Logger.getLogger(FileUploadBean.class.getName()).log(Level.INFO, "content type: {0}", file.getContentType());
         Logger.getLogger(FileUploadBean.class.getName()).log(Level.INFO, "size: {0}", file.getSize());
 
         // Pour l'instant, pas de contrainte de taille
-        /*if (file.getSize() > 1024) {
-         msgs.add(new FacesMessage("The selected file is too big"));
-         }*/
         if (!contentType.equals(file.getContentType())) {
             statusMessage = "The selected file is not a XML file.";
-            //msgs.add(new FacesMessage("The selected file is not a XML file."));
         }
-        /*if (!msgs.isEmpty()) {
-         throw new ValidatorException(msgs);
-         }*/
     }
 }

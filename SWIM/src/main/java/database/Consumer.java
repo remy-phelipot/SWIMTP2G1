@@ -3,6 +3,7 @@ package database;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -63,16 +64,17 @@ public class Consumer implements Serializable {
 
     @Override
     public boolean equals(Object other){
-        if(other.getClass() != this.getClass()){
+        if(other == null)
             return false;
-        }else if(other == null){
+        if(other.getClass() != this.getClass())
             return false;
-        }else{
+        else{
             Consumer otherC = (Consumer)other;
-            if(otherC.getName().equalsIgnoreCase(this.getName())){
-                return true;
-            }else{
-                return false;
+            
+            if((otherC.getName() != null) && (this.name != null)){
+                return otherC.getName().equalsIgnoreCase(this.getName());
+            } else {
+                return otherC.getName() == this.name;
             }
         }
     }

@@ -58,16 +58,17 @@ public class Provider implements Serializable {
 
     @Override
     public boolean equals(Object other){
-        if(other.getClass() != this.getClass()){
+        if(other == null)
             return false;
-        }else if(other == null){
+        if(other.getClass() != this.getClass())
             return false;
-        }else{
-            Provider otherP = (Provider)other;
-            if(otherP.getName().equalsIgnoreCase(this.getName())){
-                return true;
-            }else{
-                return false;
+        else{
+            Provider otherC = (Provider)other;
+            
+            if((otherC.getName() != null) && (this.name != null)){
+                return otherC.getName().equalsIgnoreCase(this.getName());
+            } else {
+                return otherC.getName() == null && this.name == null;
             }
         }
     }

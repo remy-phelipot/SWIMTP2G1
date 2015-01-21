@@ -3,6 +3,7 @@ package database;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -130,6 +131,7 @@ public class MySequence implements Serializable {
     public void setResults(ArrayList<MyResult> results) {
         this.results = results;
     }
+    
    @Override
     public boolean equals(Object other){
         if(other == null){ 
@@ -139,14 +141,45 @@ public class MySequence implements Serializable {
             return false;
         } 
         MySequence otherC = (MySequence)other;
-        if(this.begin == otherC.getBegin() && otherC.getConsumer().getName().equalsIgnoreCase(this.consumer.getName()) && otherC.getDataSize() == this.dataSize && otherC.getEnd() == this.end && otherC.getProcessingTime() == this.processingTime
-                && otherC.getProvider().getName().equalsIgnoreCase(this.provider.getName()) && otherC.getRequestPerSecond() == this.requestPerSecond){
-            return true;
-        }
-        return false;
+        boolean cnameEqual;
+        if(otherC.getConsumer() != null && this.consumer != null)
+            if((otherC.getConsumer().getName() != null) && (this.consumer.getName() != null)){
+                cnameEqual = otherC.getConsumer().getName().equalsIgnoreCase(this.consumer.getName());
+            } else {
+                cnameEqual = otherC.getConsumer().getName() == null && this.consumer.getName() == null;
+            }
+        else
+            cnameEqual = otherC.getConsumer() == this.consumer;
         
+        boolean pnameEqual;
+        if(otherC.getProvider() != null && this.provider != null)
+            if((otherC.getProvider().getName() != null) && (this.provider.getName() != null)){
+                pnameEqual = otherC.getProvider().getName().equalsIgnoreCase(this.provider.getName());
+            } else {
+                pnameEqual = otherC.getProvider().getName() == null && this.provider.getName() == null;
+            }
+        else
+            pnameEqual = otherC.getProvider() == this.provider;
         
+        return this.begin == otherC.getBegin() 
+                && cnameEqual
+                && otherC.getDataSize() == this.dataSize
+                && otherC.getEnd() == this.end
+                && otherC.getProcessingTime() == this.processingTime
+                && pnameEqual
+                && otherC.getRequestPerSecond() == this.requestPerSecond;
     }
 
-   
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 83 * hash + this.begin;
+        hash = 83 * hash + this.dataSize;
+        hash = 83 * hash + this.end;
+        hash = 83 * hash + this.processingTime;
+        hash = 83 * hash + this.requestPerSecond;
+        hash = 83 * hash + Objects.hashCode(this.consumer);
+        hash = 83 * hash + Objects.hashCode(this.provider);
+        return hash;
+    }
 }

@@ -66,6 +66,18 @@ public class BackingBean {
         return selectedScenario;
     }
 
+    public int getNumberOfResults() {
+        return this.selectedScenario.getResults().size();
+    }
+
+    public long getResultId(int index) {
+        return this.selectedScenario.getResults().get(index).getId();
+    }
+
+    public float getResultAverageResponseTime(int index) {
+        return this.selectedScenario.getResults().get(index).getAverageresponseTime();
+    }
+
     public void setSelectedScenario(Scenario selectedScenario) {
         this.selectedScenario = selectedScenario;
     }

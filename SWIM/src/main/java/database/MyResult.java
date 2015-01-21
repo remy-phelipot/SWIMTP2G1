@@ -1,17 +1,12 @@
 package database;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -92,10 +87,14 @@ public class MyResult implements Serializable {
             return false;
         }
         final MyResult other = (MyResult) obj;
-        if (this.id != other.getId()) {
-            return false;
-        }
-        return true;
+        return this.id == other.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + (int) (this.id ^ (this.id >>> 32));
+        return hash;
     }
 
 }

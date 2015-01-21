@@ -24,12 +24,10 @@ import xmlParsing.XmlToDatabase;
  */
 public class MainController {
     private final Database database;
-    private final MessageService messageService;
     private final webCallsExample webCalls;
 
     public MainController() {
         database = new Database();
-        messageService = new MessageService(this);
         webCalls = new webCallsExample();
     }
 

@@ -48,10 +48,25 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class XmlParameters {
 
+    /**
+     * field name
+     */
     protected String name;
+    /**
+     * field description
+     */
     protected String description;
+    /**
+     * field consumers
+     */
     protected XmlConsumers consumers;
+    /**
+     * field providers
+     */
     protected XmlProviders providers;
+    /**
+     * field links
+     */
     protected XmlLinks links;
 
     /**

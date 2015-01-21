@@ -1,7 +1,6 @@
 package database;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -29,64 +28,130 @@ import javax.persistence.OneToMany;
             query="DELETE FROM Scenario s WHERE NOT(s.id =0)")
 })
 public class Scenario implements Serializable {
+    /**
+     * field id
+     */
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
 
+  /**
+   * field name
+   */
   private String name;
+  /**
+   * field description
+   */
   private String description;
 
+  /**
+   * field sequences
+   */
   @ManyToMany
   private List<MySequence> sequences;
 
+  /**
+   * field results
+   */
   @OneToMany
   private List<MyResult> results;
 
+  /**
+   * field version
+   */
   private static final long serialVersionUID = 1L;
 
+  /**
+   * constructor
+   */
   public Scenario() {
   }
 
+  /**
+   * get id
+   * @return 
+   */
   public long getId() {
     return this.id;
   }
 
+  /**
+   * set id
+   * @param id 
+   */
   public void setId(long id) {
     this.id = id;
   }
 
+  /**
+   * get name
+   * @return 
+   */
   public String getName() {
     return this.name;
   }
 
+  /**
+   * set name
+   * @param name 
+   */
   public void setName(String name) {
     this.name = name;
   }
 
+  /**
+   * get description
+   * @return 
+   */
   public String getDescription() {
     return this.description;
   }
 
+  /**
+   * set description
+   * @param description 
+   */
   public void setDescription(String description) {
     this.description = description;
   }
 
 
+  /**
+   * set sequences
+   * @param sequences 
+   */
     public void setSequences(List<MySequence> sequences) {
         this.sequences = sequences;
     }
 
+    /**
+     * set results
+     * @param results 
+     */
     public void setResults(List<MyResult> results) {
         this.results = results;
     }
 
+    /**
+     * get sequences
+     * @return 
+     */
     public List<MySequence> getSequences() {
         return sequences;
     }
 
+    /**
+     * get results
+     * @return 
+     */
     public List<MyResult> getResults() {
         return results;
     }
+    /**
+     * test equality
+     * @param other
+     * @return 
+     */
    @Override
     public boolean equals(Object other){
         if(other == null)
@@ -100,6 +165,10 @@ public class Scenario implements Serializable {
         }
     }
 
+    /***
+     * hash code
+     * @return 
+     */
     @Override
     public int hashCode() {
         int hash = 3;

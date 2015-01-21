@@ -29,6 +29,9 @@ import static org.junit.Assert.*;
  * @author ender
  */
 public class DatabaseTest {
+    /**
+     * test
+     */
     @Before
     public void setUp() {
         File f = new File("test.db");
@@ -951,6 +954,11 @@ public class DatabaseTest {
         this.close();
     }
 
+    /**
+     * is existing consumer
+     * @param name
+     * @return 
+     */
     public boolean isExistingConsumer(String name) {
 
         boolean result = false;
@@ -972,6 +980,11 @@ public class DatabaseTest {
         return result;
     }
 
+    /**
+     * is existing provider
+     * @param name
+     * @return 
+     */
     public boolean isExistingProvider(String name) {
 
         boolean result = false;
@@ -993,10 +1006,22 @@ public class DatabaseTest {
         return result;
     }
 
+    /**
+     * field persistence
+     */
     private static final String persistenceUnitName = "persistanceunit";
+    /**
+     * field emf
+     */
     private EntityManagerFactory emf = null;
+    /**
+     * field em
+     */
     private EntityManager em = null;
 
+    /**
+     * open
+     */
     public void open() {
         if (this.emf != null || this.em != null) {
             throw new RuntimeException("Database already opened");
@@ -1006,6 +1031,9 @@ public class DatabaseTest {
         this.em = emf.createEntityManager();
     }
 
+    /**
+     * close
+     */
     public void close() {
         if (this.emf == null || this.em == null) {
             throw new RuntimeException("Database is not opened");

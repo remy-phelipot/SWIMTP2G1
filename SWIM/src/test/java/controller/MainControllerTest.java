@@ -10,10 +10,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import manager.Database;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -22,6 +18,9 @@ import static org.junit.Assert.*;
  * @author ender
  */
 public class MainControllerTest {  
+    /**
+     * field xml
+     */
     static String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
 "<params>\n" +
 "    <consumers>\n" +

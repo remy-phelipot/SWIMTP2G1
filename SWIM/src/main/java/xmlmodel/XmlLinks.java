@@ -41,6 +41,9 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class XmlLinks {
 
+    /**
+     * field link
+     */
     @XmlElement(nillable = true)
     protected List<XmlLink> link;
 

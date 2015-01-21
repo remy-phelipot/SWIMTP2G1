@@ -45,8 +45,17 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class XmlLink {
 
+    /**
+     * field consumer
+     */
     protected XmlConsumer consumer;
+    /**
+     * field provider
+     */
     protected XmlProvider provider;
+    /**
+     * field sequences
+     */
     @XmlElement(nillable = true)
     protected List<XmlSequences> sequences;
 

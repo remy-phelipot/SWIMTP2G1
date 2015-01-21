@@ -38,6 +38,9 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class XmlConsumer {
 
+    /**
+     * field name
+     */
     protected String name;
 
     /**

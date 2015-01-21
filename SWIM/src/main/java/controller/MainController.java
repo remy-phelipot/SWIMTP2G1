@@ -68,18 +68,12 @@ public class MainController {
                 Consumer consumer = sequence.getConsumer();
 
                 if (!providers.contains(provider)) {
-                    /*throw new RuntimeException("Provider "
-                     + provider.getName()
-                     + " is not in the database");*/
                     database.open();
                     database.addProvider(provider);
                     database.close();
                 }
 
                 if (!consumers.contains(consumer)) {
-                    /*throw new RuntimeException("Consumer "
-                     + consumer.getName()
-                     + " is not in the database");*/
                     database.open();
                     database.addConsumer(consumer);
                     database.close();
@@ -135,25 +129,17 @@ public class MainController {
      */
     public void launchScenario(Scenario scenario) {
         Logger.getLogger(MainController.class.getName()).log(Level.INFO, null, "parametrage des webservices");
-        //ArrayList<ConsumerWs> consumersToStart = new ArrayList<ConsumerWs>();
         webCalls.resetSequence();
         /* For each sequence of the scenario, we initialize the webs services */
         for (MySequence currentSequence : scenario.getSequences()) {
             /* set the web service consumer */
-            //currentSequence.getConsumer().getName(); 
             webCalls.addSequence(currentSequence.getBegin(), currentSequence.getEnd(), currentSequence.getDataSize(), currentSequence.getRequestPerSecond());; // parameter
 
-            //consumersToStart.add(/*the current web service*/);
             /* set the web service provider */
-            //currentSequence.getProvider().getName();
             webCalls.setProducerProcessTime(currentSequence.getProcessingTime());
-            //currentSequence.getDataSize(); // parameter
 
         }
 
-        /*  for (ConsumerWs consumer: consumersToStart){
-         consumer.run();
-         }*/
         Logger.getLogger(MainController.class.getName()).log(Level.INFO, null, "Consumer en train de run...");
         webCalls.runConsumer();
         onEndOfScenario(scenario);

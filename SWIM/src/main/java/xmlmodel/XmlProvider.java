@@ -38,6 +38,9 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class XmlProvider {
 
+    /**
+     * field name
+     */
     protected String name;
 
     /**
